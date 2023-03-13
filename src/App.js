@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { publicRoutes } from "./routes";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Routes>
+                    {publicRoutes.map((route, key) => {
+                        // must use Fragment, use <> </> do not active/work
+                        // let Layout = DefaultLayout;
+                        // if (route.layout) {
+                        //     Layout = route.layout;
+                        // } else if (route.layout === null) {
+                        //     Layout = Fragment;
+                        // }
+                        const Page = route.component;
+                        return (
+                            <Route
+                                key={key}
+                                path={route.path}
+                                element={<Page />}
+                            ></Route>
+                        );
+                    })}
+                    {/* {privateRoutes.map((route, key) => {
+                        let Layout = DefaultLayout;
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
+                        const Page = route.component;
+                        return (
+                            <Route
+                                key={key}
+                                path={route.path}
+                                element={
+                                    <Layout>
+                                        <Page />
+                                    </Layout>
+                                }
+                            ></Route>
+                        );
+                    })} */}
+                </Routes>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
