@@ -1,0 +1,84 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,600;0,700;1,300&display=swap');
+
+
+:root{
+    --primary: #fe2c55;
+    --black-color: #000;
+    --white-color: #fff;
+    --text-color: #161823;
+    //Default layout
+    --default-layout-header-height: 60px;
+    --default-layout-width: 1150px;
+    --default-layout-horizontal-spacer: 24px;
+}
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    overflow-y: overlay;
+}
+
+// SCROLLBAR
+html ::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html ::-webkit-scrollbar-thumb {
+    background-color: rgba(22,24,35,.06);
+    border-radius: 4px;
+}
+
+html ::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 0;
+}
+
+// END
+
+button, input, [tabindex] {
+    outline: none;
+    border: none;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+// CUSTOM TIPPY TOOLTIP
+
+body {
+    .tippy-box{
+        border-radius: 8px;
+        background-color: rgba(84, 84, 84, 0.92);
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        font-weight: 600;
+    }
+
+    .tippy-arrow{
+        color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content{
+        padding: 8px 9px;
+    }
+}
+
+
+
+    
