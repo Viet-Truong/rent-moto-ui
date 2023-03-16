@@ -5,9 +5,11 @@ import styles from "./Header.module.scss";
 import config from "~/config";
 import image from "~/assets/image";
 import Button from "~/components/Button";
+import Image from "~/components/Image";
 
 const cx = classNames.bind(styles);
 function Header() {
+    let auth = true;
     return (
         <div className={cx("wrapper")}>
             <div className={cx("wrapper-header")}>
@@ -35,7 +37,17 @@ function Header() {
                         </li>
                     </ul>
                 </div>
-                <Button primary>Đăng nhập</Button>
+                <div className={cx("actions")}>
+                    {auth ? (
+                        <Image
+                            className={cx("user-avatar")}
+                            src={""}
+                            alt={"avatar"}
+                        />
+                    ) : (
+                        <Button primary>Đăng nhập</Button>
+                    )}
+                </div>
             </div>
         </div>
     );

@@ -35,3 +35,11 @@
         list-style-type: none;
     }
 }
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}
