@@ -6,6 +6,8 @@ import config from "~/config";
 import image from "~/assets/image";
 import Button from "~/components/Button";
 import Image from "~/components/Image";
+import Menu from "~/components/Popper/Menu";
+import { userMenu } from "~/data/userMenu";
 
 const cx = classNames.bind(styles);
 function Header() {
@@ -18,6 +20,7 @@ function Header() {
                         <img src={image.logo} alt="Website logo" />
                     </Link>
                 </div>
+
                 <div className={cx("wrapper-menu")}>
                     <ul className={cx("menu")}>
                         <li>
@@ -39,11 +42,13 @@ function Header() {
                 </div>
                 <div className={cx("actions")}>
                     {auth ? (
-                        <Image
-                            className={cx("user-avatar")}
-                            src={""}
-                            alt={"avatar"}
-                        />
+                        <Menu items={userMenu}>
+                            <Image
+                                className={cx("user-avatar")}
+                                src={""}
+                                alt={"avatar"}
+                            />
+                        </Menu>
                     ) : (
                         <Button primary>Đăng nhập</Button>
                     )}
