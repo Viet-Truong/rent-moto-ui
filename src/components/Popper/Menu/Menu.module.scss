@@ -1,14 +1,11 @@
 // menu
 .menu-items{
-    width: 224px;
+    width: 180px;
     .menu-item{
         margin-left: 0;
     }
 }
 
-.menu-popper{
-    padding-bottom: 8px;
-}
 
 .menu-body{
     overflow-y: auto;
@@ -19,7 +16,7 @@
     width: 100%;
     justify-content: flex-start;
     border-radius:0;
-    padding: 11px 16px;
+    padding: 15px 16px;
     line-height: 1.8rem;
 
     &.separate {
