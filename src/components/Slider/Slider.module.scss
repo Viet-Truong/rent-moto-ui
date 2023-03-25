@@ -1,0 +1,24 @@
+.slider {
+    height: calc(100vh - var(--default-layout-header-height));
+    width: var(--default-layout-width);
+    max-height: 1080px;
+    overflow: hidden;
+    position: relative;
+
+    &-item {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: absolute;
+        inset: 0;
+
+        &.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: visible;
+        }
+    }
+}

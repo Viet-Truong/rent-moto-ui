@@ -17,7 +17,7 @@ function Header() {
             <div className={cx("wrapper-header")}>
                 <div className={cx("logo")}>
                     <Link to={config.routes.home} className={"logo-link"}>
-                        <img src={image.logo} alt="Website logo" />
+                        <Image src={image.logo} alt="Website logo" />
                     </Link>
                 </div>
 
