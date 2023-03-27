@@ -8,6 +8,7 @@ import Button from "~/components/Button";
 import Image from "~/components/Image";
 import Menu from "~/components/Popper/Menu";
 import { userMenu } from "~/data/userMenu";
+import Search from "../Search";
 
 const cx = classNames.bind(styles);
 function Header() {
@@ -40,6 +41,9 @@ function Header() {
                         </li>
                     </ul>
                 </div>
+
+                <Search />
+
                 <div className={cx("actions")}>
                     {auth ? (
                         <Menu items={userMenu}>

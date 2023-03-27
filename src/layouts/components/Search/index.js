@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
-import { TippyHeadless } from "@tippyjs/react/headless";
+import TippyHeadless from "@tippyjs/react/headless";
 import { useState, useRef } from "react";
 
 const cx = classNames.bind(styles);
@@ -16,7 +16,7 @@ function Search() {
         inputRef.current.focus();
     };
 
-    const handleChange = () => {
+    const handleChange = (e) => {
         const searchValue = e.target.value;
         if (!searchValue.startsWith(" ")) {
             setSearchValue(searchValue);
