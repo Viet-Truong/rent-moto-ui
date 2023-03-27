@@ -9,22 +9,22 @@ import {
 export const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
-        title: "View profile",
+        title: "Trang cá nhân",
         type: "profile",
     },
     {
         icon: <FontAwesomeIcon icon={faCoins} />,
-        title: "History",
+        title: "Lịch sử thuê xe",
         to: "/history",
     },
     {
         icon: <FontAwesomeIcon icon={faGear} />,
-        title: "Settings",
+        title: "Cài đặt",
         to: "/settings",
     },
     {
         icon: <FontAwesomeIcon icon={faSignOut} />,
-        title: "Log out",
+        title: "Đăng xuất",
         type: "logout",
         separate: true,
     },
