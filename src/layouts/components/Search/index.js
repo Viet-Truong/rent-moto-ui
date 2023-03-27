@@ -1,10 +1,12 @@
 import classNames from "classnames/bind";
 import styles from "./Search.module.scss";
 import TippyHeadless from "@tippyjs/react/headless";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import CarItem from "./../../../components/CarItem/index";
+import useDebounce from "~/hooks/useDebounce";
+import { car } from "~/data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,6 +22,7 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [showResults, setShowResults] = useState(false);
     const [loading, setLoading] = useState(false);
+    const debouncedValue = useDebounce(searchValue, 500);
 
     const handleClear = () => {
         setSearchValue("");
@@ -32,6 +35,25 @@ function Search() {
             setSearchValue(searchValue);
         }
     };
+
+    useEffect(() => {
+        // handle input = ''
+        if (!debouncedValue.trim()) {
+            setSearchResult([]);
+            return;
+        }
+        // call API
+        // const fetch = async () => {
+        //     setLoading(true);
+        //     const result = await searchService.search(debouncedValue);
+        //     setSearchResult(result);
+        //     setLoading(false);
+        // };
+        // fetch();
+        setLoading(true);
+        setSearchResult(car);
+        setLoading(false);
+    }, [debouncedValue]);
 
     return (
         <div>
@@ -53,12 +75,6 @@ function Search() {
                     </div>
                 )}
             >
-                <button
-                    className={cx("search-btn")}
-                    onMouseDown={(e) => e.preventDefault()}
-                >
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
                 <div className={cx("search")}>
                     <input
                         value={searchValue}
@@ -78,6 +94,12 @@ function Search() {
                             icon={faSpinner}
                         />
                     )}
+                    <button
+                        className={cx("search-btn")}
+                        onMouseDown={(e) => e.preventDefault()}
+                    >
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </button>
                 </div>
             </TippyHeadless>
         </div>

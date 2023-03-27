@@ -10,7 +10,6 @@ const cx = classNames.bind(styles);
 function Slider(props) {
     // activeSlide la` bien de biet slide nao` dang dc hien thi
     const [activeSlide, setActiveSlide] = useState(0);
-    console.log(activeSlide);
 
     // neu props.timeOut === true thi se lay timeOut false thi 3s
     const timeOut = props.timeOut ? props.timeOut : 3000;

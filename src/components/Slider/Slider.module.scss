@@ -1,5 +1,5 @@
 .slider {
-    height: calc(100vh - var(--default-layout-header-height));
+    height: 85vh;
     width: var(--default-layout-width);
     max-height: 1080px;
     overflow: hidden;
@@ -19,6 +19,65 @@
             opacity: 1;
             visibility: visible;
             pointer-events: visible;
+        }
+
+        &__info {
+            width: 58,33%;
+
+            &__title,
+            &__description {
+                width: 80%;
+                margin-bottom: 60px;
+            }
+
+            &__title {
+                font-weight: 600;
+                font-size: 4.5rem;
+                line-height: 6.75rem;
+                overflow: hidden;
+            }
+
+            &__description {
+                font-size: 1.5rem;
+                line-height: 2.25rem;
+                overflow: hidden;
+            }
+
+            &__btn {
+                overflow: hidden;
+            }
+
+            &__title > span,
+            &__description > span,
+            &__btn button {
+                display: block;
+                transform: translateY(-100%);
+                transition: transform 0.5s ease;
+            }
+        }
+
+        &.active &__info {
+            &__title > span,
+            &__description > span,
+            &__btn button {
+                transform: translateY(0);
+            }
+        }
+
+        &__image {
+            flex-grow: 1;
+            
+            img {
+                bottom: 0;
+                right: 0;
+                transform: scale(0) rotate(65deg);
+                transition: transform 0.5s
+                    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+        }
+
+        &.active &__image > img {
+            transform: scale(1) rotate(0);
         }
     }
 }
