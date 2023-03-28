@@ -1,0 +1,43 @@
+.wrapper-policy {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .policy__card {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 20px;
+        padding-left: 0;
+        width: 22%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        transition: transform 0.5s ease;
+
+        &:hover {
+            transform: translateY(-20px);
+        }
+    }
+
+    .policy__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        width: 30%;
+        font-size: 25px;
+    }
+
+    .policy__info {
+        .policy__title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .policy__description {
+            font-size: 1.25rem;
+
+        }
+    }
+
+}

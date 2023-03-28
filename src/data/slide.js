@@ -1,4 +1,4 @@
-export const slider = [
+export const slider_data = [
     {
         title: "Honda SH350i",
         img: "https://cdn.honda.com.vn/motorbike-versions/December2022/VlhEoBOm76qFSuONryD1.png",
