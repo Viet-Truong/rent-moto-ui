@@ -5,6 +5,11 @@ import classNames from "classnames/bind";
 import styles from "./Slider.module.scss";
 import Button from "../Button";
 import Image from "../Image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+    faChevronLeft,
+    faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 function Slider(props) {
@@ -45,6 +50,31 @@ function Slider(props) {
                     active={index === activeSlide}
                 />
             ))}
+            {props.control ? (
+                <div className={cx("slider__control")}>
+                    <div
+                        className={cx("slider__control__item")}
+                        onClick={prevSlide}
+                    >
+                        <FontAwesomeIcon
+                            icon={faChevronLeft}
+                            className={cx("slider__control__icon")}
+                        />
+                    </div>
+                    <div className={cx("slider__control__item")}>
+                        <div className={cx("index")}>{activeSlide + 1}</div>
+                    </div>
+                    <div
+                        className={cx("slider__control__item")}
+                        onClick={nextSlide}
+                    >
+                        <FontAwesomeIcon
+                            icon={faChevronRight}
+                            className={cx("slider__control__icon")}
+                        />
+                    </div>
+                </div>
+            ) : null}
         </div>
     );
 }

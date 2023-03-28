@@ -4,7 +4,7 @@ import { slider } from "~/data/slide";
 function Home() {
     return (
         <div className="home">
-            <Slider data={slider} timeOut={5000} auto={true} />
+            <Slider data={slider} timeOut={5000} auto={true} control={true} />
         </div>
     );
 }
