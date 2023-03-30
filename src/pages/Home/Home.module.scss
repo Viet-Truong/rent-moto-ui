@@ -39,5 +39,15 @@
 
         }
     }
+}
 
+.main-content {
+    height: 100vh;
+
+    .date-picker__title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
 }

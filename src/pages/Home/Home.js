@@ -1,11 +1,15 @@
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
+import "./Home.css";
 import Slider from "~/components/Slider";
 import { slider_data } from "~/data/slide";
 import { policy } from "~/data/data";
+import { DateRangePicker } from "rsuite";
 
 const cx = classNames.bind(styles);
 function Home() {
+    const { combine, allowedMaxDays, beforeToday } = DateRangePicker;
+
     return (
         <div className={cx("home")}>
             <Slider
@@ -26,6 +30,26 @@ function Home() {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className={cx("main-content")}>
+                <div className={cx("wrapper-date-picker")}>
+                    <h2 className={cx("date-picker__title")}>
+                        Vui lòng chọn ngày bắt đầu và ngày kết thúc
+                    </h2>
+                    <DateRangePicker
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            maxWidth: "500px",
+                            marginTop: "50px",
+                        }}
+                        disabledDate={combine(
+                            allowedMaxDays(31),
+                            beforeToday()
+                        )}
+                    />
+                </div>
             </div>
         </div>
     );

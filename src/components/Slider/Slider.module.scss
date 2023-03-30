@@ -1,5 +1,5 @@
 .slider {
-    height: 90vh;
+    height: 100vh;
     width: var(--default-layout-width);
     max-height: 1080px;
     overflow: hidden;
@@ -85,7 +85,7 @@
         align-items: center;
         justify-content: center;
         position: absolute;
-        bottom: 50px;
+        bottom: 15%;
         left: 50%;
         transform: translateX(-50%);
 
