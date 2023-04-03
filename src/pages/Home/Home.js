@@ -1,10 +1,9 @@
 import classNames from "classnames/bind";
 import styles from "./Home.module.scss";
-import "./Home.css";
 import Slider from "~/components/Slider";
 import { slider_data } from "~/data/slide";
 import { policy } from "~/data/data";
-import { DatePicker } from "antd";
+import { DatePicker, Row, Col } from "antd";
 const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
@@ -49,15 +48,19 @@ function Home() {
             </div>
             <div className={cx("main-content")}>
                 <div className={cx("wrapper-date-picker")}>
-                    <h2 className={cx("date-picker__title")}>
-                        Vui lòng chọn ngày bắt đầu và ngày kết thúc
-                    </h2>
-                    <RangePicker
-                        className="RangePicker"
-                        format="DD MMM yyyy"
-                        // onChange={setFilter}
-                        style={{ height: "3.5rem", width: "37rem" }}
-                    />
+                    <Row className="main-row" justify="center">
+                        <h2 className={cx("date-picker__title")}>
+                            Vui lòng chọn ngày bắt đầu và ngày kết thúc
+                        </h2>
+                        <Col lg={20} sm={24} className={cx("col")}>
+                            <RangePicker
+                                className={cx("RangePicker", "range-picker")}
+                                format="DD MMM yyyy"
+                                // onChange={setFilter}
+                                style={{ height: "3.5rem", width: "37rem" }}
+                            />
+                        </Col>
+                    </Row>
                 </div>
             </div>
         </div>
