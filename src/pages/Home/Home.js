@@ -4,10 +4,13 @@ import Slider from "~/components/Slider";
 import { slider_data } from "~/data/slide";
 import { policy } from "~/data/data";
 import { DatePicker, Row, Col } from "antd";
+import { useState } from "react";
+import Car from "~/components/Car";
 const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
 function Home() {
+    const [cars, setCars] = useState([]);
     // const setFilter = (values) => {
     //     if (values) {
     //         if (values.length > 1) {
@@ -61,6 +64,11 @@ function Home() {
                             />
                         </Col>
                     </Row>
+                </div>
+                <div className={cx("wrapper-car")}>
+                    {cars.map((car, index) => (
+                        <Car />
+                    ))}
                 </div>
             </div>
         </div>

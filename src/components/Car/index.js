@@ -1,5 +1,8 @@
 import classNames from "classnames/bind";
 import styles from "./Car.module.scss";
+import { Link } from "react-router-dom";
+
+import Button from "../Button";
 
 const cx = classNames.bind(styles);
 function Car(props) {
@@ -12,9 +15,9 @@ function Car(props) {
                 </div>
                 <h3 className={cx("product-card__name")}>{props.name}</h3>
                 <div className={cx("product-card__price")}>
-                    {numberWithCommas(props.price)}
+                    {/* {numberWithCommas(props.price)} */}
                     <span className={cx("product-card__price__old")}>
-                        <del>{numberWithCommas(399000)}</del>
+                        {/* <del>{numberWithCommas(399000)}</del> */}
                     </span>
                 </div>
             </Link>
@@ -23,6 +26,7 @@ function Car(props) {
                     size="sm"
                     icon="bx bx-cart"
                     animate={true}
+                    primary
                     // onClick={() => dispatch(set(props.slug))}
                 >
                     Thuê
