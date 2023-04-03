@@ -1,0 +1,33 @@
+.ant-divider-horizontal.ant-divider-with-text::before,
+.ant-divider-horizontal.ant-divider-with-text::after {
+  position: relative;
+  top: 50%;
+  width: 50%;
+  border-top: 1px solid white !important;
+  /* border-top-color: inherit; */
+  border-bottom: 0;
+  transform: translateY(50%);
+  content: "";
+}
+.ant-divider-inner-text h4 {
+  margin-top: 4px;
+  background-color: rgba(0, 0, 0, 0.397);
+  padding: 1.5px 5px;
+  border-radius: 5px;
+}
+.ant-picker-range {
+  padding: 12px !important;
+  background-color: lightseagreen !important;
+  color: white !important;
+  border: 1px solid white;
+}
+
+.ant-picker-input > input {
+  color: white !important;
+}
+.ant-modal-title {
+  color: #1eb5a4 !important;
+}
+.rcw-title {
+  color: white;
+}
