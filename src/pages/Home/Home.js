@@ -5,7 +5,7 @@ import { slider_data } from "~/data/slide";
 import { policy } from "~/data/data";
 import { DatePicker, Row, Col } from "antd";
 import { useState } from "react";
-import Car from "~/components/Car";
+import Car from "~/components/Moto";
 const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);

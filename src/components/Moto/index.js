@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import styles from "./Car.module.scss";
+import styles from "./Moto.module.scss";
 import { Link } from "react-router-dom";
 
 import Button from "../Button";
