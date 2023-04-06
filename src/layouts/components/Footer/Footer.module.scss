@@ -1,194 +1,46 @@
-.wrapper-footer {
-    // background: #07090D;
-    display: flex;
-    justify-content: center;
-}
-
-.sera {
-    position: absolute;
-    top: 0;
-    left: 17.87%;
-    letter-spacing: -0.02em;
-    line-height: 130%;
-    
-}
-
-.c34d802e6acf6ab98a6Sera1Icon {
-    position: absolute;
-    height: 97.43%;
-    width: 14.42%;
-    top: 0;
-    right: 85.58%;
-    bottom: 2.57%;
-    left: 0;
-    max-width: 100%;
-    overflow: hidden;
-    max-height: 100%;
-}
-
-.seraParent {
-    position: absolute;
-    height: 100%;
-    width: 228.48%;
-    top: 0;
-    right: -128.48%;
-    bottom: 0;
-    left: 0;
-}
-
-.logos {
-    position: relative;
-    width: 118.3px;
-    height: 40px;
-    flex-shrink: 0;
-}
-
-.loremIpsumDolor {
-    align-self: stretch;
-    position: relative;
-    font-size: var(--body-m-size);
-    letter-spacing: -0.18px;
-    line-height: 28px;
-    font-family: var(--body-s);
-    color: var(--neutral-500);
-}
-
-.title {
-    position: absolute;
-    top: 96px;
-    left: 160px;
-    width: 352px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 24px;
-    font-size: 1.92rem;
-    color: var(--neutral-0);
-    font-family: var(--font-open-sans);
-}
-
-.filllogosfacebookCircleFilIcon {
-    position: relative;
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    overflow: hidden;
-}
-
-.filllogosfacebookCircleFilWrapper,
-.socail {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-}
-
-.filllogosfacebookCircleFilWrapper {
-    border-radius: var(--br-5xl);
-    background-color: var(--neutral-900);
-    border: 1px solid var(--neutral-800);
-    padding: var(--padding-xs);
-}
-
-.socail {
-    position: absolute;
-    top: 440px;
-    left: 1104px;
-    gap: var(--gap-base);
-}
-
-.referencePage1,
-.styleGuide {
-    align-self: stretch;
-    position: relative;
-    line-height: 24px;
-}
-
-.referencePage1 {
-    letter-spacing: 1.25px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--color-mediumseagreen);
-}
-
-.styleGuide {
-    letter-spacing: -0.09px;
-}
-
-.pages,
-.pages2,
-.referencePage {
-    position: absolute;
-    top: 96px;
-    left: 928px;
-    width: 160px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: var(--gap-base);
-}
-
-
-.pages,
-.pages2 {
-    left: 736px;
-}
-
-.pages2 {
-    left: 1120px;
-}
-
-
-.footerChild {
-    position: absolute;
-    top: 391.5px;
-    left: 159.5px;
-    border-top: 1px solid var(--neutral-800);
-    box-sizing: border-box;
-    width: 1121px;
-    height: 1px;
-}
-
-
-.copyright {
-    letter-spacing: -0.18px;
-    line-height: 28px;
-}
-
-
-.byVietTruong {
-    font-size: 1.13rem;
-    font-family: var(--font-lato);
-}
-
-
-.copyrightByVietContainer,
 .footer {
-    position: absolute;
-    top: 450px;
-    left: 160px;
-    font-size: var(--body-m-size);
-}
-
-
-.footer {
-    top: 0;
-    left: 0;
-    background-color: var(--neutral-900);
-    width: 1440px;
-    height: 584px;
-    overflow: hidden;
-    text-align: left;
-    font-size: var(--body-s-size);
-    color: var(--neutral-500);
-    font-family: var(--body-s);
-}
-
-
-.footerParent {
-    position: relative;
     width: 100%;
-    height: 584px;
+    padding: 70px 0;
+    font-size: 1.5rem;
+    box-shadow: 0px -3px 21px -10px rgba(0,0,0,0.75);
+
+    .container {
+        display: flex;
+        justify-content: space-around;
+
+        div {
+            margin-left: 50px;
+        }
+    }
+
+    &__logo {
+        height: 38px;
+    }
+
+    &__about {
+        width: 600px;
+        p {
+            margin-bottom: 2rem;
+        }
+
+        p:nth-child(2) {
+            word-wrap: normal;
+        }
+    }
+
+    &__title {
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        font-weight: 600;
+    }
+
+    &__content {
+        p {
+            margin-bottom: 1.25rem;
+        }
+    }
+
+    .item:hover{
+        color: var(--primary);
+    }
 }

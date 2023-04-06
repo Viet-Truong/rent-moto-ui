@@ -1,77 +1,108 @@
 import classNames from "classnames/bind";
 import styles from "./Footer.module.scss";
+import { Link } from "react-router-dom";
+
+const footerAboutLinks = [
+    {
+        display: "Giới thiệu",
+        path: "/about",
+    },
+    {
+        display: "Liên hệ",
+        path: "/about",
+    },
+    {
+        display: "Tuyển dụng",
+        path: "/about",
+    },
+    {
+        display: "Tin tức",
+        path: "/about",
+    },
+    {
+        display: "Hệ thống cửa hàng",
+        path: "/about",
+    },
+];
+
+const footerCustomerLinks = [
+    {
+        display: "Chính sách đổi trả",
+        path: "/about",
+    },
+    {
+        display: "Chính sách bảo hành",
+        path: "/about",
+    },
+    {
+        display: "Chính sách hoàn tiền",
+        path: "/about",
+    },
+];
 
 const cx = classNames.bind(styles);
 function Footer() {
     return (
-        <div
-            className={cx("footerParent", "wrapper-footer")}
-            id="wrapper-footer"
-        >
-            <div className={cx("title")}>
-                <div className={cx("logos")}>
-                    <div className={cx("seraParent")}>
-                        <b className={cx("sera")}>Travel with me</b>
+        <footer className={cx("footer")}>
+            <div className={cx("container")}>
+                <div>
+                    <div className={cx("footer__title")}>Tổng đài hỗ trợ</div>
+                    <div className={cx("footer__content")}>
+                        <p>
+                            Liên hệ đặt hàng <strong>0123456789</strong>
+                        </p>
+                        <p>
+                            Thắc mắc đơn hàng <strong>0123456789</strong>
+                        </p>
+                        <p>
+                            Góp ý, khiếu nại <strong>0123456789</strong>
+                        </p>
                     </div>
                 </div>
-                <div className={cx("loremIpsumDolor")}>
-                    Lorem ipsum dolor sit amet, consectetur adip elit.Posuere
-                    dolor massa, pellentesque.
+                <div>
+                    <div className={cx("footer__title")}>Về Yolo</div>
+                    <div className={cx("footer__content")}>
+                        {footerAboutLinks.map((item, index) => (
+                            <p key={index}>
+                                <Link to={item.path} className={cx("item")}>
+                                    {item.display}
+                                </Link>
+                            </p>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <div className={cx("footer__title")}>
+                        Chăm sóc khách hàng
+                    </div>
+                    <div className={cx("footer__content")}>
+                        {footerCustomerLinks.map((item, index) => (
+                            <p key={index}>
+                                <Link to={item.path} className={cx("item")}>
+                                    {item.display}
+                                </Link>
+                            </p>
+                        ))}
+                    </div>
+                </div>
+                <div className={cx("footer__about")}>
+                    <p>
+                        <Link to="/">
+                            <img
+                                src={""}
+                                className={cx("footer__logo")}
+                                alt=""
+                            />
+                        </Link>
+                    </p>
+                    <p>
+                        Hướng đến mục tiêu mang lại niềm vui ăn mặc mới mỗi ngày
+                        cho hàng triệu người tiêu dùng Việt. Hãy cùng Yolo hướng
+                        đến một cuộc sống năng động, tích cực hơn.
+                    </p>
                 </div>
             </div>
-            <div className={cx("socail")}>
-                <div className={cx("filllogosfacebookCircleFilWrapper")}>
-                    <img
-                        className={cx("filllogosfacebookCircleFilIcon")}
-                        alt=""
-                        src="/filllogosfacebookcirclefill.svg"
-                    />
-                </div>
-                <div className={cx("filllogosfacebookCircleFilWrapper")}>
-                    <img
-                        className={cx("filllogosfacebookCircleFilIcon")}
-                        alt=""
-                        src="/filllogosinstagramfill.svg"
-                    />
-                </div>
-                <div className={cx("filllogosfacebookCircleFilWrapper")}>
-                    <img
-                        className={cx("filllogosfacebookCircleFilIcon")}
-                        alt=""
-                        src="/filllogostwitterfill.svg"
-                    />
-                </div>
-            </div>
-            <div className={cx("referencePage")}>
-                <div className={cx("referencePage1")}>Reference Page</div>
-                <div className={cx("styleGuide")}>Style Guide</div>
-                <div className={cx("styleGuide")}>Instructions</div>
-                <div className={cx("styleGuide")}>Licensing</div>
-                <div className={cx("styleGuide")}>Changelog</div>
-                <div className={cx("styleGuide")}>Style Guide</div>
-            </div>
-            <div className={cx("pages")}>
-                <div className={cx("referencePage1")}>Pages</div>
-                <div className={cx("styleGuide")}>Home Page</div>
-                <div className={cx("styleGuide")}>About us</div>
-                <div className={cx("styleGuide")}>Event</div>
-                <div className={cx("styleGuide")}>Contact</div>
-                <div className={cx("styleGuide")}>Contact</div>
-            </div>
-            <div className={cx("pages2")}>
-                <div className={cx("referencePage1")}>Pages</div>
-                <div className={cx("styleGuide")}>Home Page</div>
-                <div className={cx("styleGuide")}>About us</div>
-                <div className={cx("styleGuide")}>Event</div>
-                <div className={cx("styleGuide")}>Contact</div>
-                <div className={cx("styleGuide")}>About us</div>
-            </div>
-            <div className={cx("footerChild")} />
-            <div className={cx("copyrightByVietContainer")}>
-                <span className={cx("copyright")}>© 2023 Copyright</span>
-                <span className={cx("byVietTruong")}> by Viet Truong</span>
-            </div>
-        </div>
+        </footer>
     );
 }
 
