@@ -16,22 +16,22 @@
   border-radius: 5px;
 }
 .ant-picker-range {
-  padding: 12px !important;
-  background-color: var(--primary) !important;
-  color: white !important;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
   border: 1px solid white;
 }
 
 .ant-picker-input > input::placeholder {
-  color: white !important;
-  font-weight: bold !important;
+  color: white;
+  font-weight: bold;
 }
 
 .ant-picker-input > input {
-  color: white !important;
+  color: white;
 }
 .ant-modal-title {
-  color: var(--primary) !important;
+  color: var(--primary);
 }
 .rcw-title {
   color: white;

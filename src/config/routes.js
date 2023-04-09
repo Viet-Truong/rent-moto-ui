@@ -1,6 +1,6 @@
 const routes = {
     home: "/",
-    moto: "/moto:slug",
+    moto: "/moto",
     login: "/login",
     register: "/register",
     admin: "/admin",

@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import Image from "../Image";
-import styles from "./CarItem.module.scss";
+import styles from "./MotoItem.module.scss";
 import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
