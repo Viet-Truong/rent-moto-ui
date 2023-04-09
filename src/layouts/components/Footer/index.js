@@ -2,6 +2,9 @@ import classNames from "classnames/bind";
 import styles from "./Footer.module.scss";
 import { Link } from "react-router-dom";
 
+import Image from "~/components/Image";
+import image from "~/assets/image";
+
 const footerAboutLinks = [
     {
         display: "Giới thiệu",
@@ -49,18 +52,21 @@ function Footer() {
                     <div className={cx("footer__title")}>Tổng đài hỗ trợ</div>
                     <div className={cx("footer__content")}>
                         <p>
-                            Liên hệ đặt hàng <strong>0123456789</strong>
+                            Liên hệ đặt hàng
+                            <strong className={cx("value")}> 0123456789</strong>
                         </p>
                         <p>
-                            Thắc mắc đơn hàng <strong>0123456789</strong>
+                            Thắc mắc đơn hàng{" "}
+                            <strong className={cx("value")}> 0123456789</strong>
                         </p>
                         <p>
-                            Góp ý, khiếu nại <strong>0123456789</strong>
+                            Góp ý, khiếu nại{" "}
+                            <strong className={cx("value")}> 0123456789</strong>
                         </p>
                     </div>
                 </div>
                 <div>
-                    <div className={cx("footer__title")}>Về Yolo</div>
+                    <div className={cx("footer__title")}>Về Chúng tôi</div>
                     <div className={cx("footer__content")}>
                         {footerAboutLinks.map((item, index) => (
                             <p key={index}>
@@ -86,19 +92,10 @@ function Footer() {
                     </div>
                 </div>
                 <div className={cx("footer__about")}>
+                    <p>MOTOCYCLE</p>
                     <p>
-                        <Link to="/">
-                            <img
-                                src={""}
-                                className={cx("footer__logo")}
-                                alt=""
-                            />
-                        </Link>
-                    </p>
-                    <p>
-                        Hướng đến mục tiêu mang lại niềm vui ăn mặc mới mỗi ngày
-                        cho hàng triệu người tiêu dùng Việt. Hãy cùng Yolo hướng
-                        đến một cuộc sống năng động, tích cực hơn.
+                        Hướng đến mục tiêu mang lại trải nghiệm dịch vụ thuê xe
+                        một cách đơn giản nhất
                     </p>
                 </div>
             </div>

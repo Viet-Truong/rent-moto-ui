@@ -2,7 +2,8 @@
     width: 100%;
     padding: 70px 0;
     font-size: 1.5rem;
-    box-shadow: 0px -3px 21px -10px rgba(0,0,0,0.75);
+    background-color: black;
+    color: #fff;
 
     .container {
         display: flex;
@@ -19,8 +20,11 @@
 
     &__about {
         width: 600px;
-        p {
+        p:first-child {
             margin-bottom: 2rem;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 2rem;
         }
 
         p:nth-child(2) {
@@ -38,6 +42,14 @@
         p {
             margin-bottom: 1.25rem;
         }
+
+        .value {
+            color: var(--primary);
+        }
+    }
+
+    .item {
+        color: #fff;
     }
 
     .item:hover{
