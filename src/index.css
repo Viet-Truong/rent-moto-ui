@@ -17,16 +17,21 @@
 }
 .ant-picker-range {
   padding: 12px !important;
-  background-color: lightseagreen !important;
+  background-color: var(--primary) !important;
   color: white !important;
   border: 1px solid white;
+}
+
+.ant-picker-input > input::placeholder {
+  color: white !important;
+  font-weight: bold !important;
 }
 
 .ant-picker-input > input {
   color: white !important;
 }
 .ant-modal-title {
-  color: #1eb5a4 !important;
+  color: var(--primary) !important;
 }
 .rcw-title {
   color: white;

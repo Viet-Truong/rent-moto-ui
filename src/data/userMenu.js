@@ -9,8 +9,8 @@ import {
 export const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faUser} />,
-        title: "Trang cá nhân",
-        type: "profile",
+        title: "Cá nhân",
+        to: "/profile",
     },
     {
         icon: <FontAwesomeIcon icon={faCoins} />,
