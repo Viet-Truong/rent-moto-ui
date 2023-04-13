@@ -1,14 +1,22 @@
 import classNames from "classnames/bind";
-import MotoView from "~/components/MotoVIew";
 import styles from "./MotoDetail.module.scss";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import MotoView from "~/components/MotoVIew";
 
 const cx = classNames.bind(styles);
-function CarDetail(props) {
+function MotoDetail() {
+    const { slug } = useParams();
+    const [product, setProduct] = useState();
+
+    useEffect(() => {}, [slug]);
+
     return (
         <div className={cx("wrapper")}>
-            <MotoView />
+            <MotoView product={product} />
         </div>
     );
 }
 
-export default CarDetail;
+export default MotoDetail;

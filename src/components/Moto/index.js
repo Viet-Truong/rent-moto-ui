@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Button from "../Button";
 
 const cx = classNames.bind(styles);
-function Car(props) {
+function Moto(props) {
     return (
         <div className={cx("product-card")}>
             <Link to={`/moto/${props.slug}`}>
@@ -20,20 +20,20 @@ function Car(props) {
                         {props.price}
                     </span>
                 </div>
+                <div className={cx("product-card__btn")}>
+                    <Button
+                        size="sm"
+                        icon="bx bx-cart"
+                        // animate={true}
+                        primary
+                        // onClick={() => dispatch(set(props.slug))}
+                    >
+                        Thuê
+                    </Button>
+                </div>
             </Link>
-            <div className={cx("product-card__btn")}>
-                <Button
-                    size="sm"
-                    icon="bx bx-cart"
-                    // animate={true}
-                    primary
-                    // onClick={() => dispatch(set(props.slug))}
-                >
-                    Thuê
-                </Button>
-            </div>
         </div>
     );
 }
 
-export default Car;
+export default Moto;

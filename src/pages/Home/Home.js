@@ -3,10 +3,8 @@ import styles from "./Home.module.scss";
 import Slider from "~/components/Slider";
 import { slider_data } from "~/data/slide";
 import { policy } from "~/data/data";
-import { DatePicker, Row, Col } from "antd";
 import { useState } from "react";
-import Car from "~/components/Moto";
-const { RangePicker } = DatePicker;
+import Moto from "~/components/Moto";
 
 const cx = classNames.bind(styles);
 function Home() {
@@ -59,7 +57,7 @@ function Home() {
             </div>
             <div className={cx("main-content")}>
                 <div className={cx("wrapper-car")}>
-                    <Car
+                    <Moto
                         img01={data.image01}
                         img02={data.image02}
                         name={data.title}
