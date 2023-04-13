@@ -17,10 +17,8 @@ function MotoView(props) {
             image01:
                 "https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png",
             image02: null,
-            categorySlug: "",
             colors: [],
-            slug: "",
-            size: [],
+            slug: "honda-winner-x",
             description: "",
         };
 
@@ -125,30 +123,6 @@ function MotoView(props) {
                                     onClick={() => setColor(item)}
                                 >
                                     <div className={`circle bg-${item}`}></div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div className={cx("product__info__item")}>
-                        <div className={cx("product__info__item__title")}>
-                            Màu sắc:
-                        </div>
-                        <div className={cx("product__info__item__list")}>
-                            {product.size.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={`product__info__item__list__item ${
-                                        size === item ? "active" : ""
-                                    }`}
-                                    onClick={() => setSize(item)}
-                                >
-                                    <span
-                                        className={cx(
-                                            "product__info__item__list__item__size"
-                                        )}
-                                    >
-                                        {item}
-                                    </span>
                                 </div>
                             ))}
                         </div>

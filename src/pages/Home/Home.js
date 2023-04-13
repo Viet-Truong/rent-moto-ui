@@ -11,6 +11,14 @@ const { RangePicker } = DatePicker;
 const cx = classNames.bind(styles);
 function Home() {
     const [cars, setCars] = useState([]);
+    const data = {
+        name: "Honda winner X",
+        price: "130k / 1h",
+        image01:
+            "https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png",
+        image02: "",
+        slug: "honda-winner-x",
+    };
     // const setFilter = (values) => {
     //     if (values) {
     //         if (values.length > 1) {
@@ -51,9 +59,13 @@ function Home() {
             </div>
             <div className={cx("main-content")}>
                 <div className={cx("wrapper-car")}>
-                    {cars.map((car, index) => (
-                        <Car />
-                    ))}
+                    <Car
+                        img01={data.image01}
+                        img02={data.image02}
+                        name={data.title}
+                        price={data.price}
+                        slug={data.slug}
+                    />
                 </div>
             </div>
         </div>

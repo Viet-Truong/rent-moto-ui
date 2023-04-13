@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 function Car(props) {
     return (
         <div className={cx("product-card")}>
-            <Link to={`/catalog/${props.slug}`}>
+            <Link to={`/moto/${props.slug}`}>
                 <div className={cx("product-card__image")}>
                     <img src={props.img01} alt="" />
                     <img src={props.img02} alt="" />
@@ -17,7 +17,7 @@ function Car(props) {
                 <div className={cx("product-card__price")}>
                     {/* {numberWithCommas(props.price)} */}
                     <span className={cx("product-card__price__old")}>
-                        {/* <del>{numberWithCommas(399000)}</del> */}
+                        {props.price}
                     </span>
                 </div>
             </Link>
@@ -25,7 +25,7 @@ function Car(props) {
                 <Button
                     size="sm"
                     icon="bx bx-cart"
-                    animate={true}
+                    // animate={true}
                     primary
                     // onClick={() => dispatch(set(props.slug))}
                 >
