@@ -3,6 +3,7 @@ import MotoDetail from "~/pages/MotoDetail";
 import Home from "~/pages/Home/Home";
 import Login from "~/pages/Login/Login";
 import Register from "~/pages/Register/Register";
+import HomeAdmin from "~/pages/Admin/HomeAdmin";
 
 // public routes
 const publicRoutes = [
@@ -10,6 +11,7 @@ const publicRoutes = [
     { path: config.routes.moto, component: MotoDetail },
     { path: config.routes.login, component: Login, layout: null },
     { path: config.routes.register, component: Register, layout: null },
+    { path: config.routes.admin, component: HomeAdmin, layout: null },
 ];
 
 export { publicRoutes };
