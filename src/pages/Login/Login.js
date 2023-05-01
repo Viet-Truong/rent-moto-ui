@@ -38,7 +38,7 @@ function Login() {
                                 size="lg"
                             />
                             <MDBInput
-                                wrapperClass="mb-4 mx-5 w-100 p-2"
+                                wrapperClass="mb-5 mx-10 w-100 p-2"
                                 labelClass="text-white"
                                 label="Mật khẩu"
                                 id="formControlLg"
@@ -48,7 +48,7 @@ function Login() {
 
                             <p className="small mb-3 pb-lg-2">
                                 <a class="text-white-50" href="#!">
-                                    Forgot password?
+                                    Quên mật khẩu?
                                 </a>
                             </p>
                             <MDBBtn
@@ -58,18 +58,18 @@ function Login() {
                                 size="lg"
                                 style={{ color: "#ff3d13", fontSize: "16px" }}
                             >
-                                Login
+                                Đăng nhập
                             </MDBBtn>
 
                             <div>
                                 <p className="mb-0">
-                                    Don't have an account?{" "}
+                                    Bạn chưa có tài khoản?
                                     <a
-                                        href="#!"
+                                        href="register"
                                         class="fw-bold"
                                         style={{ color: "#ff3d13" }}
                                     >
-                                        Sign Up
+                                        Đăng kí
                                     </a>
                                 </p>
                             </div>
