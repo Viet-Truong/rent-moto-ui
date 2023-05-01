@@ -64,6 +64,30 @@ function Home() {
                         price={data.price}
                         slug={data.slug}
                     />
+
+                    <Moto
+                        img01={data.image01}
+                        img02={data.image02}
+                        name={data.title}
+                        price={data.price}
+                        slug={data.slug}
+                    />
+
+                    <Moto
+                        img01={data.image01}
+                        img02={data.image02}
+                        name={data.title}
+                        price={data.price}
+                        slug={data.slug}
+                    />
+
+                    <Moto
+                        img01={data.image01}
+                        img02={data.image02}
+                        name={data.title}
+                        price={data.price}
+                        slug={data.slug}
+                    />
                 </div>
             </div>
         </div>
