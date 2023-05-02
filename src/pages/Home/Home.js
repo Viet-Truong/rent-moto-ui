@@ -56,38 +56,86 @@ function Home() {
                 ))}
             </div>
             <div className={cx("main-content")}>
-                <div className={cx("wrapper-car")}>
-                    <Moto
-                        img01={data.image01}
-                        img02={data.image02}
-                        name={data.title}
-                        price={data.price}
-                        slug={data.slug}
-                    />
+                <div className={cx("wrapper-car", "columns_5", "columns")}>
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
 
-                    <Moto
-                        img01={data.image01}
-                        img02={data.image02}
-                        name={data.title}
-                        price={data.price}
-                        slug={data.slug}
-                    />
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
 
-                    <Moto
-                        img01={data.image01}
-                        img02={data.image02}
-                        name={data.title}
-                        price={data.price}
-                        slug={data.slug}
-                    />
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
 
-                    <Moto
-                        img01={data.image01}
-                        img02={data.image02}
-                        name={data.title}
-                        price={data.price}
-                        slug={data.slug}
-                    />
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
+
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
+
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
+
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
+
+                    <figure>
+                        <Moto
+                            img01={data.image01}
+                            img02={data.image02}
+                            name={data.title}
+                            price={data.price}
+                            slug={data.slug}
+                        />
+                    </figure>
                 </div>
             </div>
         </div>
