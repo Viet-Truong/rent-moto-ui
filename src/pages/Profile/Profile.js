@@ -9,6 +9,8 @@ import {
     MDBCardImage,
     MDBBtn,
 } from "mdb-react-ui-kit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 function Profile() {
     return (
@@ -54,10 +56,13 @@ function Profile() {
                                     <MDBCol sm="3">
                                         <MDBCardText>Full Name</MDBCardText>
                                     </MDBCol>
-                                    <MDBCol sm="9">
+                                    <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
                                             Johnatan Smith
                                         </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -65,10 +70,13 @@ function Profile() {
                                     <MDBCol sm="3">
                                         <MDBCardText>Email</MDBCardText>
                                     </MDBCol>
-                                    <MDBCol sm="9">
+                                    <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
                                             example@example.com
                                         </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -76,10 +84,13 @@ function Profile() {
                                     <MDBCol sm="3">
                                         <MDBCardText>Phone</MDBCardText>
                                     </MDBCol>
-                                    <MDBCol sm="9">
+                                    <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
                                             (097) 234-5678
                                         </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -87,10 +98,13 @@ function Profile() {
                                     <MDBCol sm="3">
                                         <MDBCardText>Mobile</MDBCardText>
                                     </MDBCol>
-                                    <MDBCol sm="9">
+                                    <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
                                             (098) 765-4321
                                         </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBCol>
                                 </MDBRow>
                                 <hr />
@@ -98,10 +112,13 @@ function Profile() {
                                     <MDBCol sm="3">
                                         <MDBCardText>Address</MDBCardText>
                                     </MDBCol>
-                                    <MDBCol sm="9">
+                                    <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
                                             Bay Area, San Francisco, CA
                                         </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBCol>
                                 </MDBRow>
                             </MDBCardBody>
