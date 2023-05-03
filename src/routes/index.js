@@ -4,6 +4,7 @@ import Home from "~/pages/Home/Home";
 import Login from "~/pages/Login/Login";
 import Register from "~/pages/Register/Register";
 import HomeAdmin from "~/pages/Admin/HomeAdmin";
+import Profile from "~/pages/Profile/Profile";
 
 // public routes
 const publicRoutes = [
