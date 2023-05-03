@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { DatePicker, Row, Col } from "antd";
 
 import Button from "../Button";
+import { PropTypes } from "prop-types";
 const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
@@ -16,10 +17,13 @@ function MotoView(props) {
             price: "130k / 1h",
             image01:
                 "https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png",
-            image02: null,
-            colors: [],
+            image02:
+                "https://cdn.honda.com.vn/motorbike-versions/November2022/v3mHZHIh1RLL4P8nndyd.png",
+            hangxe: "Honda",
+            color: "Black",
             slug: "honda-winner-x",
-            description: "",
+            type: "Xe số côn",
+            state: "Sẵn sàng",
         };
 
     const [previewImg, setPreviewImg] = useState(product.image01);
@@ -100,6 +104,20 @@ function MotoView(props) {
         <div>
             <div className={cx("product")}>
                 <div className={cx("product__images")}>
+                    <div className={cx("product__images__list")}>
+                        <div
+                            className={cx("product__images__list__item")}
+                            onClick={() => setPreviewImg(product.image01)}
+                        >
+                            <img src={product.image01} alt="" />
+                        </div>
+                        <div
+                            className={cx("product__images__list__item")}
+                            onClick={() => setPreviewImg(product.image02)}
+                        >
+                            <img src={product.image02} alt="" />
+                        </div>
+                    </div>
                     <div className={cx("product__images__main")}>
                         <img src={previewImg} alt="" />
                     </div>
@@ -111,35 +129,22 @@ function MotoView(props) {
 
                     <div className={cx("product__info__item")}>
                         <div className={cx("product__info__item__title")}>
-                            Loại xe:
-                        </div>
-                        <div className={cx("product__info__item__list")}>
-                            {product.colors.map((item, index) => (
-                                <div
-                                    key={index}
-                                    className={`product__info__item__list__item ${
-                                        color === item ? "active" : ""
-                                    }`}
-                                    onClick={() => setColor(item)}
-                                >
-                                    <div className={`circle bg-${item}`}></div>
-                                </div>
-                            ))}
+                            Loại xe: {product.type}
                         </div>
                     </div>
                     <div className={cx("product__info__item")}>
                         <div className={cx("product__info__item__title")}>
-                            Hãng xe:
+                            Hãng xe: {product.hangxe}
                         </div>
                     </div>
                     <div className={cx("product__info__item")}>
                         <div className={cx("product__info__item__title")}>
-                            Trạng thái:
+                            Trạng thái: {product.state}
                         </div>
                     </div>
                     <div className={cx("product__info__item")}>
                         <span className={cx("product__info__item__price")}>
-                            Giá:
+                            Giá: {product.price}
                         </span>
                     </div>
                     <div className={cx("wrapper-date-picker")}>

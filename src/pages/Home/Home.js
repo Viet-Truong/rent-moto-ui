@@ -14,7 +14,6 @@ function Home() {
         price: "130k / 1h",
         image01:
             "https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png",
-        image02: "",
         slug: "honda-winner-x",
     };
     // const setFilter = (values) => {
@@ -60,7 +59,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
@@ -70,7 +68,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
@@ -80,7 +77,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
@@ -90,7 +86,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
@@ -100,7 +95,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
@@ -110,7 +104,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
@@ -120,7 +113,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
@@ -130,7 +122,6 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            img02={data.image02}
                             name={data.title}
                             price={data.price}
                             slug={data.slug}
