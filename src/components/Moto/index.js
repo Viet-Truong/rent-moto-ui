@@ -7,29 +7,49 @@ import Button from "../Button";
 const cx = classNames.bind(styles);
 function Moto(props) {
     return (
-        <div className={cx("product-card")}>
+        <div>
             <Link to={`/moto/${props.slug}`}>
-                <div className={cx("product-card__image")}>
-                    <img src={props.img01} alt="" />
-                    <img src={props.img02} alt="" />
-                </div>
-                <h3 className={cx("product-card__name")}>{props.name}</h3>
-                <div className={cx("product-card__price")}>
-                    {/* {numberWithCommas(props.price)} */}
-                    <span className={cx("product-card__price__old")}>
-                        {props.price}
-                    </span>
-                </div>
-                <div className={cx("product-card__btn")}>
-                    <Button
-                        size="sm"
-                        icon="bx bx-cart"
-                        // animate={true}
-                        primary
-                        // onClick={() => dispatch(set(props.slug))}
-                    >
-                        Thuê
-                    </Button>
+                <div className={cx("container", "page-wrapper")}>
+                    <div className={cx("page-inner")}>
+                        <div className={cx("row_123123")}>
+                            <div className={cx("el-wrapper")}>
+                                <div className={cx("box-up")}>
+                                    <img
+                                        className={cx("img")}
+                                        src={props.img01}
+                                        alt=""
+                                    />
+                                    <div className={cx("img-info")}>
+                                        <div className={cx("info-inner")}>
+                                            <span className={cx("p-name")}>
+                                                {props.name}
+                                            </span>
+                                            <span className={cx("p-company")}>
+                                                {props.name}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={cx("box-down")}>
+                                    <div className={cx("h-bg")}>
+                                        <div className={cx("h-bg-inner")}></div>
+                                    </div>
+
+                                    <a className={cx("cart")} href="">
+                                        <span className={cx("price")}>
+                                            {props.price}
+                                        </span>
+                                        <span className={cx("add-to-cart")}>
+                                            <span className={cx("txt")}>
+                                                Thuê xe
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </Link>
         </div>

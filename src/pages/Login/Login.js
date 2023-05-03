@@ -8,6 +8,7 @@ import {
     MDBCardBody,
     MDBInput,
 } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 
 function Login() {
     return (
@@ -64,13 +65,13 @@ function Login() {
                             <div>
                                 <p className="mb-0">
                                     Bạn chưa có tài khoản?
-                                    <a
-                                        href="register"
+                                    <Link
+                                        to="/register"
                                         class="fw-bold"
                                         style={{ color: "#ff3d13" }}
                                     >
                                         Đăng kí
-                                    </a>
+                                    </Link>
                                 </p>
                             </div>
                         </MDBCardBody>

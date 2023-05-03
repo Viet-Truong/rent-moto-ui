@@ -55,11 +55,11 @@ function Home() {
                 ))}
             </div>
             <div className={cx("main-content")}>
-                <div className={cx("wrapper-car", "columns_5", "columns")}>
+                <div className={cx("wrapper-car")}>
                     <figure>
                         <Moto
                             img01={data.image01}
-                            name={data.title}
+                            name={data.name}
                             price={data.price}
                             slug={data.slug}
                         />
@@ -68,7 +68,7 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            name={data.title}
+                            name={data.name}
                             price={data.price}
                             slug={data.slug}
                         />
@@ -77,7 +77,7 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            name={data.title}
+                            name={data.name}
                             price={data.price}
                             slug={data.slug}
                         />
@@ -86,7 +86,7 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            name={data.title}
+                            name={data.name}
                             price={data.price}
                             slug={data.slug}
                         />
@@ -95,7 +95,7 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            name={data.title}
+                            name={data.name}
                             price={data.price}
                             slug={data.slug}
                         />
@@ -104,7 +104,7 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            name={data.title}
+                            name={data.name}
                             price={data.price}
                             slug={data.slug}
                         />
@@ -113,16 +113,7 @@ function Home() {
                     <figure>
                         <Moto
                             img01={data.image01}
-                            name={data.title}
-                            price={data.price}
-                            slug={data.slug}
-                        />
-                    </figure>
-
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.title}
+                            name={data.name}
                             price={data.price}
                             slug={data.slug}
                         />

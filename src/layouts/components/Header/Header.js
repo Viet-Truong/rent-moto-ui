@@ -12,7 +12,7 @@ import Search from "../Search";
 
 const cx = classNames.bind(styles);
 function Header() {
-    let auth = true;
+    let auth = false;
     return (
         <div className={cx("wrapper")}>
             <div className={cx("wrapper-header")}>
@@ -54,7 +54,9 @@ function Header() {
                             />
                         </Menu>
                     ) : (
-                        <Button primary>Đăng nhập</Button>
+                        <Button primary to={config.routes.login}>
+                            Đăng nhập
+                        </Button>
                     )}
                 </div>
             </div>
