@@ -46,3 +46,28 @@
     border-radius: 50%;
     cursor: pointer;
 }
+
+.actions {
+    display: flex;
+    align-items: center;
+}
+
+.cart-btn {
+    span {
+        display: flex;
+    }
+}
+
+.cart {
+    margin-right: 30px;
+    cursor: pointer;
+    padding: 20%;
+}
+
+.quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+    transform: translate(-450%, 30%);
+}

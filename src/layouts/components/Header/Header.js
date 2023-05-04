@@ -9,10 +9,12 @@ import Image from "~/components/Image";
 import Menu from "~/components/Popper/Menu";
 import { userMenu } from "~/data/userMenu";
 import Search from "../Search";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 function Header() {
-    let auth = false;
+    let auth = true;
     return (
         <div className={cx("wrapper")}>
             <div className={cx("wrapper-header")}>
@@ -46,13 +48,22 @@ function Header() {
 
                 <div className={cx("actions")}>
                     {auth ? (
-                        <Menu items={userMenu}>
-                            <Image
-                                className={cx("user-avatar")}
-                                src={""}
-                                alt={"avatar"}
-                            />
-                        </Menu>
+                        <>
+                            <Button className={cx("cart-btn")}>
+                                <FontAwesomeIcon
+                                    icon={faCartShopping}
+                                    className={cx("cart")}
+                                />
+                                <div className={cx("quantity")}>3</div>
+                            </Button>
+                            <Menu items={userMenu}>
+                                <Image
+                                    className={cx("user-avatar")}
+                                    src={""}
+                                    alt={"avatar"}
+                                />
+                            </Menu>
+                        </>
                     ) : (
                         <Button primary to={config.routes.login}>
                             Đăng nhập
