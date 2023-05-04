@@ -55,13 +55,16 @@ function Home() {
                 ))}
             </div>
             <div className={cx("main-content")}>
+                <h2 className={cx("content__title")}>
+                    TẤT CẢ CÁC XE ĐANG ĐƯỢC CHO THUÊ
+                </h2>
                 <div className={cx("wrapper-car")}>
                     <figure>
                         <Moto
                             img01={data.image01}
                             name={data.name}
                             price={data.price}
-                            slug={data.slug}
+                            slug={"hunda"}
                         />
                     </figure>
 
@@ -88,7 +91,7 @@ function Home() {
                             img01={data.image01}
                             name={data.name}
                             price={data.price}
-                            slug={data.slug}
+                            slug={"honda"}
                         />
                     </figure>
 

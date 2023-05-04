@@ -2,17 +2,18 @@ import classNames from "classnames/bind";
 import styles from "./MotoView.module.scss";
 import { useState, useEffect } from "react";
 import { DatePicker, Row, Col } from "antd";
+import moment from "moment/moment";
 
 import Button from "../Button";
-import { PropTypes } from "prop-types";
 const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
-function MotoView(props) {
-    let product = props.product;
+function MotoView({ slug }) {
+    const [product, setProduct] = useState({});
 
-    if (product === undefined)
-        product = {
+    useEffect(() => {
+        // using slug to call API get Moto and setProduct = Moto
+        setProduct({
             title: "Honda winner X",
             price: "130k / 1h",
             image01:
@@ -21,84 +22,30 @@ function MotoView(props) {
                 "https://cdn.honda.com.vn/motorbike-versions/November2022/v3mHZHIh1RLL4P8nndyd.png",
             hangxe: "Honda",
             color: "Black",
-            slug: "honda-winner-x",
+            slug: slug,
             type: "Xe số côn",
             state: "Sẵn sàng",
-        };
+        });
+    }, [slug]);
+
+    console.log(product);
 
     const [previewImg, setPreviewImg] = useState(product.image01);
 
-    const [descriptionExpand, setDescriptionExpand] = useState(false);
-
-    const [color, setColor] = useState(undefined);
-
-    const [size, setSize] = useState(undefined);
-
-    const [quantity, setQuantity] = useState(1);
-
-    const updateQuantity = (type) => {
-        if (type === "plus") {
-            setQuantity(quantity + 1);
-        } else {
-            setQuantity(quantity - 1 < 1 ? 1 : quantity - 1);
-        }
+    const disabledDate = (current) => {
+        // Chỉ cho phép chọn các ngày bắt đầu từ ngày hiện tại trở đi
+        return current && current < moment().startOf("day");
     };
 
     useEffect(() => {
         setPreviewImg(product.image01);
-        setQuantity(1);
-        setColor(undefined);
-        setSize(undefined);
     }, [product]);
 
-    const check = () => {
-        if (color === undefined) {
-            alert("Vui lòng chọn màu sắc!");
-            return false;
-        }
+    const check = () => {};
 
-        if (size === undefined) {
-            alert("Vui lòng chọn kích cỡ!");
-            return false;
-        }
+    const addToCart = () => {};
 
-        return true;
-    };
-
-    const addToCart = () => {
-        if (check()) {
-            let newItem = {
-                slug: product.slug,
-                color: color,
-                size: size,
-                price: product.price,
-                quantity: quantity,
-            };
-            // if (dispatch(addItem(newItem))) {
-            //     alert("Success");
-            // } else {
-            //     alert("Fail");
-            // }
-        }
-    };
-
-    const goToCart = () => {
-        if (check()) {
-            let newItem = {
-                slug: product.slug,
-                color: color,
-                size: size,
-                price: product.price,
-                quantity: quantity,
-            };
-            // if (dispatch(addItem(newItem))) {
-            //     dispatch(remove());
-            //     props.history.push("/cart");
-            // } else {
-            //     alert("Fail");
-            // }
-        }
-    };
+    const goToCart = () => {};
 
     return (
         <div>
@@ -155,6 +102,7 @@ function MotoView(props) {
                                         "RangePicker",
                                         "range-picker"
                                     )}
+                                    disabledDate={disabledDate}
                                     format="DD MMM yyyy"
                                     // onChange={setFilter}
                                     style={{ height: "3.5rem", width: "37rem" }}
@@ -169,11 +117,7 @@ function MotoView(props) {
                     </div>
                 </div>
             </div>
-            <div
-                className={cx(
-                    `product-description${descriptionExpand ? "expand" : ""}`
-                )}
-            >
+            <div className={cx("product-description")}>
                 <div className={cx("product-description__title")}>
                     Thủ tục khi thuê xe
                 </div>

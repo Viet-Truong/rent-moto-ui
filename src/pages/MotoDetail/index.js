@@ -8,13 +8,10 @@ import MotoView from "~/components/MotoVIew";
 const cx = classNames.bind(styles);
 function MotoDetail() {
     const { slug } = useParams();
-    const [product, setProduct] = useState();
-
-    useEffect(() => {}, [slug]);
-
+    // get slug and transfer slug to component MotoView
     return (
         <div className={cx("wrapper")}>
-            <MotoView product={product} />
+            <MotoView slug={slug} />
         </div>
     );
 }

@@ -24,9 +24,6 @@ function Moto(props) {
                                             <span className={cx("p-name")}>
                                                 {props.name}
                                             </span>
-                                            <span className={cx("p-company")}>
-                                                {props.name}
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
