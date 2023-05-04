@@ -1,5 +1,7 @@
+import ModalCart from "~/components/Modal/ModalCart";
+
 function Home() {
-    return <div></div>;
+    return <ModalCart />;
 }
 
 export default Home;

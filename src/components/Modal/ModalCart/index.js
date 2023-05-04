@@ -1,0 +1,139 @@
+import {
+    MDBBtn,
+    MDBCard,
+    MDBCardBody,
+    MDBCardImage,
+    MDBIcon,
+    MDBTypography,
+} from "mdb-react-ui-kit";
+import classNames from "classnames/bind";
+import styles from "./ModalCart.module.scss";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+
+const cx = classNames.bind(styles);
+function ModalCart() {
+    return (
+        <section
+            style={{
+                backgroundColor: "#fff",
+                maxWidth: "30%",
+                position: "fixed",
+                right: 0,
+            }}
+        >
+            <div className={cx("wrapper_modal")}>
+                <MDBCard className="p-3" style={{ height: "100vh" }}>
+                    <FontAwesomeIcon
+                        icon={faClose}
+                        className={cx("icon_close")}
+                    />
+
+                    <hr />
+
+                    <MDBCard className="mb-3">
+                        <MDBCardBody>
+                            <div className="d-flex justify-content-between">
+                                <div className="d-flex flex-row align-items-center">
+                                    <div>
+                                        <MDBCardImage
+                                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                            fluid
+                                            className="rounded-3"
+                                            style={{
+                                                width: "65px",
+                                            }}
+                                            alt="Shopping item"
+                                        />
+                                    </div>
+                                    <div className="ms-3">
+                                        <MDBTypography tag="h5">
+                                            Iphone 11 pro
+                                        </MDBTypography>
+                                        <p className="small mb-0">
+                                            256GB, Navy Blue
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center">
+                                    <div
+                                        style={{
+                                            width: "80px",
+                                            marginLeft: "2rem",
+                                        }}
+                                    >
+                                        <MDBTypography
+                                            tag="h5"
+                                            className="mb-0"
+                                        >
+                                            $900
+                                        </MDBTypography>
+                                    </div>
+                                    <a
+                                        href="#!"
+                                        style={{
+                                            color: "#cecece",
+                                        }}
+                                    >
+                                        <MDBIcon fas icon="trash-alt" />
+                                    </a>
+                                </div>
+                            </div>
+                        </MDBCardBody>
+                    </MDBCard>
+
+                    <MDBCard className="bg-primary text-white rounded-3 mt-auto">
+                        <MDBCardBody>
+                            <div className="d-flex justify-content-between align-items-center mb-4">
+                                <MDBTypography tag="h5" className="mb-0">
+                                    Thanh toán
+                                </MDBTypography>
+                            </div>
+
+                            <p className="small">Tuỳ chọn thanh toán</p>
+                            <a href="#!" type="submit" className="text-white">
+                                <MDBIcon fab icon="cc-mastercard fa-2x me-2" />
+                            </a>
+                            <a href="#!" type="submit" className="text-white">
+                                <MDBIcon fab icon="cc-visa fa-2x me-2" />
+                            </a>
+                            <a href="#!" type="submit" className="text-white">
+                                <MDBIcon fab icon="cc-amex fa-2x me-2" />
+                            </a>
+                            <a href="#!" type="submit" className="text-white">
+                                <MDBIcon fab icon="cc-paypal fa-2x me-2" />
+                            </a>
+
+                            <hr />
+
+                            <div className="d-flex justify-content-between">
+                                <p className="mb-2">Tiền</p>
+                                <p className="mb-2">$4798.00</p>
+                            </div>
+
+                            <div className="d-flex justify-content-between">
+                                <p className="mb-2">VAT</p>
+                                <p className="mb-2">$20.00</p>
+                            </div>
+
+                            <div className="d-flex justify-content-between">
+                                <p className="mb-2">Tổng tiền</p>
+                                <p className="mb-2">$4818.00</p>
+                            </div>
+
+                            <MDBBtn color="info" block size="lg">
+                                <div className="d-flex justify-content-between">
+                                    <span>$4818.00</span>
+                                    <span>Thanh toán </span>
+                                </div>
+                            </MDBBtn>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCard>
+            </div>
+        </section>
+    );
+}
+
+export default ModalCart;
