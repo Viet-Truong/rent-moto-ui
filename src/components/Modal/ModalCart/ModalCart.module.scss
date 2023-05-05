@@ -1,3 +1,12 @@
+.wrapper {
+    background-color: #fff;
+    max-width: 30%;
+    position: fixed;
+    right: 0;
+    z-index: 1000;
+    display: block;
+}
+
 .wrapper_modal {
 
     .icon_close {
@@ -5,4 +14,9 @@
         cursor: pointer;
         padding: 1rem;
     }
+}
+
+
+.close {
+    display: none;
 }

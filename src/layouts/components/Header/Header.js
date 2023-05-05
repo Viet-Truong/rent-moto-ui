@@ -11,10 +11,13 @@ import { userMenu } from "~/data/userMenu";
 import Search from "../Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { CartContext } from "~/Context/CartContext";
 
 const cx = classNames.bind(styles);
 function Header() {
     let auth = true;
+    const { setIsOpen } = useContext(CartContext);
     return (
         <div className={cx("wrapper")}>
             <div className={cx("wrapper-header")}>
@@ -53,6 +56,7 @@ function Header() {
                                 <FontAwesomeIcon
                                     icon={faCartShopping}
                                     className={cx("cart")}
+                                    onClick={() => setIsOpen(true)}
                                 />
                                 <div className={cx("quantity")}>3</div>
                             </Button>

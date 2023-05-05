@@ -8,23 +8,29 @@ import {
 } from "mdb-react-ui-kit";
 import classNames from "classnames/bind";
 import styles from "./ModalCart.module.scss";
-import React from "react";
+import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { CartContext } from "~/Context/CartContext";
 
 const cx = classNames.bind(styles);
 function ModalCart() {
+    const { isOpen, setIsOpen, cartItems } = useContext(CartContext);
+    const toogleClose = isOpen ? "" : "close";
+    console.log(isOpen);
     return (
         <section
             style={{
-                backgroundColor: "#fff",
-                maxWidth: "30%",
-                position: "fixed",
-                right: 0,
+                
             }}
+            className={cx("wrapper", `${toogleClose}`)}
         >
             <div className={cx("wrapper_modal")}>
-                <MDBCard className="p-3" style={{ height: "100vh" }}>
+                <MDBCard
+                    className="p-3"
+                    style={{ height: "100vh" }}
+                    onClick={() => setIsOpen(false)}
+                >
                     <FontAwesomeIcon
                         icon={faClose}
                         className={cx("icon_close")}

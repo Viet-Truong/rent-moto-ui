@@ -6,14 +6,15 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyles from "./components/GlobalStyles";
+import { CartContextProvider } from "./Context/CartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
+    <CartContextProvider>
         <GlobalStyles>
             <App />
         </GlobalStyles>
-    </React.StrictMode>
+    </CartContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
