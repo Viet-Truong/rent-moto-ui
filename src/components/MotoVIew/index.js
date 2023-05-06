@@ -5,11 +5,17 @@ import { DatePicker, Row, Col } from "antd";
 import moment from "moment/moment";
 
 import Button from "../Button";
+import { useContext } from "react";
+import { CartContext } from "~/Context/CartContext";
+
 const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
 function MotoView({ slug }) {
     const [product, setProduct] = useState({});
+    const [startDate, setStartDate] = useState(moment());
+    const [endDate, setEndDate] = useState(moment());
+    const { addCartItem } = useContext(CartContext);
 
     useEffect(() => {
         // using slug to call API get Moto and setProduct = Moto
@@ -37,15 +43,17 @@ function MotoView({ slug }) {
         return current && current < moment().startOf("day");
     };
 
+    const handleRangePickerChange = (dates) => {
+        const startDate = dates[0].format("DD-MM-YYYY");
+        const endDate = dates[1].format("DD-MM-YYYY");
+        console.log(startDate, endDate);
+        setStartDate(startDate);
+        setEndDate(endDate);
+    };
+
     useEffect(() => {
         setPreviewImg(product.image01);
     }, [product]);
-
-    const check = () => {};
-
-    const addToCart = () => {};
-
-    const goToCart = () => {};
 
     return (
         <div>
@@ -102,16 +110,32 @@ function MotoView({ slug }) {
                                         "RangePicker",
                                         "range-picker"
                                     )}
+                                    onChange={handleRangePickerChange}
                                     disabledDate={disabledDate}
                                     format="DD MMM yyyy"
                                     // onChange={setFilter}
                                     style={{ height: "3.5rem", width: "37rem" }}
+                                    placeholder={[
+                                        "Ngày bắt đầu",
+                                        "Ngày kết thúc",
+                                    ]}
                                 />
                             </Col>
                         </Row>
                     </div>
                     <div className={cx("product__info__item")}>
-                        <Button primary onClick={() => goToCart()}>
+                        <Button
+                            primary
+                            onClick={() =>
+                                addCartItem({
+                                    id: 1,
+                                    image: product.image01,
+                                    name: product.title,
+                                    price: product.price,
+                                    slug: product.slug,
+                                })
+                            }
+                        >
                             Đăng kí thuê xe
                         </Button>
                     </div>

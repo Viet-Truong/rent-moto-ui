@@ -17,7 +17,7 @@ import { CartContext } from "~/Context/CartContext";
 const cx = classNames.bind(styles);
 function Header() {
     let auth = true;
-    const { setIsOpen } = useContext(CartContext);
+    const { setIsOpen, cartItems } = useContext(CartContext);
     return (
         <div className={cx("wrapper")}>
             <div className={cx("wrapper-header")}>
@@ -58,7 +58,9 @@ function Header() {
                                     className={cx("cart")}
                                     onClick={() => setIsOpen(true)}
                                 />
-                                <div className={cx("quantity")}>3</div>
+                                <div className={cx("quantity")}>
+                                    {cartItems.length}
+                                </div>
                             </Button>
                             <Menu items={userMenu}>
                                 <Image

@@ -53,6 +53,7 @@
 }
 
 .cart-btn {
+    position: relative;
     span {
         display: flex;
     }
@@ -61,13 +62,11 @@
 .cart {
     margin-right: 30px;
     cursor: pointer;
-    padding: 20%;
 }
 
 .quantity {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: var(--primary);
-    transform: translate(-450%, 30%);
+    position: absolute;
+    right: 4rem;
+    bottom: 0;
 }

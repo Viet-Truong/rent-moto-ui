@@ -1,6 +1,7 @@
 .wrapper {
     background-color: #fff;
     max-width: 30%;
+    width: 40rem;
     position: fixed;
     right: 0;
     z-index: 1000;
@@ -13,6 +14,11 @@
         margin-left: auto;
         cursor: pointer;
         padding: 1rem;
+    }
+
+    .items {
+        overflow-y: scroll;
+        margin-bottom: 3rem;
     }
 }
 
