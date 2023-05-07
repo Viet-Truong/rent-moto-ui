@@ -61,6 +61,16 @@ function ModalCart() {
                                         "range-picker"
                                     )}
                                     disabledDate={disabledDate}
+                                    defaultValue={[
+                                        moment(
+                                            cartItem.date.startDate,
+                                            "DD-MM-YYYY"
+                                        ),
+                                        moment(
+                                            cartItem.date.endDate,
+                                            "DD-MM-YYYY"
+                                        ),
+                                    ]}
                                     format="DD MMM yyyy"
                                     style={{ height: "3.5rem", width: "37rem" }}
                                     placeholder={[
