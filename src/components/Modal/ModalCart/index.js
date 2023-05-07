@@ -8,16 +8,33 @@ import {
 } from "mdb-react-ui-kit";
 import classNames from "classnames/bind";
 import styles from "./ModalCart.module.scss";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
-import { CartContext } from "~/Context/CartContext";
 import { Link } from "react-router-dom";
+import { DatePicker } from "antd";
+import moment from "moment/moment";
 
+import { CartContext } from "~/Context/CartContext";
+
+const { RangePicker } = DatePicker;
 const cx = classNames.bind(styles);
 function ModalCart() {
     const { isOpen, setIsOpen, cartItems } = useContext(CartContext);
+    const [dateRanges, setDateRanges] = useState({});
     const toogleClose = isOpen ? "" : "close";
+
+    const handleDateChange = (cartItemId, dateRange) => {
+        setDateRanges({
+            ...dateRanges,
+            [cartItemId]: dateRange,
+        });
+    };
+
+    const disabledDate = (current) => {
+        // Chỉ cho phép chọn các ngày bắt đầu từ ngày hiện tại trở đi
+        return current && current < moment().startOf("day");
+    };
 
     return (
         <section className={cx("wrapper", `${toogleClose}`)}>
@@ -30,61 +47,89 @@ function ModalCart() {
                     <FontAwesomeIcon
                         icon={faClose}
                         className={cx("icon_close")}
+                        onClick={() => setIsOpen(true)}
                     />
 
                     <hr />
                     <div className={cx("items")}>
-                        {cartItems.map((cartItem, index) => (
-                            <MDBCard className="mb-3" key={index}>
-                                <MDBCardBody>
-                                    <div className="d-flex justify-content-between">
-                                        <div className="d-flex flex-row align-items-center">
-                                            <div>
-                                                <MDBCardImage
-                                                    src={cartItem.image}
-                                                    fluid
-                                                    className="rounded-3"
-                                                    style={{
-                                                        width: "65px",
-                                                    }}
-                                                    alt="Shopping item"
-                                                />
+                        {cartItems.map((cartItem) => (
+                            <>
+                                <RangePicker
+                                    key={cartItem.id}
+                                    className={cx(
+                                        "RangePicker",
+                                        "range-picker"
+                                    )}
+                                    disabledDate={disabledDate}
+                                    format="DD MMM yyyy"
+                                    style={{ height: "3.5rem", width: "37rem" }}
+                                    placeholder={[
+                                        "Ngày bắt đầu",
+                                        "Ngày kết thúc",
+                                    ]}
+                                    onChange={(dates) =>
+                                        handleDateChange(cartItem.id, {
+                                            startDate: dates[0],
+                                            endDate: dates[1],
+                                        })
+                                    }
+                                />
+                                {cartItem.data_moto.map((item, index) => (
+                                    <MDBCard className="mb-3" key={index}>
+                                        <MDBCardBody>
+                                            <div className="d-flex justify-content-between">
+                                                <div className="d-flex flex-row align-items-center">
+                                                    <div>
+                                                        <MDBCardImage
+                                                            src={item.image}
+                                                            fluid
+                                                            className="rounded-3"
+                                                            style={{
+                                                                width: "65px",
+                                                            }}
+                                                            alt="Shopping item"
+                                                        />
+                                                    </div>
+                                                    <div className="ms-3">
+                                                        <MDBTypography tag="h5">
+                                                            {item.name}
+                                                        </MDBTypography>
+                                                        <p className="small mb-0">
+                                                            {item.type}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div className="d-flex flex-row align-items-center">
+                                                    <div
+                                                        style={{
+                                                            width: "80px",
+                                                            marginLeft: "2rem",
+                                                        }}
+                                                    >
+                                                        <MDBTypography
+                                                            tag="h5"
+                                                            className="mb-0"
+                                                        >
+                                                            {item.price}
+                                                        </MDBTypography>
+                                                    </div>
+                                                    <a
+                                                        href="#!"
+                                                        style={{
+                                                            color: "#cecece",
+                                                        }}
+                                                    >
+                                                        <MDBIcon
+                                                            fas
+                                                            icon="trash-alt"
+                                                        />
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div className="ms-3">
-                                                <MDBTypography tag="h5">
-                                                    {cartItem.name}
-                                                </MDBTypography>
-                                                <p className="small mb-0">
-                                                    {cartItem.type}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex flex-row align-items-center">
-                                            <div
-                                                style={{
-                                                    width: "80px",
-                                                    marginLeft: "2rem",
-                                                }}
-                                            >
-                                                <MDBTypography
-                                                    tag="h5"
-                                                    className="mb-0"
-                                                >
-                                                    {cartItem.price}
-                                                </MDBTypography>
-                                            </div>
-                                            <a
-                                                href="#!"
-                                                style={{
-                                                    color: "#cecece",
-                                                }}
-                                            >
-                                                <MDBIcon fas icon="trash-alt" />
-                                            </a>
-                                        </div>
-                                    </div>
-                                </MDBCardBody>
-                            </MDBCard>
+                                        </MDBCardBody>
+                                    </MDBCard>
+                                ))}
+                            </>
                         ))}
                     </div>
 
