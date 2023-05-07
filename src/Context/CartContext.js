@@ -12,6 +12,7 @@ export const CartContextProvider = ({ children }) => {
         if (cartItems.length === 0) {
             setCartItems([
                 {
+                    id: "",
                     date: {
                         startDate: data.startDate,
                         endDate: data.endDate,
@@ -41,6 +42,7 @@ export const CartContextProvider = ({ children }) => {
                 setCartItems((prevState) => [
                     ...prevState,
                     {
+                        id: "",
                         date: {
                             startDate: data.startDate,
                             endDate: data.endDate,

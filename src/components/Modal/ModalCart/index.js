@@ -54,36 +54,45 @@ function ModalCart() {
                     <div className={cx("items")}>
                         {cartItems.map((cartItem) => (
                             <>
-                                <RangePicker
-                                    key={cartItem.id}
-                                    className={cx(
-                                        "RangePicker",
-                                        "range-picker"
-                                    )}
-                                    disabledDate={disabledDate}
-                                    defaultValue={[
-                                        moment(
-                                            cartItem.date.startDate,
-                                            "DD-MM-YYYY"
-                                        ),
-                                        moment(
-                                            cartItem.date.endDate,
-                                            "DD-MM-YYYY"
-                                        ),
-                                    ]}
-                                    format="DD MMM yyyy"
-                                    style={{ height: "3.5rem", width: "37rem" }}
-                                    placeholder={[
-                                        "Ngày bắt đầu",
-                                        "Ngày kết thúc",
-                                    ]}
-                                    onChange={(dates) =>
-                                        handleDateChange(cartItem.id, {
-                                            startDate: dates[0],
-                                            endDate: dates[1],
-                                        })
-                                    }
-                                />
+                                <div className={cx("header-item")}>
+                                    <RangePicker
+                                        key={cartItem.id}
+                                        className={cx(
+                                            "RangePicker",
+                                            "range-picker"
+                                        )}
+                                        disabledDate={disabledDate}
+                                        defaultValue={[
+                                            moment(
+                                                cartItem.date.startDate,
+                                                "DD-MM-YYYY"
+                                            ),
+                                            moment(
+                                                cartItem.date.endDate,
+                                                "DD-MM-YYYY"
+                                            ),
+                                        ]}
+                                        format="DD MMM yyyy"
+                                        style={{
+                                            height: "3.5rem",
+                                            width: "37rem",
+                                        }}
+                                        placeholder={[
+                                            "Ngày bắt đầu",
+                                            "Ngày kết thúc",
+                                        ]}
+                                        onChange={(dates) =>
+                                            handleDateChange(cartItem.id, {
+                                                startDate: dates[0],
+                                                endDate: dates[1],
+                                            })
+                                        }
+                                    />
+                                    <input
+                                        type={"checkbox"}
+                                        className={cx("form-control-checkbox")}
+                                    />
+                                </div>
                                 {cartItem.data_moto.map((item, index) => (
                                     <MDBCard className="mb-3" key={index}>
                                         <MDBCardBody>

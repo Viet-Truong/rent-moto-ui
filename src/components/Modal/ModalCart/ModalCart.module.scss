@@ -19,7 +19,35 @@
     .items {
         overflow-y: scroll;
         margin-bottom: 3rem;
+        border-bottom: 1px solid black;
+
+        .header-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .form-control-checkbox {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+        }
     }
+
+}
+
+.range-picker {
+    background-color: #fff !important;
+    max-width: 80%;
+}
+
+.range-picker > div > input::placeholder {
+    color: black;
+    font-weight: bold;
+}
+
+.range-picker > div > input {
+    color: black;
+    font-weight: bold;
 }
 
 
