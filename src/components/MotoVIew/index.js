@@ -34,8 +34,6 @@ function MotoView({ slug }) {
         });
     }, [slug]);
 
-    console.log(product);
-
     const [previewImg, setPreviewImg] = useState(product.image01);
 
     const disabledDate = (current) => {
@@ -133,6 +131,8 @@ function MotoView({ slug }) {
                                     name: product.title,
                                     price: product.price,
                                     slug: product.slug,
+                                    startDate: startDate,
+                                    endDate: endDate,
                                 })
                             }
                         >

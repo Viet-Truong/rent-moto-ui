@@ -12,6 +12,7 @@ import React, { useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "~/Context/CartContext";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 function ModalCart() {
@@ -33,8 +34,8 @@ function ModalCart() {
 
                     <hr />
                     <div className={cx("items")}>
-                        {cartItems.map((cartItem) => (
-                            <MDBCard className="mb-3">
+                        {cartItems.map((cartItem, index) => (
+                            <MDBCard className="mb-3" key={index}>
                                 <MDBCardBody>
                                     <div className="d-flex justify-content-between">
                                         <div className="d-flex flex-row align-items-center">
