@@ -2,6 +2,7 @@ const routes = {
     home: "/",
     moto: "/moto/:slug",
     login: "/login",
+    logout: "/logout",
     register: "/register",
     admin: "/admin",
     profile: "/profile",

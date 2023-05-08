@@ -11,8 +11,10 @@ import {
     faMotorcycle,
     faRotateLeft,
     faCheckCircle,
+    faRightToBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "~/components/Button";
 
 const cx = classNames.bind(styles);
 
@@ -33,6 +35,11 @@ function Sidebar() {
                     />
                 </div>
                 <Menu>
+                    <li className={cx("wrapper-divider")}>
+                        <div className={cx("divider")}>
+                            <span>Admin</span>
+                        </div>
+                    </li>
                     <MenuItem
                         title={"Quản lí tài khoản"}
                         to={config.routes.admin + "/managerAccount"}
@@ -40,19 +47,29 @@ function Sidebar() {
                         activeIcon={<FontAwesomeIcon icon={faUsers} />}
                     />
                     <MenuItem
-                        title={"Cập nhật thông tin cá nhân"}
-                        to={config.routes.admin + "/updateProfile"}
-                        icon={<FontAwesomeIcon icon={faUser} />}
-                        activeIcon={<FontAwesomeIcon icon={faUser} />}
-                    />
-                    <MenuItem
-                        title={"Cập nhật thông tin xe"}
+                        title={"Xe"}
                         to={config.routes.admin + "/updateInfoMoto"}
                         icon={<FontAwesomeIcon icon={faMotorcycle} />}
                         activeIcon={<FontAwesomeIcon icon={faMotorcycle} />}
                     />
+                    <li className={cx("wrapper-divider")}>
+                        <div className={cx("divider")}>
+                            <span>Cá nhân</span>
+                        </div>
+                    </li>
                     <MenuItem
-                        title={"Xác nhận đăng kí thuê xe"}
+                        title={"Cá nhân"}
+                        to={config.routes.admin + "/updateProfile"}
+                        icon={<FontAwesomeIcon icon={faUser} />}
+                        activeIcon={<FontAwesomeIcon icon={faUser} />}
+                    />
+                    <li className={cx("wrapper-divider")}>
+                        <div className={cx("divider")}>
+                            <span>Nhân viên</span>
+                        </div>
+                    </li>
+                    <MenuItem
+                        title={"Xác nhận thuê xe"}
                         to={config.routes.admin + "/acceptRentMoto"}
                         icon={<FontAwesomeIcon icon={faCheckCircle} />}
                         activeIcon={<FontAwesomeIcon icon={faCheckCircle} />}
@@ -64,6 +81,13 @@ function Sidebar() {
                         activeIcon={<FontAwesomeIcon icon={faRotateLeft} />}
                     />
                 </Menu>
+                <div className={cx("footer")}>
+                    <Button
+                        leftIcon={<FontAwesomeIcon icon={faRightToBracket} />}
+                    >
+                        Đăng xuất
+                    </Button>
+                </div>
             </div>
         </aside>
     );

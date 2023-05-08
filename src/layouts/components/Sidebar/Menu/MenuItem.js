@@ -13,6 +13,9 @@ function MenuItem({ title, to, icon, activeIcon }) {
             to={to}
             children={({ isActive }) => {
                 const iconCurrent = isActive ? activeIcon : icon;
+                if (to === "") {
+                    iconCurrent = icon;
+                }
                 return (
                     <>
                         {iconCurrent}

@@ -4,13 +4,12 @@
 
 .menu-item {
     display: flex;
-    margin-top: 30px;
+    margin-top: 20px;
     align-items: center;
     padding: 8px;
     font-size: 1.8rem;
-    font-weight: 700;
     border-radius: 4px;
-    color: var(--text-color);
+    color: var(--text-color-admin);
     transition: background-color ease-in-out 200ms;
 
     &.active {
