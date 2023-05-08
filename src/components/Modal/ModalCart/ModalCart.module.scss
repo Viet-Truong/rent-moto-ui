@@ -16,10 +16,14 @@
         padding: 1rem;
     }
 
-    .items {
+    .wrapper-cartItem {
         overflow-y: scroll;
         margin-bottom: 3rem;
-        border-bottom: 1px solid black;
+
+        .item{
+            border-bottom: 1px solid black;
+            margin-top: 5px;
+        }
 
         .header-item {
             display: flex;

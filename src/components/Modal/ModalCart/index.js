@@ -51,9 +51,9 @@ function ModalCart() {
                     />
 
                     <hr />
-                    <div className={cx("items")}>
+                    <div className={cx("wrapper-cartItem")}>
                         {cartItems.map((cartItem) => (
-                            <>
+                            <div className={cx("item")}>
                                 <div className={cx("header-item")}>
                                     <RangePicker
                                         key={cartItem.id}
@@ -148,7 +148,7 @@ function ModalCart() {
                                         </MDBCardBody>
                                     </MDBCard>
                                 ))}
-                            </>
+                            </div>
                         ))}
                     </div>
 
