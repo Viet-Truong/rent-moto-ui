@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    
+    object-fit: cover;
+    img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+.user-avatar {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
+    border-radius: 50%;
+    cursor: pointer;
+}

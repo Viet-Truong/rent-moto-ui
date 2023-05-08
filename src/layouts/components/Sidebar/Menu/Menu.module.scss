@@ -4,6 +4,7 @@
 
 .menu-item {
     display: flex;
+    margin-top: 30px;
     align-items: center;
     padding: 8px;
     font-size: 1.8rem;
@@ -40,4 +41,9 @@
 
 .active-icon {
     display: none;
+}
+
+a svg {
+    width: 20px;
+    height: 20px;
 }
