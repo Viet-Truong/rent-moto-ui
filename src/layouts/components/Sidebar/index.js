@@ -1,10 +1,10 @@
 import classNames from "classnames/bind";
-import styles from "./HomeAdmin.module.scss";
+import styles from "Sidebar.module.scss";
 
 const cx = classNames.bind(styles);
 
-function Home() {
+function Sidebar() {
     return <div className={cx("wrapper")}></div>;
 }
 
-export default Home;
+export default Sidebar;
