@@ -114,6 +114,9 @@ function ModalAddMoto() {
                                 <div className={cx("value_dropdown")}>
                                     {type}
                                 </div>
+                                <div className={cx("wrapper_image")}>
+                                    <input type="file" />
+                                </div>
                             </div>
                         </MDBModalBody>
 

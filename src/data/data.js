@@ -107,3 +107,16 @@ export const account = [
         role: "Khách hàng",
     },
 ];
+
+export const moto = [
+    {
+        id: 1,
+        name: "Honda winner X",
+        autoMaker: "Honda",
+        price: 130.0,
+        type: "Xe côn tay",
+        status: "Đang được thuê",
+        licensePlates: "43F1-123.45",
+        description: "Winner X",
+    },
+];
