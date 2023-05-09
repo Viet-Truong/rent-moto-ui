@@ -5,6 +5,7 @@ import {
     faMoneyCheckDollar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AcceptMoto } from "~/pages/Admin/AcceptMoto";
 
 export const car = [
     {
@@ -130,3 +131,57 @@ export const user = {
     phoneNumber: "0789416451",
     address: "Đà nẵng",
 };
+
+export const acceptMoto = [
+    {
+        id: 1,
+        name: "Viết Trường",
+        startDate: "07-05-2023",
+        endDate: "09-05-2023",
+        status: "Đã duyệt",
+        price: "420.000 VNĐ",
+    },
+    {
+        id: 2,
+        name: "Đắc Toàn",
+        startDate: "04-05-2023",
+        endDate: "11-05-2023",
+        status: "Đã duyệt",
+        price: "350.000 VNĐ",
+    },
+    {
+        id: 3,
+        name: "Ngọc Trọng",
+        startDate: "09-05-2023",
+        endDate: "15-05-2023",
+        status: "Chưa duyệt",
+        price: "280.000 VNĐ",
+    },
+    {
+        id: 4,
+        name: "Hữu Tam",
+        startDate: "16-05-2023",
+        endDate: "27-05-2023",
+        status: "Chưa duyệt",
+        price: "510.000 VNĐ",
+    },
+];
+
+export const acceptReturnMoto = [
+    {
+        id: 1,
+        name: "Viết Trường",
+        startDate: "07-05-2023",
+        endDate: "09-05-2023",
+        status: "Đang thuê",
+        price: "420.000 VNĐ",
+    },
+    {
+        id: 2,
+        name: "Đắc Toàn",
+        startDate: "04-05-2023",
+        endDate: "11-05-2023",
+        status: "Đang thuê",
+        price: "350.000 VNĐ",
+    },
+];
