@@ -56,3 +56,54 @@ export const policy = [
         icon: <FontAwesomeIcon icon={faHandHoldingHeart} />,
     },
 ];
+
+export const account = [
+    {
+        id: 1,
+        name: "Viết Trường",
+        email: "viettruong0825@gmail.com",
+        account: "viettruong",
+        password: "123456abc",
+        role: "Admin",
+    },
+    {
+        id: 2,
+        name: "Đắc Toàn",
+        email: "viettruong0825@gmail.com",
+        account: "dactoan",
+        password: "123456abc",
+        role: "Admin",
+    },
+    {
+        id: 3,
+        name: "Ngọc Trọng",
+        email: "viettruong0825@gmail.com",
+        account: "ngoctrong",
+        password: "123456abc",
+        role: "Admin",
+    },
+    {
+        id: 4,
+        name: "Hữu Tam",
+        email: "viettruong0825@gmail.com",
+        account: "huutam",
+        password: "123456abc",
+        role: "Admin",
+    },
+    {
+        id: 5,
+        name: "NV1",
+        email: "viettruong0825@gmail.com",
+        account: "nhanvien01",
+        password: "123456abc",
+        role: "Nhân viên",
+    },
+    {
+        id: 6,
+        name: "khach",
+        email: "viettruong0825@gmail.com",
+        account: "Nguyễn Văn A",
+        password: "123456abc",
+        role: "Khách hàng",
+    },
+];

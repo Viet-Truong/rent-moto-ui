@@ -28,7 +28,9 @@ function ModalAddAccount() {
 
     return (
         <div className={cx("wrapper-modal")}>
-            <MDBBtn onClick={toggleShow}>LAUNCH DEMO MODAL</MDBBtn>
+            <MDBBtn onClick={toggleShow} className={cx("button_showModal")}>
+                Thêm tài khoản
+            </MDBBtn>
             <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
                 <MDBModalDialog>
                     <MDBModalContent>
@@ -47,7 +49,6 @@ function ModalAddAccount() {
                                 label={"Tài khoản"}
                                 value={account}
                                 onChange={(e) => setAccount(e.target.value)}
-                                id="form1"
                                 type="text"
                             />
 
@@ -56,7 +57,6 @@ function ModalAddAccount() {
                                 label={"Mật khẩu"}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                id="form1"
                                 type="password"
                             />
                             <div className={cx("wrapper-dropdown")}>
