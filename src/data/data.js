@@ -120,3 +120,13 @@ export const moto = [
         description: "Winner X",
     },
 ];
+
+export const user = {
+    id: 1,
+    name: "Viết Trường",
+    dob: "02-08-2002",
+    gender: "Nam",
+    cccd: "203830627",
+    phoneNumber: "0789416451",
+    address: "Đà nẵng",
+};
