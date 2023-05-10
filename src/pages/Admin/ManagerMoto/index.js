@@ -110,9 +110,6 @@ function ManagerMoto() {
                                     >
                                         Edit
                                     </MDBBtn>
-                                    <MDBBtn color="link" rounded size="sm">
-                                        Delete
-                                    </MDBBtn>
                                 </td>
                             </tr>
                         );

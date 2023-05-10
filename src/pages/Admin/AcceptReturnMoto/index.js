@@ -64,9 +64,6 @@ function AcceptReturnMoto() {
                                     <MDBBtn color="link" rounded size="sm">
                                         Edit
                                     </MDBBtn>
-                                    <MDBBtn color="link" rounded size="sm">
-                                        Delete
-                                    </MDBBtn>
                                 </td>
                             </tr>
                         );
