@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
-import styles from "./ModalAddMoto.module.scss";
-import React, { useState } from "react";
+import styles from "./ModalMoto.module.scss";
+import React, { useState, useEffect, useContext } from "react";
 import {
     MDBBtn,
     MDBModal,
@@ -16,32 +16,44 @@ import {
     MDBDropdownToggle,
     MDBDropdownItem,
 } from "mdb-react-ui-kit";
+import { AppContext } from "~/Context/AppContext";
 
 const cx = classNames.bind(styles);
 
-function ModalAddMoto() {
-    const [basicModal, setBasicModal] = useState(false);
-    const [nameMoto, setNameMoto] = useState();
-    const [autoMaker, setAutoMaker] = useState();
-    const [price, setPrice] = useState();
-    const [type, setType] = useState();
-    const [licensePlates, setLicensePlates] = useState();
+function ModalMoto() {
+    const { isModalMotoVisible, data, typeModal, setIsModalMotoVisible } =
+        useContext(AppContext);
+    const [nameMoto, setNameMoto] = useState(data?.name ?? "");
+    const [autoMaker, setAutoMaker] = useState(data?.autoMaker ?? "");
+    const [price, setPrice] = useState(data?.price ?? "");
+    const [type, setType] = useState(data?.type ?? "");
+    const [licensePlates, setLicensePlates] = useState(
+        data?.licensePlates ?? ""
+    );
 
-    const toggleShow = () => setBasicModal(!basicModal);
+    useEffect(() => {
+        setNameMoto(data?.name ?? "");
+        setAutoMaker(data?.autoMaker ?? "");
+        setPrice(data?.price ?? "");
+        setType(data?.type ?? "");
+        setLicensePlates(data?.licensePlates ?? "");
+    }, [data]);
+
     return (
         <div className={cx("wrapper-modal")}>
-            <MDBBtn onClick={toggleShow} className={cx("button_showModal")}>
-                Thêm xe
-            </MDBBtn>
-            <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
+            <MDBModal show={isModalMotoVisible} tabIndex="-1">
                 <MDBModalDialog>
                     <MDBModalContent>
                         <MDBModalHeader>
-                            <MDBModalTitle>Thêm xe</MDBModalTitle>
+                            <MDBModalTitle>
+                                {typeModal == "ADD"
+                                    ? "Thêm xe"
+                                    : "Sửa thông tin xe"}
+                            </MDBModalTitle>
                             <MDBBtn
                                 className="btn-close"
                                 color="none"
-                                onClick={toggleShow}
+                                onClick={() => setIsModalMotoVisible(false)}
                             ></MDBBtn>
                         </MDBModalHeader>
 
@@ -121,7 +133,10 @@ function ModalAddMoto() {
                         </MDBModalBody>
 
                         <MDBModalFooter>
-                            <MDBBtn color="secondary" onClick={toggleShow}>
+                            <MDBBtn
+                                color="secondary"
+                                onClick={() => setIsModalMotoVisible(false)}
+                            >
                                 Huỷ
                             </MDBBtn>
                             <MDBBtn>Lưu</MDBBtn>
@@ -133,4 +148,4 @@ function ModalAddMoto() {
     );
 }
 
-export default ModalAddMoto;
+export default ModalMoto;

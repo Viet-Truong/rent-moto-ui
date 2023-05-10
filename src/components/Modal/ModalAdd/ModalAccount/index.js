@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import styles from "./ModalAddAccount.module.scss";
+import styles from "./ModalAccount.module.scss";
 import React, { useState } from "react";
 import {
     MDBBtn,
@@ -18,7 +18,7 @@ import {
 } from "mdb-react-ui-kit";
 
 const cx = classNames.bind(styles);
-function ModalAddAccount() {
+function ModalAccount() {
     const [basicModal, setBasicModal] = useState(false);
     const [valueDropdown, setValueDropdown] = useState("");
     const [account, setAccount] = useState();
@@ -102,4 +102,4 @@ function ModalAddAccount() {
     );
 }
 
-export default ModalAddAccount;
+export default ModalAccount;

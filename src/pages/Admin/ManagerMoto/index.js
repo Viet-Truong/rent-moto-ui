@@ -1,4 +1,4 @@
-import ModalAddMoto from "~/components/Modal/ModalAdd/ModalAddMoto";
+import ModalMoto from "~/components/Modal/ModalAdd/ModalMoto";
 import classNames from "classnames/bind";
 import styles from "./ManagerMoto.module.scss";
 import {
@@ -12,15 +12,34 @@ import {
     MDBPaginationLink,
 } from "mdb-react-ui-kit";
 import { moto } from "~/data/data";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AppContext } from "~/Context/AppContext";
 
 const cx = classNames.bind(styles);
+const TYPE_MODAL = {
+    add: "ADD",
+    update: "UPDATE",
+};
 
 function ManagerMoto() {
+    const [motoData, setMotoData] = useState(moto);
+    const { setIsModalMotoVisible, setTypeModal, setData } =
+        useContext(AppContext);
+
     return (
         <div className={cx("wrapper")}>
             <h1 className={cx("header")}>Cập nhật thông tin xe</h1>
-            <ModalAddMoto />
+            <MDBBtn
+                onClick={() => {
+                    setIsModalMotoVisible(true);
+                    setTypeModal(TYPE_MODAL.add);
+                    setData(undefined);
+                }}
+                className={cx("button_showModal")}
+            >
+                Thêm xe
+            </MDBBtn>
+            <ModalMoto />
             <MDBTable align="middle" className={cx("table")}>
                 <MDBTableHead>
                     <tr>
@@ -36,7 +55,7 @@ function ManagerMoto() {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {moto.map((item) => {
+                    {motoData.map((item) => {
                         return (
                             <tr key={item.id}>
                                 <td>
@@ -78,7 +97,16 @@ function ManagerMoto() {
                                     <p>{item.description}</p>
                                 </td>
                                 <td>
-                                    <MDBBtn color="link" rounded size="sm">
+                                    <MDBBtn
+                                        color="link"
+                                        rounded
+                                        size="sm"
+                                        onClick={() => {
+                                            setIsModalMotoVisible(true);
+                                            setTypeModal(TYPE_MODAL.update);
+                                            setData(item);
+                                        }}
+                                    >
                                         Edit
                                     </MDBBtn>
                                     <MDBBtn color="link" rounded size="sm">

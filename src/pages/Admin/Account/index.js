@@ -1,4 +1,4 @@
-import ModalAddAccount from "~/components/Modal/ModalAdd/ModalAddAccount";
+import ModalAddAccount from "~/components/Modal/ModalAdd/ModalAccount";
 import classNames from "classnames/bind";
 import styles from "./Account.module.scss";
 import {
