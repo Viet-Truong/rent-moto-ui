@@ -1,4 +1,4 @@
-import ModalMoto from "~/components/Modal/ModalAdd/ModalMoto";
+import ModalMoto from "~/components/Modal/ModalMoto";
 import classNames from "classnames/bind";
 import styles from "./ManagerMoto.module.scss";
 import {

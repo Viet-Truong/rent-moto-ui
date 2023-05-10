@@ -9,7 +9,6 @@ import { user } from "~/data/data";
 
 const cx = classNames.bind(styles);
 function User() {
-    console.log(user);
     return (
         <div className={cx("wrapper")}>
             <h1 className={cx("header")}>Thông tin cá nhân</h1>

@@ -11,13 +11,18 @@ import {
     MDBPaginationLink,
 } from "mdb-react-ui-kit";
 import { acceptMoto } from "~/data/data";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AppContext } from "~/Context/AppContext";
+import ModalHandleSignMoto from "~/components/Modal/ModalHandleSignMoto";
 
 const cx = classNames.bind(styles);
 
 function AcceptMoto() {
+    const { setIsModalAcceptVisible, setTypeModal, setData } =
+        useContext(AppContext);
     return (
         <div className={cx("wrapper")}>
+            <ModalHandleSignMoto />
             <h1 className={cx("header")}>Duyệt đăng kí thuê xe</h1>
             <MDBTable align="middle" className={cx("table")}>
                 <MDBTableHead>
@@ -34,7 +39,14 @@ function AcceptMoto() {
                 <MDBTableBody>
                     {acceptMoto.map((item) => {
                         return (
-                            <tr key={item.id}>
+                            <tr
+                                key={item.id}
+                                onClick={() => {
+                                    setIsModalAcceptVisible(true);
+                                    setTypeModal("ACCEPT");
+                                    setData(item);
+                                }}
+                            >
                                 <td>
                                     <p className="fw-bold mb-1">{item.id}</p>
                                 </td>
