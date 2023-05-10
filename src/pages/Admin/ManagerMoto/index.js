@@ -16,6 +16,7 @@ import { useState, useEffect, useContext } from "react";
 import { AppContext } from "~/Context/AppContext";
 
 const cx = classNames.bind(styles);
+
 const TYPE_MODAL = {
     add: "ADD",
     update: "UPDATE",

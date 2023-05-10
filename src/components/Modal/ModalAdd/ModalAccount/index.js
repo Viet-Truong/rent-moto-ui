@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./ModalAccount.module.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
     MDBBtn,
     MDBModal,
@@ -16,30 +16,37 @@ import {
     MDBDropdownToggle,
     MDBDropdownItem,
 } from "mdb-react-ui-kit";
+import { AppContext } from "~/Context/AppContext";
 
 const cx = classNames.bind(styles);
 function ModalAccount() {
-    const [basicModal, setBasicModal] = useState(false);
-    const [valueDropdown, setValueDropdown] = useState("");
-    const [account, setAccount] = useState();
-    const [password, setPassword] = useState();
+    const { isModalAccountVisible, data, typeModal, setIsModalAccountVisible } =
+        useContext(AppContext);
+    const [account, setAccount] = useState(data?.account ?? "");
+    const [password, setPassword] = useState(data?.password ?? "");
+    const [role, setRole] = useState(data?.role ?? "");
 
-    const toggleShow = () => setBasicModal(!basicModal);
+    useEffect(() => {
+        setAccount(data?.account ?? "");
+        setPassword(data?.password ?? "");
+        setRole(data?.role ?? "");
+    }, [data]);
 
     return (
         <div className={cx("wrapper-modal")}>
-            <MDBBtn onClick={toggleShow} className={cx("button_showModal")}>
-                Thêm tài khoản
-            </MDBBtn>
-            <MDBModal show={basicModal} setShow={setBasicModal} tabIndex="-1">
+            <MDBModal show={isModalAccountVisible} tabIndex="-1">
                 <MDBModalDialog>
                     <MDBModalContent>
                         <MDBModalHeader>
-                            <MDBModalTitle>Thêm tài khoản</MDBModalTitle>
+                            <MDBModalTitle>
+                                {typeModal == "ADD"
+                                    ? "Thêm tài khoản"
+                                    : "Sửa thông tin tài khoản"}
+                            </MDBModalTitle>
                             <MDBBtn
                                 className="btn-close"
                                 color="none"
-                                onClick={toggleShow}
+                                onClick={() => setIsModalAccountVisible(false)}
                             ></MDBBtn>
                         </MDBModalHeader>
 
@@ -67,16 +74,14 @@ function ModalAccount() {
                                     <MDBDropdownMenu>
                                         <MDBDropdownItem
                                             link
-                                            onClick={() =>
-                                                setValueDropdown("Nhân viên")
-                                            }
+                                            onClick={() => setRole("Nhân viên")}
                                         >
                                             Nhân viên
                                         </MDBDropdownItem>
                                         <MDBDropdownItem
                                             link
                                             onClick={() =>
-                                                setValueDropdown("Khách hàng")
+                                                setRole("Khách hàng")
                                             }
                                         >
                                             Khách hàng
@@ -84,16 +89,19 @@ function ModalAccount() {
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
                                 <div className={cx("value_dropdown")}>
-                                    {valueDropdown}
+                                    {role}
                                 </div>
                             </div>
                         </MDBModalBody>
 
                         <MDBModalFooter>
-                            <MDBBtn color="secondary" onClick={toggleShow}>
-                                Close
+                            <MDBBtn
+                                color="secondary"
+                                onClick={() => setIsModalAccountVisible(false)}
+                            >
+                                Huỷ
                             </MDBBtn>
-                            <MDBBtn>Save changes</MDBBtn>
+                            <MDBBtn>Lưu</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>

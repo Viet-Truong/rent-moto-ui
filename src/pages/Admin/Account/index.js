@@ -1,4 +1,4 @@
-import ModalAddAccount from "~/components/Modal/ModalAdd/ModalAccount";
+import ModalAccount from "~/components/Modal/ModalAdd/ModalAccount";
 import classNames from "classnames/bind";
 import styles from "./Account.module.scss";
 import {
@@ -12,19 +12,40 @@ import {
     MDBPaginationLink,
 } from "mdb-react-ui-kit";
 import { account } from "~/data/data";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AppContext } from "~/Context/AppContext";
 
 const cx = classNames.bind(styles);
+
+const TYPE_MODAL = {
+    add: "ADD",
+    update: "UPDATE",
+};
+
 function Account() {
     const [accountData, setAccountData] = useState(account);
     const [page, setPage] = useState(1);
+    const { setIsModalAccountVisible, setTypeModal, setData } =
+        useContext(AppContext);
+
     useEffect(() => {
         setAccountData(accountData);
     }, [accountData, page]);
+
     return (
         <div className={cx("wrapper")}>
             <h1 className={cx("header")}>Quản lí tài khoản</h1>
-            <ModalAddAccount />
+            <MDBBtn
+                onClick={() => {
+                    setIsModalAccountVisible(true);
+                    setTypeModal(TYPE_MODAL.add);
+                    setData(undefined);
+                }}
+                className={cx("button_showModal")}
+            >
+                Thêm tài khoản
+            </MDBBtn>
+            <ModalAccount />
             <MDBTable align="middle" className={cx("table")}>
                 <MDBTableHead>
                     <tr>
@@ -80,7 +101,16 @@ function Account() {
                                     )}
                                 </td>
                                 <td>
-                                    <MDBBtn color="link" rounded size="sm">
+                                    <MDBBtn
+                                        color="link"
+                                        rounded
+                                        size="sm"
+                                        onClick={() => {
+                                            setIsModalAccountVisible(true);
+                                            setTypeModal(TYPE_MODAL.update);
+                                            setData(item);
+                                        }}
+                                    >
                                         Edit
                                     </MDBBtn>
                                     <MDBBtn color="link" rounded size="sm">
