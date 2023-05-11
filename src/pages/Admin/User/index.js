@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { MDBInput, MDBCol, MDBRow, MDBContainer } from "mdb-react-ui-kit";
 import classNames from "classnames/bind";
 import styles from "./User.module.scss";
@@ -9,6 +9,40 @@ import { user } from "~/data/data";
 
 const cx = classNames.bind(styles);
 function User() {
+    const [name, setName] = useState(user.name);
+    const [gender, setGender] = useState(user.gender);
+    const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
+    const [dob, setDob] = useState(user.dob);
+    const [cccd, setCCCD] = useState(user.cccd);
+    const [address, setAddress] = useState(user.address);
+
+    const [inputStates, setInputStates] = useState({
+        name: true,
+        gender: true,
+        phoneNumber: true,
+        dob: true,
+        cccd: true,
+        address: true,
+    });
+
+    const handleEditClick = (fieldName) => {
+        setInputStates({ ...inputStates, [fieldName]: false });
+    };
+
+    const handleSaveClick = () => {
+        // Lưu lại các thông tin chỉnh sửa
+
+        // Đặt lại trạng thái chỉnh sửa của tất cả các trường
+        setInputStates({
+            name: true,
+            gender: true,
+            phoneNumber: true,
+            dob: true,
+            cccd: true,
+            address: true,
+        });
+    };
+
     return (
         <div className={cx("wrapper")}>
             <h1 className={cx("header")}>Thông tin cá nhân</h1>
@@ -21,14 +55,18 @@ function User() {
                                 <div className={cx("input_field")}>
                                     <MDBInput
                                         className={cx("input")}
-                                        label={user.name}
+                                        value={name}
+                                        onChange={(e) =>
+                                            setName(e.target.value)
+                                        }
                                         id="formControlDisabled"
                                         type="text"
-                                        disabled
+                                        disabled={inputStates.name}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
                                         className={cx("icon")}
+                                        onClick={() => handleEditClick("name")}
                                     />
                                 </div>
                             </div>
@@ -37,14 +75,20 @@ function User() {
                                 <div className={cx("input_field")}>
                                     <MDBInput
                                         className={cx("input")}
-                                        label={user.gender}
+                                        value={gender}
+                                        onChange={(e) =>
+                                            setGender(e.target.value)
+                                        }
                                         id="formControlDisabled"
                                         type="text"
-                                        disabled
+                                        disabled={inputStates.gender}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
                                         className={cx("icon")}
+                                        onClick={() =>
+                                            handleEditClick("gender")
+                                        }
                                     />
                                 </div>
                             </div>
@@ -53,14 +97,20 @@ function User() {
                                 <div className={cx("input_field")}>
                                     <MDBInput
                                         className={cx("input")}
-                                        label={user.phoneNumber}
+                                        value={phoneNumber}
+                                        onChange={(e) =>
+                                            setPhoneNumber(e.target.value)
+                                        }
                                         id="formControlDisabled"
                                         type="text"
-                                        disabled
+                                        disabled={inputStates.phoneNumber}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
                                         className={cx("icon")}
+                                        onClick={() =>
+                                            handleEditClick("phoneNumber")
+                                        }
                                     />
                                 </div>
                             </div>
@@ -74,11 +124,12 @@ function User() {
                                         label="Disabled"
                                         id="formControlDisabled"
                                         type="text"
-                                        disabled
+                                        disabled={inputStates.dob}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
                                         className={cx("icon")}
+                                        onClick={() => handleEditClick("dob")}
                                     />
                                 </div>
                             </div>
@@ -87,14 +138,18 @@ function User() {
                                 <div className={cx("input_field")}>
                                     <MDBInput
                                         className={cx("input")}
-                                        label={user.cccd}
+                                        value={cccd}
+                                        onChange={(e) =>
+                                            setCCCD(e.target.value)
+                                        }
                                         id="formControlDisabled"
                                         type="text"
-                                        disabled
+                                        disabled={inputStates.cccd}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
                                         className={cx("icon")}
+                                        onClick={() => handleEditClick("cccd")}
                                     />
                                 </div>
                             </div>
@@ -103,14 +158,20 @@ function User() {
                                 <div className={cx("input_field")}>
                                     <MDBInput
                                         className={cx("input")}
-                                        label={user.address}
+                                        value={address}
+                                        onChange={(e) =>
+                                            setAddress(e.target.value)
+                                        }
                                         id="formControlDisabled"
                                         type="text"
-                                        disabled
+                                        disabled={inputStates.address}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
                                         className={cx("icon")}
+                                        onClick={() =>
+                                            handleEditClick("address")
+                                        }
                                     />
                                 </div>
                             </div>
@@ -118,7 +179,9 @@ function User() {
                     </MDBRow>
                 </MDBContainer>
             </div>
-            <Button className="btn btn-primary">Lưu</Button>
+            <Button className="btn btn-primary" onClick={handleSaveClick}>
+                Lưu
+            </Button>
         </div>
     );
 }
