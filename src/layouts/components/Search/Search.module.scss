@@ -86,3 +86,17 @@
         background-color: rgba(22, 24, 35, 0.06);
     }
 }
+
+// RESPONSIVE
+
+@media only screen and (min-width: 320px) and (max-width: 480px){
+    .search, .search-result {
+        width: 60vw;
+    }
+    .search {
+        input {
+            padding-right: 0;
+            width: 100%;
+        }
+    }
+}

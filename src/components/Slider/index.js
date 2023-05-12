@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import classNames from "classnames/bind";
 import styles from "./Slider.module.scss";
+
+import images from "~/assets/image";
 import Button from "../Button";
 import Image from "../Image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,40 +44,43 @@ function Slider(props) {
         }
     }, [nextSlide, timeOut, props]);
     return (
-        <div className={cx("slider")}>
-            {props.data.map((item, index) => (
-                <SliderItem
-                    key={index}
-                    item={item}
-                    active={index === activeSlide}
-                />
-            ))}
-            {props.control ? (
-                <div className={cx("slider__control")}>
-                    <div
-                        className={cx("slider__control__item")}
-                        onClick={prevSlide}
-                    >
-                        <FontAwesomeIcon
-                            icon={faChevronLeft}
-                            className={cx("slider__control__icon")}
-                        />
+        <>
+            <Image src={images.banner} className={cx("slider__banner")} />
+            <div className={cx("slider")}>
+                {props.data.map((item, index) => (
+                    <SliderItem
+                        key={index}
+                        item={item}
+                        active={index === activeSlide}
+                    />
+                ))}
+                {props.control ? (
+                    <div className={cx("slider__control")}>
+                        <div
+                            className={cx("slider__control__item")}
+                            onClick={prevSlide}
+                        >
+                            <FontAwesomeIcon
+                                icon={faChevronLeft}
+                                className={cx("slider__control__icon")}
+                            />
+                        </div>
+                        <div className={cx("slider__control__item")}>
+                            <div className={cx("index")}>{activeSlide + 1}</div>
+                        </div>
+                        <div
+                            className={cx("slider__control__item")}
+                            onClick={nextSlide}
+                        >
+                            <FontAwesomeIcon
+                                icon={faChevronRight}
+                                className={cx("slider__control__icon")}
+                            />
+                        </div>
                     </div>
-                    <div className={cx("slider__control__item")}>
-                        <div className={cx("index")}>{activeSlide + 1}</div>
-                    </div>
-                    <div
-                        className={cx("slider__control__item")}
-                        onClick={nextSlide}
-                    >
-                        <FontAwesomeIcon
-                            icon={faChevronRight}
-                            className={cx("slider__control__icon")}
-                        />
-                    </div>
-                </div>
-            ) : null}
-        </div>
+                ) : null}
+            </div>
+        </>
     );
 }
 

@@ -92,7 +92,10 @@ function Footer() {
                     </div>
                 </div>
                 <div className={cx("footer__about")}>
-                    <p>MOTOCYCLE</p>
+                    <p>
+                        MOTOCYCLE{" "}
+                        <span dangerouslySetInnerHTML={{ __html: "&copy;" }} />
+                    </p>
                     <p>
                         Hướng đến mục tiêu mang lại trải nghiệm dịch vụ thuê xe
                         một cách đơn giản nhất

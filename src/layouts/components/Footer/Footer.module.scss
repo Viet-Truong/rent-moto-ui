@@ -56,3 +56,34 @@
         color: var(--primary);
     }
 }
+
+
+
+
+// RESPONSIVE
+
+@media only screen and (min-width: 320px) and (max-width: 480px){
+    .container {
+        flex-direction: column;
+        div {
+            margin-top: 10px;
+            margin-left: 10px !important;
+        }
+    }
+    .footer {
+        &__about {
+            width: 100%;
+            p:first-child {
+                margin-bottom: 2rem;
+                color: var(--primary);
+                font-weight: bold;
+                font-size: 2rem;
+                margin-left: 10px;
+            }
+    
+            p:nth-child(2) {
+                display: none;
+            }
+        }
+    }
+}
