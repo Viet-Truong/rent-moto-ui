@@ -20,11 +20,11 @@ Live demo: [https://rent-moto-ui.vercel.app/](https://rent-moto-ui.vercel.app/)
 
 -   Auth(Register, Login, Logout)
 
-* Customer
++ Customer
 -   Search motorbike
 -   Sign rent moto
 
-* ADMIN
++ ADMIN
 -   Manager Account
 -   Update profile
 -   Update infomation Motorbike
