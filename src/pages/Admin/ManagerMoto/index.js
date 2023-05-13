@@ -12,7 +12,7 @@ import {
     MDBPaginationLink,
 } from "mdb-react-ui-kit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { moto } from "~/data/data";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "~/Context/AppContext";
@@ -40,7 +40,7 @@ function ManagerMoto() {
                 }}
                 className={cx("button_showModal")}
             >
-                Thêm xe
+                <FontAwesomeIcon icon={faPlus} />
             </MDBBtn>
             <ModalMoto />
             <MDBTable align="middle" className={cx("table")}>

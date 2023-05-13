@@ -15,7 +15,7 @@ import { account } from "~/data/data";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "~/Context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -45,7 +45,7 @@ function Account() {
                 }}
                 className={cx("button_showModal")}
             >
-                Thêm tài khoản
+                <FontAwesomeIcon icon={faPlus} />
             </MDBBtn>
             <ModalAccount />
             <MDBTable align="middle" className={cx("table")}>
