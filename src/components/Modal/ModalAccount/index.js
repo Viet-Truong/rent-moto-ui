@@ -96,12 +96,13 @@ function ModalAccount() {
 
                         <MDBModalFooter>
                             <MDBBtn
+                                className={cx("button_save")}
                                 color="secondary"
                                 onClick={() => setIsModalAccountVisible(false)}
                             >
                                 Huỷ
                             </MDBBtn>
-                            <MDBBtn>Lưu</MDBBtn>
+                            <MDBBtn className={cx("button_save")}>Lưu</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>
