@@ -22,3 +22,10 @@
     padding: 24px 0;
 }
 
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .container{
+        overflow-y: hidden;
+    }
+}
+

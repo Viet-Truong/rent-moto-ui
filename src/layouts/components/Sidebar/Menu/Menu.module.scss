@@ -46,3 +46,10 @@ a svg {
     width: 20px;
     height: 20px;
 }
+
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .title {
+        display: none;
+    }
+}
