@@ -1,5 +1,5 @@
 import classNames from "classnames/bind";
-import Image from "../Image";
+import Image from "../../../../components/Image";
 import styles from "./MotoItem.module.scss";
 import { Link } from "react-router-dom";
 

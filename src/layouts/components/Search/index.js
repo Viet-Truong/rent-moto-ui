@@ -4,7 +4,7 @@ import TippyHeadless from "@tippyjs/react/headless";
 import { useState, useRef, useEffect } from "react";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
-import CarItem from "../../../components/MotoItem/index";
+import CarItem from "./MotoItem/index";
 import useDebounce from "~/hooks/useDebounce";
 import { car } from "~/data/data";
 
