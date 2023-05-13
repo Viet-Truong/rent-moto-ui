@@ -1,6 +1,17 @@
 .input {
     margin-top: 10px;
     padding: 10px !important;
+    font-size: 1.4rem !important;
+}
+
+.dropdown {
+    button {
+        background-color: var(--primary) !important;
+        font-size: 1rem !important;
+        ul li {
+            font-size: 1rem !important;
+        }
+    }
 }
 
 .wrapper-dropdown {
@@ -13,11 +24,15 @@
     margin-left: 10px;
 }
 
-.button_showModal {
+.wrapper_image {
+    margin-top: 2vh;
+}
+
+.button_save {
     display: flex;
     justify-content: flex-end;
-    padding: 10px !important;
-    font-size: 1.2rem !important;
+    padding: 5px !important;
+    font-size: 1rem !important;
     background-color: var(--primary) !important;
-    margin-top: 30px;
+    color: var(--white-color) !important;
 }

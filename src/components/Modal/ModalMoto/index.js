@@ -126,20 +126,21 @@ function ModalMoto() {
                                 <div className={cx("value_dropdown")}>
                                     {type}
                                 </div>
-                                <div className={cx("wrapper_image")}>
-                                    <input type="file" />
-                                </div>
+                            </div>
+                            <div className={cx("wrapper_image")}>
+                                <input type="file" />
                             </div>
                         </MDBModalBody>
 
                         <MDBModalFooter>
                             <MDBBtn
+                                className={cx("button_save")}
                                 color="secondary"
                                 onClick={() => setIsModalMotoVisible(false)}
                             >
                                 Huỷ
                             </MDBBtn>
-                            <MDBBtn>Lưu</MDBBtn>
+                            <MDBBtn className={cx("button_save")}>Lưu</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>
