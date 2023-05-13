@@ -1,4 +1,6 @@
 import React from "react";
+import classNames from "classnames/bind";
+import styles from "./Profile.module.scss";
 import {
     MDBCol,
     MDBContainer,
@@ -10,16 +12,21 @@ import {
     MDBBtn,
 } from "mdb-react-ui-kit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faPen } from "@fortawesome/free-solid-svg-icons";
+import images from "~/assets/image";
 
+const cx = classNames.bind(styles);
 function Profile() {
     return (
         <section
             style={{
                 backgroundColor: "#fff",
                 display: "flex",
-                alignItems: "center",
+                justifyContent: "center",
+                width: "100vw",
+                marginTop: "10vh",
             }}
+            className={cx("wrapper")}
         >
             <MDBContainer className="py-5">
                 <MDBRow>
@@ -27,23 +34,24 @@ function Profile() {
                         <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
                                 <MDBCardImage
-                                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                    src={images.noImage}
                                     alt="avatar"
                                     className="rounded-circle"
                                     style={{ width: "150px" }}
                                     fluid
                                 />
-                                <p className="text-muted mb-1">
-                                    Full Stack Developer
-                                </p>
-                                <p className="text-muted mb-4">
-                                    Bay Area, San Francisco, CA
-                                </p>
-                                <div className="d-flex justify-content-center mb-2">
-                                    <MDBBtn>Follow</MDBBtn>
-                                    <MDBBtn outline className="ms-1">
-                                        Message
-                                    </MDBBtn>
+                                <div className="d-flex justify-content-center mb-2 mt-5">
+                                    <label
+                                        className={cx("label")}
+                                        htmlFor="avatar"
+                                    >
+                                        <FontAwesomeIcon icon={faCamera} />
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="avatar"
+                                        style={{ display: "none" }}
+                                    />
                                 </div>
                             </MDBCardBody>
                         </MDBCard>
@@ -54,11 +62,11 @@ function Profile() {
                             <MDBCardBody>
                                 <MDBRow>
                                     <MDBCol sm="3">
-                                        <MDBCardText>Full Name</MDBCardText>
+                                        <MDBCardText>Họ và tên</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            Johnatan Smith
+                                            Bùi Viết Trường
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -72,7 +80,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            example@example.com
+                                            viettruong0825@gmail.com
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -82,11 +90,11 @@ function Profile() {
                                 <hr />
                                 <MDBRow>
                                     <MDBCol sm="3">
-                                        <MDBCardText>Phone</MDBCardText>
+                                        <MDBCardText>Số điện thoại</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            (097) 234-5678
+                                            0789416451
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -96,11 +104,11 @@ function Profile() {
                                 <hr />
                                 <MDBRow>
                                     <MDBCol sm="3">
-                                        <MDBCardText>Mobile</MDBCardText>
+                                        <MDBCardText>CCCD</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            (098) 765-4321
+                                            123 456 789 123
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -110,11 +118,11 @@ function Profile() {
                                 <hr />
                                 <MDBRow>
                                     <MDBCol sm="3">
-                                        <MDBCardText>Address</MDBCardText>
+                                        <MDBCardText>Địa chỉ</MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            Bay Area, San Francisco, CA
+                                            Liên Chiểu, Đà Nẵng
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">

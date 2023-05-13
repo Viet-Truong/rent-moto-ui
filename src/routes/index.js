@@ -19,7 +19,7 @@ const publicRoutes = [
     { path: config.routes.login, component: Login, layout: null },
     { path: config.routes.register, component: Register, layout: null },
     { path: config.routes.admin, component: HomeAdmin, layout: AdminLayout },
-    { path: config.routes.profile, component: Profile, layout: null },
+    { path: config.routes.profile, component: Profile },
     {
         path: config.routes.managerAccount,
         component: Account,
