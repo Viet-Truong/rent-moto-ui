@@ -39,19 +39,18 @@ function ModalCart() {
     return (
         <section className={cx("wrapper", `${toogleClose}`)}>
             <div className={cx("wrapper_modal")}>
-                <MDBCard
-                    className="p-3"
-                    style={{ height: "100vh" }}
-                    onClick={() => setIsOpen(false)}
-                >
+                <MDBCard className="p-3" style={{ height: "100vh" }}>
                     <FontAwesomeIcon
                         icon={faClose}
                         className={cx("icon_close")}
-                        onClick={() => setIsOpen(true)}
+                        onClick={() => setIsOpen(false)}
                     />
 
                     <hr />
-                    <div className={cx("wrapper-cartItem")}>
+                    <div
+                        className={cx("wrapper-cartItem")}
+                        onClick={() => setIsOpen(true)}
+                    >
                         {cartItems.map((cartItem) => (
                             <div className={cx("item")}>
                                 <div className={cx("header-item")}>
