@@ -70,6 +70,12 @@ function MotoView({ slug }) {
                         >
                             <img src={product.image02} alt="" />
                         </div>
+                        <div
+                            className={cx("product__images__list__item")}
+                            onClick={() => setPreviewImg(product.image02)}
+                        >
+                            <img src={product.image02} alt="" />
+                        </div>
                     </div>
                     <div className={cx("product__images__main")}>
                         <img src={previewImg} alt="" />

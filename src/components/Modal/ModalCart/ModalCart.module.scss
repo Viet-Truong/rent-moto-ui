@@ -58,3 +58,12 @@
 .close {
     display: none;
 }
+
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+    .wrapper {
+        max-width: 100vw;
+        width: 100%;
+        height: 100vh;
+    }
+}
