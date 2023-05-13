@@ -160,16 +160,42 @@ function ModalCart() {
                             </div>
 
                             <p className="small">Tuỳ chọn thanh toán</p>
-                            <a href="#!" type="submit" className="text-white">
+                            <a
+                                href="#!"
+                                type="submit"
+                                className={cx("text-white")}
+                            >
+                                <MDBIcon
+                                    fas
+                                    icon="money-bill-wave-alt fa-2x me-2"
+                                />
+                            </a>
+                            <a
+                                href="#!"
+                                type="submit"
+                                className={cx("text-white", "disable")}
+                            >
                                 <MDBIcon fab icon="cc-mastercard fa-2x me-2" />
                             </a>
-                            <a href="#!" type="submit" className="text-white">
+                            <a
+                                href="#!"
+                                type="submit"
+                                className={cx("text-white", "disable")}
+                            >
                                 <MDBIcon fab icon="cc-visa fa-2x me-2" />
                             </a>
-                            <a href="#!" type="submit" className="text-white">
+                            <a
+                                href="#!"
+                                type="submit"
+                                className={cx("text-white", "disable")}
+                            >
                                 <MDBIcon fab icon="cc-amex fa-2x me-2" />
                             </a>
-                            <a href="#!" type="submit" className="text-white">
+                            <a
+                                href="#!"
+                                type="submit"
+                                className={cx("text-white", "disable")}
+                            >
                                 <MDBIcon fab icon="cc-paypal fa-2x me-2" />
                             </a>
 

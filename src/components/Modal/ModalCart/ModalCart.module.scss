@@ -59,6 +59,12 @@
     display: none;
 }
 
+a.disable {
+    pointer-events: none !important;
+    cursor: none;
+    color: var(--text-color-admin) !important;
+}
+
 
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     .wrapper {
