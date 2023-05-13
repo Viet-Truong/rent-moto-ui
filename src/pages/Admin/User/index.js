@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Button from "~/components/Button";
 import { user } from "~/data/data";
+import { DatePicker, Space, Radio } from "antd";
+import moment from "moment";
 
 const cx = classNames.bind(styles);
 function User() {
@@ -27,6 +29,10 @@ function User() {
 
     const handleEditClick = (fieldName) => {
         setInputStates({ ...inputStates, [fieldName]: false });
+    };
+
+    const onChange = (e) => {
+        setGender(e.target.value);
     };
 
     const handleSaveClick = () => {
@@ -73,16 +79,16 @@ function User() {
                             <div className={cx("fields")}>
                                 <label htmlFor="">Giới tính</label>
                                 <div className={cx("input_field")}>
-                                    <MDBInput
-                                        className={cx("input")}
+                                    <Radio.Group
+                                        onChange={onChange}
                                         value={gender}
-                                        onChange={(e) =>
-                                            setGender(e.target.value)
-                                        }
-                                        id="formControlDisabled"
-                                        type="text"
                                         disabled={inputStates.gender}
-                                    />
+                                        className={cx("input")}
+                                    >
+                                        <Radio value={"Nam"}>Nam</Radio>
+                                        <Radio value={"Nữ"}>Nữ</Radio>
+                                        <Radio value={"Khác"}>Khác</Radio>
+                                    </Radio.Group>
                                     <FontAwesomeIcon
                                         icon={faPen}
                                         className={cx("icon")}
@@ -119,12 +125,14 @@ function User() {
                             <div className={cx("fields")}>
                                 <label htmlFor="">Ngày sinh</label>
                                 <div className={cx("input_field")}>
-                                    <MDBInput
+                                    <DatePicker
                                         className={cx("input")}
-                                        label="Disabled"
-                                        id="formControlDisabled"
-                                        type="text"
                                         disabled={inputStates.dob}
+                                        // defaultValue={
+                                        //     [
+                                        //         // moment(dob, "DD-MM-YYYY"),
+                                        //     ]
+                                        // }
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
@@ -179,7 +187,10 @@ function User() {
                     </MDBRow>
                 </MDBContainer>
             </div>
-            <Button className="btn btn-primary" onClick={handleSaveClick}>
+            <Button
+                className={cx("btn", "btn-primary", "btn-save")}
+                onClick={handleSaveClick}
+            >
                 Lưu
             </Button>
         </div>

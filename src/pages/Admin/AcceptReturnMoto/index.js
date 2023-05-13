@@ -10,6 +10,8 @@ import {
     MDBPaginationItem,
     MDBPaginationLink,
 } from "mdb-react-ui-kit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { acceptReturnMoto } from "~/data/data";
 import { useState, useEffect } from "react";
 
@@ -62,7 +64,7 @@ function AcceptReturnMoto() {
                                 </td>
                                 <td>
                                     <MDBBtn color="link" rounded size="sm">
-                                        Edit
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBBtn>
                                 </td>
                             </tr>

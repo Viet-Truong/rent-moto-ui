@@ -14,6 +14,8 @@ import {
 import { account } from "~/data/data";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "~/Context/AppContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -111,10 +113,10 @@ function Account() {
                                             setData(item);
                                         }}
                                     >
-                                        Edit
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBBtn>
                                     <MDBBtn color="link" rounded size="sm">
-                                        Delete
+                                        <FontAwesomeIcon icon={faTrash} />
                                     </MDBBtn>
                                 </td>
                             </tr>

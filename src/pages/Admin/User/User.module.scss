@@ -16,11 +16,21 @@
 }
 
 .input {
+    height: 38px;
     padding: 7px !important;
     width: 300px !important;
+    font-size: 1.2rem !important;
+    color: black;
 }
 
 .icon {
     margin-left: 10px;
     cursor: pointer;
+}
+
+.btn-save {
+    margin-top: 5vh;
+    padding: 10px !important;
+    font-size: 1.2rem !important;
+    background-color: var(--primary) !important;
 }

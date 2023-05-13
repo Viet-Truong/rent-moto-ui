@@ -23,12 +23,11 @@
 }
 
 .ant-picker-input > input::placeholder {
-  color: white;
-  font-weight: bold;
+  color: black;
 }
 
 .ant-picker-input > input {
-  color: white;
+  color: black;
 }
 .ant-modal-title {
   color: var(--primary);

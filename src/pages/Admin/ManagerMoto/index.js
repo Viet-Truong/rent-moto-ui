@@ -11,6 +11,8 @@ import {
     MDBPaginationItem,
     MDBPaginationLink,
 } from "mdb-react-ui-kit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { moto } from "~/data/data";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "~/Context/AppContext";
@@ -108,7 +110,7 @@ function ManagerMoto() {
                                             setData(item);
                                         }}
                                     >
-                                        Edit
+                                        <FontAwesomeIcon icon={faPen} />
                                     </MDBBtn>
                                 </td>
                             </tr>
