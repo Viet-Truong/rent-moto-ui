@@ -13,13 +13,18 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { acceptReturnMoto } from "~/data/data";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AppContext } from "~/Context/AppContext";
+import ModalHandleSignMoto from "~/components/Modal/ModalHandleSignMoto";
 
 const cx = classNames.bind(styles);
 function AcceptReturnMoto() {
+    const { setIsModalAcceptVisible, setTypeModal, setData } =
+        useContext(AppContext);
     return (
         <div className={cx("wrapper")}>
-            <h1 className={cx("header")}>Duyệt đăng kí thuê xe</h1>
+            <ModalHandleSignMoto />
+            <h1 className={cx("header")}>Xác nhận trả xe</h1>
             <MDBTable align="middle" className={cx("table")}>
                 <MDBTableHead>
                     <tr>
@@ -35,7 +40,14 @@ function AcceptReturnMoto() {
                 <MDBTableBody>
                     {acceptReturnMoto.map((item) => {
                         return (
-                            <tr key={item.id}>
+                            <tr
+                                key={item.id}
+                                onClick={() => {
+                                    setIsModalAcceptVisible(true);
+                                    setTypeModal("RETURN");
+                                    setData(item);
+                                }}
+                            >
                                 <td>
                                     <p className="fw-bold mb-1">{item.id}</p>
                                 </td>

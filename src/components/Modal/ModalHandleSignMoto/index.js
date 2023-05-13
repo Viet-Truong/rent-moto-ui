@@ -40,13 +40,13 @@ function ModalHandleSignMoto() {
     return (
         <div className={cx("wrapper")}>
             <MDBModal show={isModalAcceptVisible} tabIndex="-1">
-                <MDBModalDialog>
+                <MDBModalDialog className={cx("modal_dialog")}>
                     <MDBModalContent>
                         <MDBModalHeader>
                             <MDBModalTitle>
                                 {typeModal == "ACCEPT"
                                     ? "Duyệt đăng kí thuê xe"
-                                    : ""}
+                                    : "Xác nhận trả xe"}
                             </MDBModalTitle>
                             <MDBBtn
                                 className="btn-close"
@@ -94,7 +94,9 @@ function ModalHandleSignMoto() {
                                                 </td>
                                                 <td>
                                                     {item?.status ==
-                                                    "Đã duyệt" ? (
+                                                        "Đã duyệt" ||
+                                                    item?.status ==
+                                                        "Đang thuê" ? (
                                                         <MDBBadge
                                                             color="success"
                                                             pill
