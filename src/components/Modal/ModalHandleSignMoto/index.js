@@ -15,6 +15,7 @@ import {
 } from "mdb-react-ui-kit";
 import { AppContext } from "~/Context/AppContext";
 import { useState, useEffect, useContext } from "react";
+import { moto } from "~/data/data";
 
 const cx = classNames.bind(styles);
 function ModalHandleSignMoto() {
@@ -55,21 +56,21 @@ function ModalHandleSignMoto() {
                             ></MDBBtn>
                         </MDBModalHeader>
 
-                        <MDBModalBody>
+                        <MDBModalBody className={cx("modal_body")}>
                             <MDBTable align="middle" className={cx("table")}>
                                 <MDBTableHead>
                                     <tr>
-                                        <th scope="col">Mã đơn thuê</th>
-                                        <th scope="col">Tên khách hàng</th>
-                                        <th scope="col">Ngày bắt đầu</th>
-                                        <th scope="col">Ngày kết thúc</th>
-                                        <th scope="col">Trạng thái</th>
+                                        <th scope="col">ID xe</th>
+                                        <th scope="col">Tên xe</th>
+                                        <th scope="col">Hãng xe</th>
+                                        <th scope="col">Loại xe</th>
+                                        <th scope="col">Biển số xe</th>
                                         <th scope="col">Giá thuê</th>
                                         <th scope="col">Actions</th>
                                     </tr>
                                 </MDBTableHead>
                                 <MDBTableBody>
-                                    {acceptMoto?.map((item) => {
+                                    {moto?.map((item) => {
                                         return (
                                             <tr key={item?.id}>
                                                 <td>
@@ -86,34 +87,21 @@ function ModalHandleSignMoto() {
                                                 </td>
                                                 <td>
                                                     <p className="fw-normal mb-1">
-                                                        {item?.startDate}
+                                                        {item?.autoMaker}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p>{item?.endDate}</p>
+                                                    <p className="fw-normal mb-1">
+                                                        {item?.type}
+                                                    </p>
                                                 </td>
                                                 <td>
-                                                    {item?.status ==
-                                                        "Đã duyệt" ||
-                                                    item?.status ==
-                                                        "Đang thuê" ? (
-                                                        <MDBBadge
-                                                            color="success"
-                                                            pill
-                                                        >
-                                                            {item?.status}
-                                                        </MDBBadge>
-                                                    ) : (
-                                                        <MDBBadge
-                                                            color="danger"
-                                                            pill
-                                                        >
-                                                            {item?.status}
-                                                        </MDBBadge>
-                                                    )}
+                                                    <p className="fw-normal mb-1">
+                                                        {item?.licensePlates}
+                                                    </p>
                                                 </td>
-                                                <td>
-                                                    <p>{item?.price}</p>
+                                                <td className="fw-normal mb-1">
+                                                    <p>{item?.price}.000</p>
                                                 </td>
                                                 <td>
                                                     <MDBBtn

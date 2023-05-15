@@ -55,7 +55,7 @@ function User() {
             <div className={cx("wrapper-content")}>
                 <MDBContainer className="overflow-hidden">
                     <MDBRow className="gy-5">
-                        <MDBCol size="4">
+                        <MDBCol size="4" className={cx("col")}>
                             <div className={cx("fields")}>
                                 <label htmlFor="">Tên</label>
                                 <div className={cx("input_field")}>

@@ -15,7 +15,7 @@ import { account } from "~/data/data";
 import { useState, useEffect, useContext } from "react";
 import { AppContext } from "~/Context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faLock, faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const cx = classNames.bind(styles);
 
@@ -89,15 +89,25 @@ function Account() {
                                     </p>
                                 </td>
                                 <td>
-                                    <p>{item.password}</p>
+                                    <p className="fw-normal mb-1">
+                                        {item.password}
+                                    </p>
                                 </td>
                                 <td>
                                     {item.role == "Admin" ? (
-                                        <MDBBadge color="success" pill>
+                                        <MDBBadge
+                                            color="success"
+                                            pill
+                                            className="fw-normal mb-1"
+                                        >
                                             {item.role}
                                         </MDBBadge>
                                     ) : (
-                                        <MDBBadge color="warning" pill>
+                                        <MDBBadge
+                                            color="warning"
+                                            pill
+                                            className="fw-normal mb-1"
+                                        >
                                             {item.role}
                                         </MDBBadge>
                                     )}
@@ -113,10 +123,16 @@ function Account() {
                                             setData(item);
                                         }}
                                     >
-                                        <FontAwesomeIcon icon={faPen} />
+                                        <FontAwesomeIcon
+                                            icon={faPen}
+                                            className={cx("actions-btn")}
+                                        />
                                     </MDBBtn>
                                     <MDBBtn color="link" rounded size="sm">
-                                        <FontAwesomeIcon icon={faTrash} />
+                                        <FontAwesomeIcon
+                                            icon={faLock}
+                                            className={cx("actions-btn")}
+                                        />
                                     </MDBBtn>
                                 </td>
                             </tr>

@@ -77,27 +77,43 @@ function ManagerMoto() {
                                     </p>
                                 </td>
                                 <td>
-                                    <p>{item.price}</p>
+                                    <p className="fw-normal mb-1">
+                                        {item.price}
+                                    </p>
                                 </td>
                                 <td>
-                                    <p>{item.type}</p>
+                                    <p className="fw-normal mb-1">
+                                        {item.type}
+                                    </p>
                                 </td>
                                 <td>
-                                    {item.status == "Hoạt động" ? (
-                                        <MDBBadge color="success" pill>
+                                    {item.status == "Sẵn sàng" ? (
+                                        <MDBBadge
+                                            color="success"
+                                            pill
+                                            className="fw-normal mb-1"
+                                        >
                                             {item.status}
                                         </MDBBadge>
                                     ) : (
-                                        <MDBBadge color="warning" pill>
+                                        <MDBBadge
+                                            color="warning"
+                                            pill
+                                            className="fw-normal mb-1"
+                                        >
                                             {item.status}
                                         </MDBBadge>
                                     )}
                                 </td>
                                 <td>
-                                    <p>{item.licensePlates}</p>
+                                    <p className="fw-normal mb-1">
+                                        {item.licensePlates}
+                                    </p>
                                 </td>
                                 <td>
-                                    <p>{item.description}</p>
+                                    <p className="fw-normal mb-1">
+                                        {item.description}
+                                    </p>
                                 </td>
                                 <td>
                                     <MDBBtn
@@ -110,7 +126,10 @@ function ManagerMoto() {
                                             setData(item);
                                         }}
                                     >
-                                        <FontAwesomeIcon icon={faPen} />
+                                        <FontAwesomeIcon
+                                            icon={faPen}
+                                            className={cx("actions-btn")}
+                                        />
                                     </MDBBtn>
                                 </td>
                             </tr>
