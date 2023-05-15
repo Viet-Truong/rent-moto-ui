@@ -128,7 +128,7 @@ function ModalCart() {
                                                             tag="h5"
                                                             className="mb-0"
                                                         >
-                                                            {item.price}
+                                                            {item.price}.000
                                                         </MDBTypography>
                                                     </div>
                                                     <a

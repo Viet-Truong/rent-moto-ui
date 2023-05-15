@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 function Moto(props) {
-    console.log(props);
     return (
         <div>
             <Link to={`/moto/${props.slug}`}>

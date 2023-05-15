@@ -11,30 +11,19 @@ import { CartContext } from "~/Context/CartContext";
 const { RangePicker } = DatePicker;
 
 const cx = classNames.bind(styles);
-function MotoView({ slug }) {
+function MotoView({ item }) {
     const [product, setProduct] = useState({});
     const [startDate, setStartDate] = useState(moment());
     const [endDate, setEndDate] = useState(moment());
+    const [previewImage, setPreviewImage] = useState("");
     const { addCartItem } = useContext(CartContext);
 
     useEffect(() => {
-        // using slug to call API get Moto and setProduct = Moto
-        setProduct({
-            title: "Honda winner X",
-            price: "130k / 1h",
-            image01:
-                "https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png",
-            image02:
-                "https://cdn.honda.com.vn/motorbike-versions/November2022/v3mHZHIh1RLL4P8nndyd.png",
-            hangxe: "Honda",
-            color: "Black",
-            slug: slug,
-            type: "Xe côn tay",
-            state: "Sẵn sàng",
-        });
-    }, [slug]);
-
-    const [previewImg, setPreviewImg] = useState(product.image01);
+        setProduct(item);
+        if (item?.image?.length > 0) {
+            setPreviewImage(item.image[0].url);
+        }
+    }, [item]);
 
     const disabledDate = (current) => {
         // Chỉ cho phép chọn các ngày bắt đầu từ ngày hiện tại trở đi
@@ -49,61 +38,54 @@ function MotoView({ slug }) {
         setEndDate(endDate);
     };
 
-    useEffect(() => {
-        setPreviewImg(product.image01);
-    }, [product]);
-
     return (
         <div>
             <div className={cx("product")}>
                 <div className={cx("product__images")}>
                     <div className={cx("product__images__list")}>
-                        <div
-                            className={cx("product__images__list__item")}
-                            onClick={() => setPreviewImg(product.image01)}
-                        >
-                            <img src={product.image01} alt="" />
-                        </div>
-                        <div
-                            className={cx("product__images__list__item")}
-                            onClick={() => setPreviewImg(product.image02)}
-                        >
-                            <img src={product.image02} alt="" />
-                        </div>
-                        <div
-                            className={cx("product__images__list__item")}
-                            onClick={() => setPreviewImg(product.image02)}
-                        >
-                            <img src={product.image02} alt="" />
-                        </div>
+                        {product?.image?.map((img, index) => {
+                            return (
+                                <div
+                                    className={cx(
+                                        "product__images__list__item"
+                                    )}
+                                    onClick={() => {
+                                        setPreviewImage(img.url);
+                                    }}
+                                    key={index}
+                                >
+                                    <img src={img.url} alt="" />
+                                </div>
+                            );
+                        })}
                     </div>
                     <div className={cx("product__images__main")}>
-                        <img src={previewImg} alt="" />
+                        {previewImage && <img src={previewImage} alt="" />}
                     </div>
                 </div>
                 <div className={cx("product__info")}>
                     <h1 className={cx("product__info__title")}>
-                        {product.title}
+                        {product?.name}
                     </h1>
 
                     <div className={cx("product__info__item")}>
                         <div className={cx("product__info__item__title")}>
-                            Loại xe: {product.type}
+                            Loại xe: {product?.type}
                         </div>
                     </div>
                     <div className={cx("product__info__item")}>
                         <div className={cx("product__info__item__title")}>
-                            Hãng xe: {product.hangxe}
+                            Hãng xe: {product?.autoMaker}
                         </div>
                     </div>
                     <div className={cx("product__info__item")}>
                         <div className={cx("product__info__item__title")}>
-                            Trạng thái: {product.state}
+                            Trạng thái: {product?.status}
                         </div>
                     </div>
                     <div className={cx("product__info__item")}>
                         <span className={cx("product__info__item__price")}>
-                            Giá: {product.price}
+                            Giá: {product?.price}.000 VNĐ / 1 ngày
                         </span>
                     </div>
                     <div className={cx("wrapper-date-picker")}>
@@ -133,8 +115,8 @@ function MotoView({ slug }) {
                             onClick={() =>
                                 addCartItem({
                                     id: 1,
-                                    image: product.image01,
-                                    name: product.title,
+                                    image: product.image[0].url,
+                                    name: product.name,
                                     price: product.price,
                                     slug: product.slug,
                                     startDate: startDate,
@@ -154,7 +136,7 @@ function MotoView({ slug }) {
                 <div className={cx("product-description__content")}>
                     <ul>
                         <li>
-                            Cần 1 trong các loại giấysau: Chứng minh nhân dân,
+                            Cần 1 trong các loại giấy sau: Chứng minh nhân dân,
                             Hộ chiếu, Passport, Hộ khẩu hoặc giấy tờ tuỳ thân có
                             hình khác.
                         </li>
