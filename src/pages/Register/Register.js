@@ -7,10 +7,12 @@ import {
     MDBCard,
     MDBCardBody,
     MDBInput,
-    MDBRadio,
 } from "mdb-react-ui-kit";
+import classNames from "classnames/bind";
+import styles from "./Register.module.scss";
 import { Link } from "react-router-dom";
 
+const cx = classNames.bind(styles);
 function Register() {
     return (
         <MDBContainer fluid className="vh-100">
@@ -35,24 +37,24 @@ function Register() {
                                 wrapperClass="mb-5 mx-10 w-100 p-2"
                                 labelClass="text-white"
                                 label="Tài khoản"
-                                id="formControlLg"
                                 type="email"
+                                className={cx("input")}
                                 size="lg"
                             />
                             <MDBInput
                                 wrapperClass="mb-5 mx-10 w-100 p-2"
                                 labelClass="text-white"
                                 label="Mật khẩu"
-                                id="formControlLg"
                                 type="password"
+                                className={cx("input")}
                                 size="lg"
                             />
                             <MDBInput
                                 wrapperClass="mb-5 mx-10 w-100 p-2"
                                 labelClass="text-white"
                                 label="Xác nhận mật khẩu"
-                                id="formControlLg"
                                 type="password"
+                                className={cx("input")}
                                 size="lg"
                             />
                             <MDBBtn
