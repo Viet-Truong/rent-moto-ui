@@ -5,17 +5,14 @@ import { slider_data } from "~/data/slide";
 import { policy } from "~/data/data";
 import { useState } from "react";
 import Moto from "~/components/Moto";
+import { moto as motors } from "~/data/data";
 
 const cx = classNames.bind(styles);
 function Home() {
     const [cars, setCars] = useState([]);
-    const data = {
-        name: "Honda winner X",
-        price: "130k / 1h",
-        image01:
-            "https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png",
-        slug: "honda-winner-x",
-    };
+
+    console.log(motors);
+
     // const setFilter = (values) => {
     //     if (values) {
     //         if (values.length > 1) {
@@ -59,68 +56,18 @@ function Home() {
                     TẤT CẢ CÁC XE ĐANG ĐƯỢC CHO THUÊ
                 </h2>
                 <div className={cx("wrapper-car")}>
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.name}
-                            price={data.price}
-                            slug={"hunda"}
-                        />
-                    </figure>
-
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.name}
-                            price={data.price}
-                            slug={data.slug}
-                        />
-                    </figure>
-
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.name}
-                            price={data.price}
-                            slug={data.slug}
-                        />
-                    </figure>
-
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.name}
-                            price={data.price}
-                            slug={"honda"}
-                        />
-                    </figure>
-
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.name}
-                            price={data.price}
-                            slug={data.slug}
-                        />
-                    </figure>
-
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.name}
-                            price={data.price}
-                            slug={data.slug}
-                        />
-                    </figure>
-
-                    <figure>
-                        <Moto
-                            img01={data.image01}
-                            name={data.name}
-                            price={data.price}
-                            slug={data.slug}
-                        />
-                    </figure>
+                    {motors.map((item, index) => {
+                        return (
+                            <figure key={index}>
+                                <Moto
+                                    img={item.image}
+                                    name={item.name}
+                                    price={item.price}
+                                    slug={item.slug}
+                                />
+                            </figure>
+                        );
+                    })}
                 </div>
             </div>
         </div>

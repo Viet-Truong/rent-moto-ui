@@ -2,10 +2,9 @@ import classNames from "classnames/bind";
 import styles from "./Moto.module.scss";
 import { Link } from "react-router-dom";
 
-import Button from "../Button";
-
 const cx = classNames.bind(styles);
 function Moto(props) {
+    console.log(props);
     return (
         <div>
             <Link to={`/moto/${props.slug}`}>
@@ -16,7 +15,7 @@ function Moto(props) {
                                 <div className={cx("box-up")}>
                                     <img
                                         className={cx("img")}
-                                        src={props.img01}
+                                        src={props.img[0].url}
                                         alt=""
                                     />
                                     <div className={cx("img-info")}>

@@ -6,7 +6,6 @@ import { useState, useRef, useEffect } from "react";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import CarItem from "./MotoItem/index";
 import useDebounce from "~/hooks/useDebounce";
-import { car } from "~/data/data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -51,7 +50,7 @@ function Search() {
         // };
         // fetch();
         setLoading(true);
-        setSearchResult(car);
+        setSearchResult();
         setLoading(false);
     }, [debouncedValue]);
 

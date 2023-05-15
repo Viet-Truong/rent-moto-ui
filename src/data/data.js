@@ -5,31 +5,6 @@ import {
     faMoneyCheckDollar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AcceptMoto } from "~/pages/Admin/AcceptMoto";
-
-export const car = [
-    {
-        id: 1,
-        name: "Winner X",
-        avatar: "",
-        full_name: "Honda Winner X",
-        price: "1tr",
-    },
-    {
-        id: 2,
-        name: "Winner X",
-        avatar: "",
-        full_name: "Honda Winner X",
-        price: "1tr",
-    },
-    {
-        id: 3,
-        name: "Winner X",
-        avatar: "",
-        full_name: "Honda Winner X",
-        price: "1tr",
-    },
-];
 
 export const policy = [
     {
@@ -116,9 +91,104 @@ export const moto = [
         autoMaker: "Honda",
         price: 130.0,
         type: "Xe côn tay",
-        status: "Đang được thuê",
+        status: "Sẵn sàng",
         licensePlates: "43F1-123.45",
         description: "Winner X",
+        slug: "honda-winner-x",
+        image: [
+            {
+                id: 1,
+                url: "https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png",
+            },
+            {
+                id: 2,
+                url: "https://cdn.honda.com.vn/motorbike-versions/November2022/v3mHZHIh1RLL4P8nndyd.png",
+            },
+        ],
+    },
+    {
+        id: 2,
+        name: "Super Cub C125",
+        autoMaker: "Honda",
+        price: 110.0,
+        type: "Xe số",
+        status: "Sẵn sàng",
+        licensePlates: "43F1-145.12",
+        description: "Super Cub C125",
+        slug: "Super-Cub-C125",
+        image: [
+            {
+                id: 1,
+                url: "https://cdn.honda.com.vn/motorbike-strong-points/October2021/WwL6LIRJq466Z2Z5irlr.png",
+            },
+            {
+                id: 2,
+                url: "https://cdn.honda.com.vn/motorbike-versions/October2021/rekvNMjwCvz3tiYHy27g.png",
+            },
+        ],
+    },
+    {
+        id: 3,
+        name: "SH350i",
+        autoMaker: "Honda",
+        price: 180.0,
+        type: "Xe ga",
+        status: "Sẵn sàng",
+        licensePlates: "43F1-345.45",
+        description: "SH350i",
+        slug: "SH-350i",
+        image: [
+            {
+                id: 1,
+                url: "https://cdn.honda.com.vn/motorbike-versions/December2022/VlhEoBOm76qFSuONryD1.png",
+            },
+            {
+                id: 2,
+                url: "https://cdn.honda.com.vn/motorbike-versions/December2022/VlhEoBOm76qFSuONryD1.png",
+            },
+        ],
+    },
+    {
+        id: 4,
+        name: "Yamaha Sirius",
+        autoMaker: "Yamaha",
+        price: 135.0,
+        type: "Xe số",
+        status: "Sẵn sàng",
+        licensePlates: "43F1-876.45",
+        description: "Yamaha Sirius",
+        slug: "Yamaha-Sirius",
+        image: [
+            {
+                id: 1,
+                url: "https://yamaha-motor.com.vn/wp/wp-content/uploads/2022/04/73ffc462df4aaf94b8c4e8656a1638ed-150x120.png",
+            },
+            {
+                id: 2,
+                url: "https://yamaha-motor.com.vn/wp/wp-content/uploads/2022/04/a5c4b8f155a58e62cb8f01f6d90c03f8-150x120.png",
+            },
+        ],
+    },
+    {
+        id: 5,
+        name: "Yamaha NVX 155",
+        autoMaker: "Yamaha",
+        price: 170.0,
+        type: "Xe ga",
+        status: "Sẵn sàng",
+        licensePlates: "43F1-123.45",
+        description: "Yamaha NVX 155",
+        slug: "Yamaha-NVX-155",
+        image: [
+            {
+                id: 1,
+                url: "https://yamaha-motor.com.vn/wp/wp-content/uploads/2022/09/NVX-155VVA-Red-Candy-004-150x113.png",
+            },
+            {
+                id: 2,
+                url: "https://yamaha-motor.com.vn/wp/wp-content/uploads/2022/09/NVX-155VVA-Red-Candy-004-150x113.png",
+            },
+        ],
     },
 ];
 

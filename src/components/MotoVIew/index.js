@@ -29,7 +29,7 @@ function MotoView({ slug }) {
             hangxe: "Honda",
             color: "Black",
             slug: slug,
-            type: "Xe số côn",
+            type: "Xe côn tay",
             state: "Sẵn sàng",
         });
     }, [slug]);
