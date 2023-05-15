@@ -73,8 +73,11 @@
 
 
 .small {
-    min-width: 88px;
-    padding: 4px 16px;
+    // min-width: 88px;
+    // padding: 4px 16px;
+    padding: .375rem 1rem .3125rem 1rem;
+    font-size: .75rem;
+    line-height: 1.5;
 }
 
 .large {

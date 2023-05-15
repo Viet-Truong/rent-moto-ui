@@ -50,6 +50,7 @@ function Button({
         outline,
         text,
         large,
+        small,
         disable,
         rounded,
         [className]: className,

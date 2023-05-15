@@ -65,25 +65,43 @@ function AcceptMoto() {
                                     </p>
                                 </td>
                                 <td>
-                                    <p>{item.endDate}</p>
+                                    <p className="fw-bold mb-1">
+                                        {item.endDate}
+                                    </p>
                                 </td>
                                 <td>
                                     {item.status == "Đã duyệt" ? (
-                                        <MDBBadge color="success" pill>
+                                        <MDBBadge
+                                            color="success"
+                                            pill
+                                            className="fw-bold mb-1"
+                                        >
                                             {item.status}
                                         </MDBBadge>
                                     ) : (
-                                        <MDBBadge color="danger" pill>
+                                        <MDBBadge
+                                            color="danger"
+                                            pill
+                                            className="fw-bold mb-1"
+                                        >
                                             {item.status}
                                         </MDBBadge>
                                     )}
                                 </td>
                                 <td>
-                                    <p>{item.price}</p>
+                                    <p className="fw-bold mb-1">{item.price}</p>
                                 </td>
                                 <td>
-                                    <MDBBtn color="link" rounded size="sm">
-                                        <FontAwesomeIcon icon={faPen} />
+                                    <MDBBtn
+                                        color="link"
+                                        rounded
+                                        size="sm"
+                                        className="fw-bold mb-1"
+                                    >
+                                        <FontAwesomeIcon
+                                            icon={faPen}
+                                            className={cx("actions-btn")}
+                                        />
                                     </MDBBtn>
                                 </td>
                             </tr>

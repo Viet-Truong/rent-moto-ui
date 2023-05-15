@@ -16,6 +16,7 @@ import {
 import { AppContext } from "~/Context/AppContext";
 import { useState, useEffect, useContext } from "react";
 import { moto } from "~/data/data";
+import Button from "~/components/Button";
 
 const cx = classNames.bind(styles);
 function ModalHandleSignMoto() {
@@ -26,8 +27,17 @@ function ModalHandleSignMoto() {
     // const [startDate, setStartDate] = useState(data?.startDate ?? "");
     // const [endDate, setEndDate] = useState(data?.endDate ?? "");
     // const [status, setStatus] = useState(data?.status ?? "");
-    const [acceptMoto, setAcceptMoto] = useState([data] ?? []);
-    console.log([data]);
+    const [dataModal, setDataModal] = useState(data ?? []);
+    const [motoFounded, setMotoFounded] = useState([]);
+
+    const findMotoByID = (id) => {
+        const foundMoto = moto.find((item) => item.id === id);
+        return foundMoto;
+    };
+
+    const founded = data?.idMoto?.map((item) => {
+        return findMotoByID(item);
+    });
 
     useEffect(() => {
         // setId(data?.id ?? "");
@@ -35,7 +45,8 @@ function ModalHandleSignMoto() {
         // setStartDate(data?.startDate ?? "");
         // setEndDate(data?.endDate ?? "");
         // setStatus(data?.status ?? "");
-        setAcceptMoto([data] ?? []);
+        setMotoFounded(founded);
+        setDataModal(data ?? []);
     }, [data]);
 
     return (
@@ -70,7 +81,7 @@ function ModalHandleSignMoto() {
                                     </tr>
                                 </MDBTableHead>
                                 <MDBTableBody>
-                                    {moto?.map((item) => {
+                                    {motoFounded?.map((item) => {
                                         return (
                                             <tr key={item?.id}>
                                                 <td>
@@ -100,17 +111,40 @@ function ModalHandleSignMoto() {
                                                         {item?.licensePlates}
                                                     </p>
                                                 </td>
-                                                <td className="fw-normal mb-1">
-                                                    <p>{item?.price}.000</p>
+                                                <td>
+                                                    <p className="fw-normal mb-1">
+                                                        {item?.price}.000
+                                                    </p>
                                                 </td>
                                                 <td>
-                                                    <MDBBtn
-                                                        color="link"
-                                                        rounded
-                                                        size="sm"
-                                                    >
-                                                        Duyệt
-                                                    </MDBBtn>
+                                                    {dataModal.status ==
+                                                    "Đã duyệt" ? (
+                                                        <Button
+                                                            color="link"
+                                                            size="sm"
+                                                            small={true}
+                                                            className={cx(
+                                                                "fw-normal",
+                                                                "mb-1",
+                                                                "btn"
+                                                            )}
+                                                        >
+                                                            CHI TIẾT
+                                                        </Button>
+                                                    ) : (
+                                                        <MDBBtn
+                                                            color="link"
+                                                            rounded
+                                                            size="sm"
+                                                            className={cx(
+                                                                "fw-normal",
+                                                                "mb-1",
+                                                                "btn"
+                                                            )}
+                                                        >
+                                                            Duyệt
+                                                        </MDBBtn>
+                                                    )}
                                                 </td>
                                             </tr>
                                         );

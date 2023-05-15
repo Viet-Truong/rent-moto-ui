@@ -210,6 +210,7 @@ export const acceptMoto = [
         endDate: "09-05-2023",
         status: "Đã duyệt",
         price: "420.000 VNĐ",
+        idMoto: [1, 2, 3],
     },
     {
         id: 2,
@@ -218,6 +219,7 @@ export const acceptMoto = [
         endDate: "11-05-2023",
         status: "Đã duyệt",
         price: "350.000 VNĐ",
+        idMoto: [1, 3, 4],
     },
     {
         id: 3,
@@ -226,6 +228,7 @@ export const acceptMoto = [
         endDate: "15-05-2023",
         status: "Chưa duyệt",
         price: "280.000 VNĐ",
+        idMoto: [2, 3, 5],
     },
     {
         id: 4,
@@ -234,6 +237,7 @@ export const acceptMoto = [
         endDate: "27-05-2023",
         status: "Chưa duyệt",
         price: "510.000 VNĐ",
+        idMoto: [1, 3, 5],
     },
 ];
 
@@ -245,6 +249,7 @@ export const acceptReturnMoto = [
         endDate: "09-05-2023",
         status: "Đang thuê",
         price: "420.000 VNĐ",
+        idMoto: [1, 2, 3],
     },
     {
         id: 2,
@@ -253,5 +258,6 @@ export const acceptReturnMoto = [
         endDate: "11-05-2023",
         status: "Đang thuê",
         price: "350.000 VNĐ",
+        idMoto: [1, 3, 4],
     },
 ];
