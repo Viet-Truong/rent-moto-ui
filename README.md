@@ -1,6 +1,36 @@
-# Getting Started with Create React App
+<h1 align="center"> RENT MOTORBIKE ECOMMERCE </h1>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+Live demo: [https://rent-moto-ui.vercel.app/](https://rent-moto-ui.vercel.app/)
+
+# Technology And Programing Language
+
+-   JavaScript
+-   Create React App
+-   MDBoostraps 5
+-   SASS
+-   Restful API
+
+# API
+
+-   API: 
+
+# Features
+
+-   Auth(Register, Login, Logout)
+
++ Customer
+-   Search motorbike
+-   Sign rent moto
+
++ ADMIN
+-   Manager Account
+-   Update profile
+-   Update infomation Motorbike
+-   Accept sign rent motorbike
+-   Accept return motorbike
+
 
 ## How to run project
 
