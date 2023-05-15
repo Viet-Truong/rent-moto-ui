@@ -20,7 +20,7 @@ export const userMenu = [
     {
         icon: <FontAwesomeIcon icon={faGear} />,
         title: "Cài đặt",
-        to: "/settings",
+        to: "",
     },
     {
         icon: <FontAwesomeIcon icon={faSignOut} />,
