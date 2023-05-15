@@ -22,6 +22,7 @@ const cx = classNames.bind(styles);
 function ModalHandleSignMoto() {
     const { isModalAcceptVisible, data, typeModal, setIsModalAcceptVisible } =
         useContext(AppContext);
+    const [checkAll, setCheckAll] = useState(false);
     // const [id, setId] = useState(data?.id ?? "");
     // const [name, setName] = useState(data?.name ?? "");
     // const [startDate, setStartDate] = useState(data?.startDate ?? "");
@@ -30,14 +31,42 @@ function ModalHandleSignMoto() {
     const [dataModal, setDataModal] = useState(data ?? []);
     const [motoFounded, setMotoFounded] = useState([]);
 
+    console.log(motoFounded);
+
     const findMotoByID = (id) => {
         const foundMoto = moto.find((item) => item.id === id);
-        return foundMoto;
+        return { ...foundMoto, checked: false };
     };
 
     const founded = data?.idMoto?.map((item) => {
         return findMotoByID(item);
     });
+
+    const handleCheckAll = () => {
+        const updatedCheckboxes = motoFounded.map((checkbox) => ({
+            ...checkbox,
+            checked: !checkAll,
+        }));
+        setCheckAll(!checkAll);
+        setMotoFounded(updatedCheckboxes);
+    };
+
+    const handleCheckboxChange = (checkboxId) => {
+        const updatedCheckboxes = motoFounded.map((checkbox) =>
+            checkbox.id === checkboxId
+                ? { ...checkbox, checked: !checkbox.checked }
+                : checkbox
+        );
+        setMotoFounded(updatedCheckboxes);
+        setCheckAll(updatedCheckboxes.every((checkbox) => checkbox.checked));
+    };
+
+    const totalAmount = motoFounded?.reduce((total, item) => {
+        if (item.checked) {
+            return total + item.price;
+        }
+        return total;
+    }, 0);
 
     useEffect(() => {
         // setId(data?.id ?? "");
@@ -71,6 +100,16 @@ function ModalHandleSignMoto() {
                             <MDBTable align="middle" className={cx("table")}>
                                 <MDBTableHead>
                                     <tr>
+                                        <th scope="col">
+                                            <input
+                                                type="checkbox"
+                                                style={{
+                                                    cursor: "pointer",
+                                                }}
+                                                checked={checkAll}
+                                                onChange={handleCheckAll}
+                                            />
+                                        </th>
                                         <th scope="col">ID xe</th>
                                         <th scope="col">Tên xe</th>
                                         <th scope="col">Hãng xe</th>
@@ -84,6 +123,21 @@ function ModalHandleSignMoto() {
                                     {motoFounded?.map((item) => {
                                         return (
                                             <tr key={item?.id}>
+                                                <td>
+                                                    <input
+                                                        type="checkbox"
+                                                        className="fw-bold mb-1"
+                                                        style={{
+                                                            cursor: "pointer",
+                                                        }}
+                                                        checked={item.checked}
+                                                        onChange={() =>
+                                                            handleCheckboxChange(
+                                                                item.id
+                                                            )
+                                                        }
+                                                    />
+                                                </td>
                                                 <td>
                                                     <p className="fw-bold mb-1">
                                                         {item?.id}
@@ -150,6 +204,61 @@ function ModalHandleSignMoto() {
                                         );
                                     })}
                                 </MDBTableBody>
+                                {typeModal == "ACCEPT" ? (
+                                    <tfoot>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <Button
+                                                    color="link"
+                                                    size="sm"
+                                                    small={true}
+                                                    className={cx(
+                                                        "fw-normal",
+                                                        "mb-1",
+                                                        "btn"
+                                                    )}
+                                                >
+                                                    Duyệt
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                ) : (
+                                    <tfoot>
+                                        <tr>
+                                            <td className="fw-bold mb-1">
+                                                Tổng tiền:
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>{totalAmount}.000</td>
+                                            <td>
+                                                <Button
+                                                    color="link"
+                                                    size="sm"
+                                                    small={true}
+                                                    className={cx(
+                                                        "fw-normal",
+                                                        "mb-1",
+                                                        "btn"
+                                                    )}
+                                                >
+                                                    XÁC NHẬN
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                )}
                             </MDBTable>
                         </MDBModalBody>
                     </MDBModalContent>
