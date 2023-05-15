@@ -95,7 +95,7 @@ const SliderItem = (props) => (
             </div>
             <div className={cx("slider-item__info__btn")}>
                 <Link to={props.item.path}>
-                    <Button primary>Xem chi tiết</Button>
+                    <Button primary>Bắt đầu</Button>
                 </Link>
             </div>
         </div>

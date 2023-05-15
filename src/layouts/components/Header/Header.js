@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 
@@ -13,11 +13,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { CartContext } from "~/Context/CartContext";
+import { AppContext } from "~/Context/AppContext";
 
 const cx = classNames.bind(styles);
 function Header() {
-    let auth = true;
+    const { user, setUser } = useContext(AppContext);
     const { setIsOpen, cartItems } = useContext(CartContext);
+    const navigate = useNavigate();
+
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case "logout":
+                // dispatch(authLogout());
+                setUser(false);
+                navigate(config.routes.home);
+                break;
+            default:
+                break;
+        }
+    };
+
     return (
         <div className={cx("wrapper")}>
             <div className={cx("wrapper-header")}>
@@ -30,7 +45,9 @@ function Header() {
                 <div className={cx("wrapper-menu")}>
                     <ul className={cx("menu")}>
                         <li>
-                            <Button to={""}>Trang Chủ</Button>
+                            <Button to={config.routes.home} className>
+                                Trang Chủ
+                            </Button>
                         </li>
                         <li>
                             <Button to={""}>Xe</Button>
@@ -41,16 +58,13 @@ function Header() {
                         <li>
                             <Button to={""}>Liên Hệ</Button>
                         </li>
-                        <li>
-                            <Button to={""}></Button>
-                        </li>
                     </ul>
                 </div>
 
                 <Search />
 
                 <div className={cx("actions")}>
-                    {auth ? (
+                    {user ? (
                         <>
                             <Button className={cx("cart-btn")}>
                                 <FontAwesomeIcon
@@ -62,7 +76,7 @@ function Header() {
                                     {cartItems.length}
                                 </div>
                             </Button>
-                            <Menu items={userMenu}>
+                            <Menu items={userMenu} onChange={handleMenuChange}>
                                 <Image
                                     className={cx("user-avatar")}
                                     src={""}

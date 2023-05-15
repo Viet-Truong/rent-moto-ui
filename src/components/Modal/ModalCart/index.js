@@ -155,7 +155,7 @@ function ModalCart() {
                         <MDBCardBody>
                             <div className="d-flex justify-content-between align-items-center mb-4">
                                 <MDBTypography tag="h5" className="mb-0">
-                                    Thanh toán
+                                    Đăng kí
                                 </MDBTypography>
                             </div>
 
@@ -203,23 +203,23 @@ function ModalCart() {
 
                             <div className="d-flex justify-content-between">
                                 <p className="mb-2">Tiền</p>
-                                <p className="mb-2">$4798.00</p>
+                                <p className="mb-2">479.000 VNĐ</p>
                             </div>
 
                             <div className="d-flex justify-content-between">
                                 <p className="mb-2">VAT</p>
-                                <p className="mb-2">$20.00</p>
+                                <p className="mb-2">47.900 VNĐ</p>
                             </div>
 
                             <div className="d-flex justify-content-between">
                                 <p className="mb-2">Tổng tiền</p>
-                                <p className="mb-2">$4818.00</p>
+                                <p className="mb-2">526.900 VNĐ</p>
                             </div>
 
                             <MDBBtn color="info" block size="lg">
                                 <div className="d-flex justify-content-between">
-                                    <span>$4818.00</span>
-                                    <span>Thanh toán </span>
+                                    <span>526.900 VNĐ</span>
+                                    <span>Đăng kí thuê xe</span>
                                 </div>
                             </MDBBtn>
                         </MDBCardBody>

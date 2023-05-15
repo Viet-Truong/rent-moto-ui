@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
     MDBBtn,
     MDBContainer,
@@ -8,9 +8,25 @@ import {
     MDBCardBody,
     MDBInput,
 } from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
+import classNames from "classnames/bind";
+import styles from "./Login.module.scss";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "~/Context/AppContext";
+import config from "~/config";
 
+const cx = classNames.bind(styles);
 function Login() {
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
+    const { user, setUser } = useContext(AppContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            navigate(config.routes.home);
+        }
+    }, [user]);
+
     return (
         <MDBContainer fluid className="vh-100">
             <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -34,21 +50,25 @@ function Login() {
                                 wrapperClass="mb-5 mx-10 w-100 p-2"
                                 labelClass="text-white"
                                 label="Tài khoản"
-                                id="formControlLg"
                                 type="email"
                                 size="lg"
+                                className={cx("input")}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                             <MDBInput
                                 wrapperClass="mb-5 mx-10 w-100 p-2"
                                 labelClass="text-white"
                                 label="Mật khẩu"
-                                id="formControlLg"
                                 type="password"
                                 size="lg"
+                                className={cx("input")}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
 
                             <p className="small mb-3 pb-lg-2">
-                                <a class="text-white-50" href="#!">
+                                <a className="text-white-50" href="#!">
                                     Quên mật khẩu?
                                 </a>
                             </p>
@@ -58,6 +78,7 @@ function Login() {
                                 color="white"
                                 size="lg"
                                 style={{ color: "#ff3d13", fontSize: "16px" }}
+                                onClick={() => setUser(true)}
                             >
                                 Đăng nhập
                             </MDBBtn>
