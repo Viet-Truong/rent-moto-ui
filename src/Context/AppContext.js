@@ -4,6 +4,7 @@ export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(false);
+    const [isModalAddErrorVisible, setIsModalAddErrorVisible] = useState(false);
     const [isModalAccountVisible, setIsModalAccountVisible] = useState(false);
     const [isModalMotoVisible, setIsModalMotoVisible] = useState(false);
     const [isModalAcceptVisible, setIsModalAcceptVisible] = useState(false);
@@ -30,6 +31,8 @@ export const AppContextProvider = ({ children }) => {
                 setData,
                 typeModal,
                 setTypeModal,
+                isModalAddErrorVisible,
+                setIsModalAddErrorVisible,
             }}
         >
             {children}

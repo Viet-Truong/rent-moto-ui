@@ -1,0 +1,38 @@
+.wrapper {
+    z-index: 1000;
+}
+
+.input {
+    margin-top: 10px;
+    padding: 10px !important;
+    font-size: 1.4rem !important;
+}
+
+.dropdown {
+    button {
+        background-color: var(--primary) !important;
+        font-size: 1rem !important;
+        ul li {
+            font-size: 1rem !important;
+        }
+    }
+}
+
+.wrapper-dropdown {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+}
+.value_dropdown {
+    margin-left: 10px;
+}
+
+.button_save {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px !important;
+    font-size: 1rem !important;
+    background-color: var(--primary) !important;
+    color: var(--white-color) !important;
+}

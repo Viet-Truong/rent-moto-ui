@@ -17,11 +17,17 @@ import { AppContext } from "~/Context/AppContext";
 import { useState, useEffect, useContext } from "react";
 import { moto } from "~/data/data";
 import Button from "~/components/Button";
+import ModalAddError from "../ModalAddError";
 
 const cx = classNames.bind(styles);
 function ModalHandleSignMoto() {
-    const { isModalAcceptVisible, data, typeModal, setIsModalAcceptVisible } =
-        useContext(AppContext);
+    const {
+        isModalAcceptVisible,
+        data,
+        typeModal,
+        setIsModalAcceptVisible,
+        setIsModalAddErrorVisible,
+    } = useContext(AppContext);
     const [checkAll, setCheckAll] = useState(false);
     // const [id, setId] = useState(data?.id ?? "");
     // const [name, setName] = useState(data?.name ?? "");
@@ -186,18 +192,42 @@ function ModalHandleSignMoto() {
                                                             CHI TIẾT
                                                         </Button>
                                                     ) : (
-                                                        <MDBBtn
-                                                            color="link"
-                                                            rounded
-                                                            size="sm"
-                                                            className={cx(
-                                                                "fw-normal",
-                                                                "mb-1",
-                                                                "btn"
+                                                        <>
+                                                            <MDBBtn
+                                                                color="link"
+                                                                rounded
+                                                                size="sm"
+                                                                className={cx(
+                                                                    "fw-normal",
+                                                                    "mb-1",
+                                                                    "btn"
+                                                                )}
+                                                            >
+                                                                Duyệt
+                                                            </MDBBtn>
+                                                            {typeModal !=
+                                                            "ACCEPT" ? (
+                                                                <Button
+                                                                    color="link"
+                                                                    size="sm"
+                                                                    small={true}
+                                                                    className={cx(
+                                                                        "fw-normal",
+                                                                        "mb-1",
+                                                                        "btn"
+                                                                    )}
+                                                                    onClick={() =>
+                                                                        setIsModalAddErrorVisible(
+                                                                            true
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    THÊM LỖI
+                                                                </Button>
+                                                            ) : (
+                                                                ""
                                                             )}
-                                                        >
-                                                            Duyệt
-                                                        </MDBBtn>
+                                                        </>
                                                     )}
                                                 </td>
                                             </tr>
@@ -264,6 +294,7 @@ function ModalHandleSignMoto() {
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
+            <ModalAddError />
         </div>
     );
 }
