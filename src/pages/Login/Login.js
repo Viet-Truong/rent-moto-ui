@@ -12,7 +12,7 @@ import classNames from "classnames/bind";
 import styles from "./Login.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "~/Context/AppContext";
-import config from "~/config";
+import * as authServices from "~/api/authServices";
 
 const cx = classNames.bind(styles);
 function Login() {
@@ -26,6 +26,14 @@ function Login() {
             navigate(-1);
         }
     }, [user]);
+
+    const submit = async (username, password) => {
+        const result = await authServices.login({ username, password });
+        if (result.status === "success") {
+            localStorage.setItem("user", JSON.stringify(result.data));
+            setUser(result);
+        }
+    };
 
     return (
         <MDBContainer fluid className="vh-100">
@@ -78,7 +86,7 @@ function Login() {
                                 color="white"
                                 size="lg"
                                 style={{ color: "#ff3d13", fontSize: "16px" }}
-                                onClick={() => setUser(true)}
+                                onClick={() => submit(username, password)}
                             >
                                 Đăng nhập
                             </MDBBtn>

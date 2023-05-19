@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import classNames from "classnames/bind";
 import styles from "./Profile.module.scss";
 import {
@@ -8,15 +8,18 @@ import {
     MDBCard,
     MDBCardText,
     MDBCardBody,
-    MDBCardImage,
-    MDBBtn,
 } from "mdb-react-ui-kit";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faPen } from "@fortawesome/free-solid-svg-icons";
-import images from "~/assets/image";
+import Image from "~/components/Image";
+import { AppContext } from "~/Context/AppContext";
 
 const cx = classNames.bind(styles);
 function Profile() {
+    const [profile, setProfile] = useState({});
+    const { user } = useContext(AppContext);
+    console.log(user);
+    useEffect(() => {}, [user]);
     return (
         <section
             style={{
@@ -33,8 +36,8 @@ function Profile() {
                     <MDBCol lg="4">
                         <MDBCard className="mb-4">
                             <MDBCardBody className="text-center">
-                                <MDBCardImage
-                                    src={images.noImage}
+                                <Image
+                                    src={user?.avatar || ""}
                                     alt="avatar"
                                     className="rounded-circle"
                                     style={{ width: "150px" }}
@@ -66,7 +69,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            Bùi Viết Trường
+                                            {user?.hoTen}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -80,7 +83,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            viettruong0825@gmail.com
+                                            {user?.email}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -94,7 +97,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            0789416451
+                                            {user?.sdt}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -108,7 +111,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            123 456 789 123
+                                            {user?.cccd}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -122,7 +125,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            Liên Chiểu, Đà Nẵng
+                                            {user?.diaChi}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">

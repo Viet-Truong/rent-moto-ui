@@ -9,10 +9,6 @@ import { moto as motors } from "~/data/data";
 
 const cx = classNames.bind(styles);
 function Home() {
-    const [cars, setCars] = useState([]);
-
-    console.log(motors);
-
     // const setFilter = (values) => {
     //     if (values) {
     //         if (values.length > 1) {

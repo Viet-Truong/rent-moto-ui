@@ -3,7 +3,8 @@ import { createContext, useContext, useState, useMemo } from "react";
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-    const [user, setUser] = useState(false);
+    const authJSON = localStorage.getItem("user");
+    const [user, setUser] = useState(JSON.parse(authJSON) || null);
     const [isModalAddErrorVisible, setIsModalAddErrorVisible] = useState(false);
     const [isModalAccountVisible, setIsModalAccountVisible] = useState(false);
     const [isModalMotoVisible, setIsModalMotoVisible] = useState(false);
