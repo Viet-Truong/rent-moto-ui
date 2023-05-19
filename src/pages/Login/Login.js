@@ -23,7 +23,7 @@ function Login() {
 
     useEffect(() => {
         if (user) {
-            navigate(config.routes.home);
+            navigate(-1);
         }
     }, [user]);
 

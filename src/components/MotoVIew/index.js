@@ -114,7 +114,7 @@ function MotoView({ item }) {
                             primary
                             onClick={() =>
                                 addCartItem({
-                                    id: 1,
+                                    id: `${product.id}-${product.slug}`,
                                     image: product.image[0].url,
                                     name: product.name,
                                     price: product.price,

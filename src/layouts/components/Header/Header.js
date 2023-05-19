@@ -26,7 +26,6 @@ function Header() {
             case "logout":
                 // dispatch(authLogout());
                 setUser(false);
-                navigate(config.routes.home);
                 break;
             default:
                 break;

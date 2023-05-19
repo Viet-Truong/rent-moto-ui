@@ -29,6 +29,7 @@ export const CartContextProvider = ({ children }) => {
                     ],
                 },
             ]);
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
         }
         // Nếu giỏ hàng đã có sản phẩm, tìm object có cùng ngày và thêm sản phẩm vào mảng data_moto
         else {
@@ -82,8 +83,9 @@ export const CartContextProvider = ({ children }) => {
 
     const removeCartItem = (id) => {
         setCartItems((item) => {
-            return item.filter((item) => item.id !== id);
+            return item.filter((item) => `${item.id}-${item.slug}` !== id);
         });
+        // localStorage.setItem("cartItems", JSON.stringify(cartItems));
     };
     return (
         <CartContext.Provider

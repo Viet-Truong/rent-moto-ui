@@ -20,7 +20,8 @@ import { CartContext } from "~/Context/CartContext";
 const { RangePicker } = DatePicker;
 const cx = classNames.bind(styles);
 function ModalCart() {
-    const { isOpen, setIsOpen, cartItems } = useContext(CartContext);
+    const { isOpen, setIsOpen, cartItems, removeCartItem } =
+        useContext(CartContext);
     const [dateRanges, setDateRanges] = useState({});
     const toogleClose = isOpen ? "" : "close";
 
@@ -131,17 +132,18 @@ function ModalCart() {
                                                             {item.price}.000
                                                         </MDBTypography>
                                                     </div>
-                                                    <a
-                                                        href="#!"
-                                                        style={{
-                                                            color: "#cecece",
-                                                        }}
-                                                    >
-                                                        <MDBIcon
-                                                            fas
-                                                            icon="trash-alt"
-                                                        />
-                                                    </a>
+                                                    <MDBIcon
+                                                        fas
+                                                        icon="trash-alt"
+                                                        className={cx(
+                                                            "icon-trash"
+                                                        )}
+                                                        onClick={() =>
+                                                            removeCartItem(
+                                                                item.id
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
                                             </div>
                                         </MDBCardBody>

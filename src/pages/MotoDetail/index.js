@@ -17,7 +17,6 @@ function MotoDetail() {
     };
 
     const motoFounded = findMotoBySlug(slug);
-    console.log(slug, motoFounded);
 
     useEffect(() => {
         setData(motoFounded);
