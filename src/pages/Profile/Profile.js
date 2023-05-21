@@ -32,10 +32,17 @@ function Profile() {
             className={cx("wrapper")}
         >
             <MDBContainer className="py-5">
-                <MDBRow>
-                    <MDBCol lg="4">
-                        <MDBCard className="mb-4">
-                            <MDBCardBody className="text-center">
+                <MDBRow
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
+                >
+                    <MDBCol lg="8">
+                        <MDBCard className={cx("mb-4", "card")}>
+                            <MDBCardBody
+                                className={cx("text-center", "card__body")}
+                            >
                                 <Image
                                     src={user?.avatar || ""}
                                     alt="avatar"
@@ -43,7 +50,15 @@ function Profile() {
                                     style={{ width: "150px" }}
                                     fluid
                                 />
-                                <div className="d-flex justify-content-center mb-2 mt-5">
+                                <div
+                                    className={cx(
+                                        "d-flex",
+                                        "justify-content-center",
+                                        "mb-2",
+                                        "mt-5",
+                                        "card__body--icon"
+                                    )}
+                                >
                                     <label
                                         className={cx("label")}
                                         htmlFor="avatar"
@@ -84,6 +99,34 @@ function Profile() {
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
                                             {user?.email}
+                                        </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
+                                    </MDBCol>
+                                </MDBRow>
+                                <hr />
+                                <MDBRow>
+                                    <MDBCol sm="3">
+                                        <MDBCardText>Ngày sinh</MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="8">
+                                        <MDBCardText className="text-muted">
+                                            {user?.ngaySinh}
+                                        </MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
+                                    </MDBCol>
+                                </MDBRow>
+                                <hr />
+                                <MDBRow>
+                                    <MDBCol sm="3">
+                                        <MDBCardText>Giới tính</MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="8">
+                                        <MDBCardText className="text-muted">
+                                            {user?.gioiTinh}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
