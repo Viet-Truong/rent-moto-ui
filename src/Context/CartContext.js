@@ -1,5 +1,6 @@
 import { useState, createContext } from "react";
 import ModalCart from "~/components/Modal/ModalCart";
+import { v4 as uuid } from "uuid";
 
 export const CartContext = createContext({});
 
@@ -12,7 +13,7 @@ export const CartContextProvider = ({ children }) => {
         if (cartItems.length === 0) {
             setCartItems([
                 {
-                    id: "",
+                    id: uuid(),
                     date: {
                         startDate: data.startDate,
                         endDate: data.endDate,
@@ -43,7 +44,7 @@ export const CartContextProvider = ({ children }) => {
                 setCartItems((prevState) => [
                     ...prevState,
                     {
-                        id: "",
+                        id: uuid(),
                         date: {
                             startDate: data.startDate,
                             endDate: data.endDate,
@@ -81,11 +82,32 @@ export const CartContextProvider = ({ children }) => {
     };
     console.log(cartItems);
 
-    const removeCartItem = (id) => {
-        setCartItems((item) => {
-            return item.filter((item) => `${item.id}-${item.slug}` !== id);
+    // bug
+    const removeCartItem = (cartItemId, itemId) => {
+        setCartItems((prevCartItems) => {
+            const updatedCartItems = prevCartItems.map((cartItem) => {
+                if (cartItem.id === cartItemId) {
+                    // Nếu cartItem.id trùng khớp với cartItemId cần xóa,
+                    // sử dụng hàm filter để tạo một mảng mới chỉ chứa các object khác với object cần xóa trong data_moto
+                    const updatedDataMoto = cartItem.data_moto.filter(
+                        (moto) => moto.id !== itemId
+                    );
+                    // Trả về một object mới với data_moto đã được cập nhật
+                    if (updatedDataMoto.length === 0) {
+                        // Nếu data_moto rỗng, loại bỏ cartItem khỏi cartItems
+                        return null;
+                    } else {
+                        return { ...cartItem, data_moto: updatedDataMoto };
+                    }
+                }
+                // Trả về cartItem không thay đổi nếu cartItem.id không trùng khớp
+                return cartItem;
+            });
+            const filteredCartItems = updatedCartItems.filter(
+                (item) => item !== null
+            );
+            return filteredCartItems;
         });
-        // localStorage.setItem("cartItems", JSON.stringify(cartItems));
     };
     return (
         <CartContext.Provider

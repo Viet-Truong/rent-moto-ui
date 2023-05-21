@@ -37,6 +37,11 @@ function ModalCart() {
         return current && current < moment().startOf("day");
     };
 
+    const handleRemoveCartItem = (cartItemId, itemId) => {
+        console.log(cartItemId, itemId);
+        removeCartItem(cartItemId, itemId);
+    };
+
     return (
         <section className={cx("wrapper", `${toogleClose}`)}>
             <div className={cx("wrapper_modal")}>
@@ -53,10 +58,9 @@ function ModalCart() {
                         onClick={() => setIsOpen(true)}
                     >
                         {cartItems.map((cartItem) => (
-                            <div className={cx("item")}>
+                            <div className={cx("item")} key={cartItem.id}>
                                 <div className={cx("header-item")}>
                                     <RangePicker
-                                        key={cartItem.id}
                                         className={cx(
                                             "RangePicker",
                                             "range-picker"
@@ -139,7 +143,8 @@ function ModalCart() {
                                                             "icon-trash"
                                                         )}
                                                         onClick={() =>
-                                                            removeCartItem(
+                                                            handleRemoveCartItem(
+                                                                cartItem.id,
                                                                 item.id
                                                             )
                                                         }

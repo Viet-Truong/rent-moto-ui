@@ -3,6 +3,7 @@ import styles from "./MotoView.module.scss";
 import { useState, useEffect } from "react";
 import { DatePicker, Row, Col } from "antd";
 import moment from "moment/moment";
+import { v4 as uuid } from "uuid";
 
 import Button from "../Button";
 import { useContext } from "react";
@@ -114,7 +115,7 @@ function MotoView({ item }) {
                             primary
                             onClick={() =>
                                 addCartItem({
-                                    id: `${product.id}-${product.slug}`,
+                                    id: `${product.slug}-${uuid()}`,
                                     image: product.image[0].url,
                                     name: product.name,
                                     price: product.price,
