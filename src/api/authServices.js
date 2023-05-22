@@ -12,11 +12,12 @@ export const login = async ({ username, password }) => {
     }
 };
 
-export const register = async ({ username, password }) => {
+export const register = async ({ username, password, role = "Khách hàng" }) => {
     try {
-        const res = await request.post("register", {
+        const res = await request.post("addAccount", {
             username,
             password,
+            role,
         });
         return res;
     } catch (e) {

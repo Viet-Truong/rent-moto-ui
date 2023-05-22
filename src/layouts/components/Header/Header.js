@@ -24,7 +24,7 @@ function Header() {
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case "logout":
-                // dispatch(authLogout());
+                localStorage.removeItem("user");
                 setUser(false);
                 break;
             default:

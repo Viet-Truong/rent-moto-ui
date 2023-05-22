@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
     MDBBtn,
     MDBContainer,
@@ -10,10 +10,53 @@ import {
 } from "mdb-react-ui-kit";
 import classNames from "classnames/bind";
 import styles from "./Register.module.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AppContext } from "~/Context/AppContext";
+import * as authServices from "~/api/authServices";
 
 const cx = classNames.bind(styles);
 function Register() {
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
+    const [error, setError] = useState({
+        status: false,
+        text: "",
+    });
+    const { user, setUser } = useContext(AppContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            navigate(-1);
+        }
+    }, [user]);
+
+    const checkPassword = () => {
+        return confirmPassword === password;
+    };
+
+    const submit = async (username, password) => {
+        if (checkPassword()) {
+            const result = await authServices.register({ username, password });
+            if (result.status === "success") {
+                // localStorage.setItem("user", JSON.stringify(result.data));
+                console.log(result);
+                setUser(result);
+            } else {
+                console.log(result);
+                setError({
+                    status: true,
+                    text: result.mess,
+                });
+            }
+        } else {
+            setError({
+                status: true,
+                text: "Mật khẩu không trùng khớp",
+            });
+        }
+    };
     return (
         <MDBContainer fluid className="vh-100">
             <MDBRow className="d-flex justify-content-center align-items-center h-100">
@@ -39,6 +82,8 @@ function Register() {
                                 label="Tài khoản"
                                 type="email"
                                 className={cx("input")}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 size="lg"
                             />
                             <MDBInput
@@ -47,6 +92,8 @@ function Register() {
                                 label="Mật khẩu"
                                 type="password"
                                 className={cx("input")}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 size="lg"
                             />
                             <MDBInput
@@ -55,14 +102,24 @@ function Register() {
                                 label="Xác nhận mật khẩu"
                                 type="password"
                                 className={cx("input")}
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                }
                                 size="lg"
                             />
+                            {error.status && (
+                                <span className={cx("error")}>
+                                    {error.text}
+                                </span>
+                            )}
                             <MDBBtn
                                 outline
                                 className="mx-2 px-5 mb-5 fw-bold"
                                 color="white"
                                 size="lg"
                                 style={{ color: "#ff3d13", fontSize: "16px" }}
+                                onClick={() => submit(username, password)}
                             >
                                 Đăng kí
                             </MDBBtn>
