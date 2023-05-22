@@ -40,7 +40,7 @@ function Register() {
         if (checkPassword()) {
             const result = await authServices.register({ username, password });
             if (result.status === "success") {
-                // localStorage.setItem("user", JSON.stringify(result.data));
+                localStorage.setItem("user", JSON.stringify(result.data));
                 console.log(result);
                 setUser(result);
             } else {
