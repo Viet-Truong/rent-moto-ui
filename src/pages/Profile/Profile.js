@@ -13,13 +13,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faPen } from "@fortawesome/free-solid-svg-icons";
 import Image from "~/components/Image";
 import { AppContext } from "~/Context/AppContext";
+import { useSelector } from "react-redux";
 
 const cx = classNames.bind(styles);
 function Profile() {
     const [profile, setProfile] = useState({});
-    const { user } = useContext(AppContext);
-    console.log(user);
-    useEffect(() => {}, [user]);
+    const { auth } = useSelector((state) => state.auth);
+    console.log(auth);
+    useEffect(() => {}, [auth]);
     return (
         <section
             style={{
@@ -44,7 +45,7 @@ function Profile() {
                                 className={cx("text-center", "card__body")}
                             >
                                 <Image
-                                    src={user?.avatar || ""}
+                                    src={auth?.avatar || ""}
                                     alt="avatar"
                                     className="rounded-circle"
                                     style={{ width: "150px" }}
@@ -84,7 +85,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            {user?.hoTen}
+                                            {auth?.hoTen}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -98,7 +99,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            {user?.email}
+                                            {auth?.email}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -112,7 +113,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            {user?.ngaySinh}
+                                            {auth?.ngaySinh}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -126,7 +127,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            {user?.gioiTinh}
+                                            {auth?.gioiTinh}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -140,7 +141,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            {user?.sdt}
+                                            {auth?.sdt}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -154,7 +155,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            {user?.cccd}
+                                            {auth?.cccd}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">
@@ -168,7 +169,7 @@ function Profile() {
                                     </MDBCol>
                                     <MDBCol sm="8">
                                         <MDBCardText className="text-muted">
-                                            {user?.diaChi}
+                                            {auth?.diaChi}
                                         </MDBCardText>
                                     </MDBCol>
                                     <MDBCol sm="1">

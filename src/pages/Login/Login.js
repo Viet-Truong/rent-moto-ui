@@ -1,4 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
     MDBBtn,
     MDBContainer,
@@ -11,28 +12,25 @@ import {
 import classNames from "classnames/bind";
 import styles from "./Login.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { AppContext } from "~/Context/AppContext";
-import * as authServices from "~/api/authServices";
+import { authLogin } from "~/redux/authAction";
 
 const cx = classNames.bind(styles);
 function Login() {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
-    const { user, setUser } = useContext(AppContext);
+    const { auth } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (user) {
+        if (auth) {
             navigate(-1);
         }
-    }, [user]);
+    }, [navigate, auth]);
 
-    const submit = async (username, password) => {
-        const result = await authServices.login({ username, password });
-        if (result.status === "success") {
-            localStorage.setItem("user", JSON.stringify(result.data));
-            setUser(result);
-        }
+    const submit = async (e) => {
+        e.preventDefault();
+        dispatch(authLogin({ username, password }));
     };
 
     return (
@@ -86,7 +84,7 @@ function Login() {
                                 color="white"
                                 size="lg"
                                 style={{ color: "#ff3d13", fontSize: "16px" }}
-                                onClick={() => submit(username, password)}
+                                onClick={submit}
                             >
                                 Đăng nhập
                             </MDBBtn>
@@ -96,7 +94,7 @@ function Login() {
                                     Bạn chưa có tài khoản?
                                     <Link
                                         to="/register"
-                                        class="fw-bold"
+                                        className="fw-bold"
                                         style={{ color: "#ff3d13" }}
                                     >
                                         Đăng kí

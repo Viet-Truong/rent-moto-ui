@@ -13,19 +13,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { CartContext } from "~/Context/CartContext";
-import { AppContext } from "~/Context/AppContext";
+import { useDispatch, useSelector } from "react-redux";
+import { authLogout } from "~/redux/authAction";
 
 const cx = classNames.bind(styles);
 function Header() {
-    const { user, setUser } = useContext(AppContext);
+    const { auth } = useSelector((state) => state.auth);
     const { setIsOpen, cartItems } = useContext(CartContext);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case "logout":
-                localStorage.removeItem("user");
-                setUser(false);
+                dispatch(authLogout());
                 break;
             default:
                 break;
@@ -63,7 +64,7 @@ function Header() {
                 <Search />
 
                 <div className={cx("actions")}>
-                    {user ? (
+                    {auth ? (
                         <>
                             <Button className={cx("cart-btn")}>
                                 <FontAwesomeIcon

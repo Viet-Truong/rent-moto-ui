@@ -24,7 +24,3 @@ export const register = async ({ username, password, role = "Khách hàng" }) =>
         console.log(e);
     }
 };
-
-export const logout = async () => {
-    await request.post("logout");
-};
