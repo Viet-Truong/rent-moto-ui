@@ -3,16 +3,17 @@ import * as authServices from "~/api/authServices";
 
 export const authRegister = createAsyncThunk(
     "authRegister",
-    async ({ username, password, role }, { rejectWithValue }) => {
+    async ({ username, password }, { rejectWithValue }) => {
         try {
             const auth = await authServices.register({
                 username,
                 password,
-                role,
             });
             auth && localStorage.setItem("auth", JSON.stringify(auth));
-            return auth.data;
+            console.log(auth);
+            return auth;
         } catch (error) {
+            console.log(error);
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);
             } else {

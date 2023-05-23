@@ -11,47 +11,44 @@ import {
 import classNames from "classnames/bind";
 import styles from "./Register.module.scss";
 import { Link, useNavigate } from "react-router-dom";
-import { AppContext } from "~/Context/AppContext";
-import * as authServices from "~/api/authServices";
+import { useDispatch, useSelector } from "react-redux";
+import { authRegister } from "~/redux/authAction";
 
 const cx = classNames.bind(styles);
 function Register() {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
-    const [error, setError] = useState({
+    const [errorMessage, setErrorMessage] = useState({
         status: false,
         text: "",
     });
-    const { user, setUser } = useContext(AppContext);
+    const { auth } = useSelector((state) => state.auth);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        if (user) {
+        if (auth) {
             navigate(-1);
         }
-    }, [user]);
+    }, [navigate, auth]);
 
     const checkPassword = () => {
         return confirmPassword === password;
     };
 
-    const submit = async (username, password) => {
+    const submit = async (e) => {
         if (checkPassword()) {
-            const result = await authServices.register({ username, password });
-            if (result.status === "success") {
-                localStorage.setItem("user", JSON.stringify(result.data));
-                console.log(result);
-                setUser(result);
-            } else {
-                console.log(result);
-                setError({
-                    status: true,
-                    text: result.mess,
-                });
-            }
+            e.preventDefault();
+            dispatch(authRegister({ username, password }));
+            // if (true) {
+            //     setErrorMessage({
+            //         status: true,
+            //         text: "Tài khoản đã tồn tại",
+            //     });
+            // }
         } else {
-            setError({
+            setErrorMessage({
                 status: true,
                 text: "Mật khẩu không trùng khớp",
             });
@@ -108,9 +105,9 @@ function Register() {
                                 }
                                 size="lg"
                             />
-                            {error.status && (
+                            {errorMessage.status && (
                                 <span className={cx("error")}>
-                                    {error.text}
+                                    {errorMessage.text}
                                 </span>
                             )}
                             <MDBBtn
@@ -119,7 +116,7 @@ function Register() {
                                 color="white"
                                 size="lg"
                                 style={{ color: "#ff3d13", fontSize: "16px" }}
-                                onClick={() => submit(username, password)}
+                                onClick={submit}
                             >
                                 Đăng kí
                             </MDBBtn>
