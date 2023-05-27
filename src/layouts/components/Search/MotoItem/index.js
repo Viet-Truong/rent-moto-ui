@@ -6,13 +6,17 @@ import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 function CarItem({ data }) {
     return (
-        <Link to={`/@${data.name}`} className={cx("wrapper")}>
-            <Image src={data.avatar} alt={data.name} className={cx("avatar")} />
+        <Link className={cx("wrapper")}>
+            <Image
+                src={data?.avatar || ""}
+                alt={data.tenXe}
+                className={cx("avatar")}
+            />
             <div className={cx("info")}>
                 <h4 className={cx("name")}>
-                    <span>{data.full_name}</span>
+                    <span>{data.tenXe}</span>
                 </h4>
-                <span className={cx("price")}>{data.price}</span>
+                <span className={cx("price")}>{data.giaThue} VNĐ / 1 ngày</span>
             </div>
         </Link>
     );

@@ -63,7 +63,7 @@ function ProfileField({ label, value, editing, onEdit, onChange }) {
                 {editing ? (
                     <input
                         type="text"
-                        className="form-control"
+                        className={cx("form-control")}
                         value={value}
                         onChange={onChange}
                     />

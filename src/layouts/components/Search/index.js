@@ -4,8 +4,9 @@ import TippyHeadless from "@tippyjs/react/headless";
 import { useState, useRef, useEffect } from "react";
 
 import { Wrapper as PopperWrapper } from "~/components/Popper";
-import CarItem from "./MotoItem/index";
+import MotoItem from "./MotoItem/index";
 import useDebounce from "~/hooks/useDebounce";
+import * as searchService from "~/api/searchServices";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,13 +19,14 @@ const cx = classNames.bind(styles);
 function Search() {
     const inputRef = useRef();
     const [searchValue, setSearchValue] = useState("");
-    const [searchResult, setSearchResult] = useState([]);
+    const [searchResults, setSearchResults] = useState([]);
     const [showResults, setShowResults] = useState(false);
     const [loading, setLoading] = useState(false);
     const debouncedValue = useDebounce(searchValue, 500);
 
     const handleClear = () => {
         setSearchValue("");
+        setSearchResults([]);
         inputRef.current.focus();
     };
 
@@ -35,30 +37,32 @@ function Search() {
         }
     };
 
+    const handleHideResults = () => {
+        setShowResults(false);
+    };
+
     useEffect(() => {
         // handle input = ''
         if (!debouncedValue.trim()) {
-            setSearchResult([]);
+            setSearchResults([]);
             return;
         }
         // call API
-        // const fetch = async () => {
-        //     setLoading(true);
-        //     const result = await searchService.search(debouncedValue);
-        //     setSearchResult(result);
-        //     setLoading(false);
-        // };
-        // fetch();
-        setLoading(true);
-        setSearchResult();
-        setLoading(false);
+        const fetch = async () => {
+            setLoading(true);
+            const result = await searchService.search(debouncedValue);
+            setSearchResults(result);
+            setLoading(false);
+        };
+        fetch();
+        console.log(searchResults);
     }, [debouncedValue]);
 
     return (
         <div>
             <TippyHeadless
                 interactive
-                visible={showResults && searchResult.length > 0}
+                visible={showResults && searchResults.length > 0}
                 render={(attrs) => (
                     <div
                         className={cx("search-result")}
@@ -66,13 +70,14 @@ function Search() {
                         {...attrs}
                     >
                         <PopperWrapper>
-                            <h4 className={cx("search-label")}>Car</h4>
-                            {searchResult.map((result) => (
-                                <CarItem key={result.id} data={result} />
+                            <h4 className={cx("search-label")}>Danh sách xe</h4>
+                            {searchResults.map((result, index) => (
+                                <MotoItem key={index} data={result} />
                             ))}
                         </PopperWrapper>
                     </div>
                 )}
+                onClickOutside={handleHideResults}
             >
                 <div className={cx("search")}>
                     <input
@@ -81,6 +86,7 @@ function Search() {
                         type="text"
                         spellCheck={false}
                         onChange={handleChange}
+                        onFocus={() => setShowResults(true)}
                     />
                     {!!searchValue && !loading && (
                         <button className={cx("clear")} onClick={handleClear}>
