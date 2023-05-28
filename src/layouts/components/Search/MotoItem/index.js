@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 function CarItem({ data }) {
     return (
-        <Link className={cx("wrapper")}>
+        <Link to={`/moto/${data.slug}`} className={cx("wrapper")}>
             <Image
                 src={data?.avatar || ""}
                 alt={data.tenXe}
