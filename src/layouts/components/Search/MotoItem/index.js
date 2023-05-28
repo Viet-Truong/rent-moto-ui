@@ -16,7 +16,9 @@ function CarItem({ data }) {
                 <h4 className={cx("name")}>
                     <span>{data.tenXe}</span>
                 </h4>
-                <span className={cx("price")}>{data.giaThue} VNĐ / 1 ngày</span>
+                <span className={cx("price")}>
+                    {data.giaThue}.000 VNĐ / 1 ngày
+                </span>
             </div>
         </Link>
     );
