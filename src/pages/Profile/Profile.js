@@ -13,6 +13,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faPen } from "@fortawesome/free-solid-svg-icons";
 import Image from "~/components/Image";
 import { useSelector } from "react-redux";
+import { DatePicker } from "antd";
+import moment from "moment";
 
 const cx = classNames.bind(styles);
 
@@ -109,6 +111,14 @@ function Profile() {
         setEditingField("");
     };
 
+    const onChange = (date, dateString) => {
+        setProfile({ ...profile, [editingField]: date });
+    };
+
+    const handleGenderChange = (e) => {
+        setProfile({ ...profile, gioiTinh: e.target.value });
+    };
+
     return (
         <section
             style={{
@@ -150,22 +160,49 @@ function Profile() {
                                     onChange={handleInputChange}
                                 />
                                 <hr />
-                                <ProfileField
-                                    label="Ngày sinh"
-                                    value={profile?.ngaySinh}
-                                    editing={editingField === "ngaySinh"}
-                                    onEdit={() => handleEditClick("ngaySinh")}
-                                    onChange={handleInputChange}
-                                />
+
+                                <MDBRow>
+                                    <MDBCol sm="3">
+                                        <MDBCardText>Ngày sinh</MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="8">
+                                        <DatePicker
+                                            className={cx("input")}
+                                            defaultValue={moment(
+                                                profile?.ngaySinh
+                                            )}
+                                            format={"DD/MM/YYYYY"}
+                                            onChange={onChange}
+                                        />
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
+                                    </MDBCol>
+                                </MDBRow>
+
                                 <hr />
-                                <ProfileField
-                                    label="Giới tính"
-                                    value={profile?.gioiTinh}
-                                    editing={editingField === "gioiTinh"}
-                                    onEdit={() => handleEditClick("gioiTinh")}
-                                    onChange={handleInputChange}
-                                />
+
+                                <MDBRow>
+                                    <MDBCol sm="3">
+                                        <MDBCardText>Giới tính</MDBCardText>
+                                    </MDBCol>
+                                    <MDBCol sm="8">
+                                        <select
+                                            defaultValue={profile?.gioiTinh}
+                                            onChange={handleGenderChange}
+                                        >
+                                            <option value="M">Nam</option>
+                                            <option value="W">Nữ</option>
+                                            <option value="O">Khác</option>
+                                        </select>
+                                    </MDBCol>
+                                    <MDBCol sm="1">
+                                        <FontAwesomeIcon icon={faPen} />
+                                    </MDBCol>
+                                </MDBRow>
+
                                 <hr />
+
                                 <ProfileField
                                     label="Số điện thoại"
                                     value={profile?.sdt}

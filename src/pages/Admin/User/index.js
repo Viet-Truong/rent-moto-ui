@@ -128,11 +128,7 @@ function User() {
                                     <DatePicker
                                         className={cx("input")}
                                         disabled={inputStates.dob}
-                                        // defaultValue={
-                                        //     [
-                                        //         // moment(dob, "DD-MM-YYYY"),
-                                        //     ]
-                                        // }
+                                        defaultValue={moment(dob)}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
