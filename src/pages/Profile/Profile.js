@@ -15,6 +15,7 @@ import Image from "~/components/Image";
 import { useSelector } from "react-redux";
 import { DatePicker } from "antd";
 import moment from "moment";
+import * as userServices from "~/api/userServices";
 
 const cx = classNames.bind(styles);
 
@@ -106,12 +107,31 @@ function Profile() {
         setProfile({ ...profile, [editingField]: value });
     };
 
-    const handleSaveClick = () => {
+    const handleSaveClick = async (
+        maTaiKhoan,
+        email,
+        hoTen,
+        ngaySinh,
+        cccd,
+        sdt,
+        diaChi,
+        gioiTinh
+    ) => {
         // Thực hiện lưu các thay đổi vào cơ sở dữ liệu hoặc nơi lưu trữ phù hợp
+        const result = await userServices.updateProfile({
+            maTaiKhoan,
+            email,
+            hoTen,
+            ngaySinh,
+            cccd,
+            sdt,
+            diaChi,
+            gioiTinh,
+        });
         setEditingField("");
     };
 
-    const onChange = (date, dateString) => {
+    const onChange = (date) => {
         setProfile({ ...profile, [editingField]: date });
     };
 
@@ -232,7 +252,18 @@ function Profile() {
                                 <MDBCardBody>
                                     <button
                                         className="btn btn-primary"
-                                        onClick={handleSaveClick}
+                                        onClick={() =>
+                                            handleSaveClick(
+                                                auth.maTaiKhoan,
+                                                profile.email,
+                                                profile.hoTen,
+                                                profile.ngaySinh,
+                                                profile.cccd,
+                                                profile.sdt,
+                                                profile.diaChi,
+                                                profile.gioiTinh
+                                            )
+                                        }
                                     >
                                         Save
                                     </button>
