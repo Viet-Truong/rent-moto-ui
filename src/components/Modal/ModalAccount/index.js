@@ -22,14 +22,14 @@ const cx = classNames.bind(styles);
 function ModalAccount() {
     const { isModalAccountVisible, data, typeModal, setIsModalAccountVisible } =
         useContext(AppContext);
-    const [account, setAccount] = useState(data?.account ?? "");
-    const [password, setPassword] = useState(data?.password ?? "");
-    const [role, setRole] = useState(data?.role ?? "");
+    const [account, setAccount] = useState(data?.taiKhoan ?? "");
+    const [password, setPassword] = useState(data?.matKhau ?? "");
+    const [role, setRole] = useState(data?.phanQuyen ?? "");
 
     useEffect(() => {
-        setAccount(data?.account ?? "");
-        setPassword(data?.password ?? "");
-        setRole(data?.role ?? "");
+        setAccount(data?.taiKhoan ?? "");
+        setPassword(data?.matKhau ?? "");
+        setRole(data?.phanQuyen ?? "");
     }, [data]);
 
     return (
@@ -72,6 +72,12 @@ function ModalAccount() {
                                         Vai trò
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu>
+                                        <MDBDropdownItem
+                                            link
+                                            onClick={() => setRole("Admin")}
+                                        >
+                                            Admin
+                                        </MDBDropdownItem>
                                         <MDBDropdownItem
                                             link
                                             onClick={() => setRole("Nhân viên")}
