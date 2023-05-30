@@ -16,6 +16,7 @@ import { useState, useEffect, useContext } from "react";
 import { AppContext } from "~/Context/AppContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLock, faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
+import * as adminServices from "~/api/adminServices";
 
 const cx = classNames.bind(styles);
 
@@ -31,8 +32,14 @@ function Account() {
         useContext(AppContext);
 
     useEffect(() => {
-        setAccountData(accountData);
-    }, [accountData, page]);
+        const fetch = async () => {
+            const result = await adminServices.getAllUser();
+            console.log(result);
+            setAccountData(result);
+        };
+
+        fetch();
+    }, [page]);
 
     return (
         <div className={cx("wrapper")}>
@@ -61,7 +68,7 @@ function Account() {
                 <MDBTableBody>
                     {accountData.map((item) => {
                         return (
-                            <tr key={item.id}>
+                            <tr key={item.maTaiKhoan}>
                                 <td>
                                     <div className="d-flex align-items-center">
                                         <img
@@ -75,7 +82,7 @@ function Account() {
                                         />
                                         <div className="ms-3">
                                             <p className="fw-bold mb-1">
-                                                {item.name}
+                                                {item.hoTen}
                                             </p>
                                             <p className="text-muted mb-0">
                                                 {item.email}
@@ -85,22 +92,22 @@ function Account() {
                                 </td>
                                 <td>
                                     <p className="fw-normal mb-1">
-                                        {item.account}
+                                        {item.taiKhoan}
                                     </p>
                                 </td>
                                 <td>
                                     <p className="fw-normal mb-1">
-                                        {item.password}
+                                        {item.matKhau}
                                     </p>
                                 </td>
                                 <td>
-                                    {item.role == "Admin" ? (
+                                    {item.phanQuyen == "Admin" ? (
                                         <MDBBadge
                                             color="success"
                                             pill
                                             className="fw-normal mb-1"
                                         >
-                                            {item.role}
+                                            {item.phanQuyen}
                                         </MDBBadge>
                                     ) : (
                                         <MDBBadge
@@ -108,7 +115,7 @@ function Account() {
                                             pill
                                             className="fw-normal mb-1"
                                         >
-                                            {item.role}
+                                            {item.phanQuyen}
                                         </MDBBadge>
                                     )}
                                 </td>
