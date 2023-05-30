@@ -17,7 +17,6 @@ import {
     MDBDropdownItem,
 } from "mdb-react-ui-kit";
 import { AppContext } from "~/Context/AppContext";
-import * as adminServices from "~/api/adminServices";
 import * as authServices from "~/api/authServices";
 
 const cx = classNames.bind(styles);
@@ -28,7 +27,6 @@ function ModalAccount() {
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
     const [role, setRole] = useState();
-
 
     const handleAddAccount = async (taiKhoan, matKhau, role) => {
         if (password === confirmPassword) {
