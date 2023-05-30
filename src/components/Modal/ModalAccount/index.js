@@ -17,20 +17,31 @@ import {
     MDBDropdownItem,
 } from "mdb-react-ui-kit";
 import { AppContext } from "~/Context/AppContext";
+import * as adminServices from "~/api/adminServices";
+import * as authServices from "~/api/authServices";
 
 const cx = classNames.bind(styles);
 function ModalAccount() {
     const { isModalAccountVisible, data, typeModal, setIsModalAccountVisible } =
         useContext(AppContext);
-    const [account, setAccount] = useState(data?.taiKhoan ?? "");
-    const [password, setPassword] = useState(data?.matKhau ?? "");
-    const [role, setRole] = useState(data?.phanQuyen ?? "");
+    const [account, setAccount] = useState();
+    const [password, setPassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
+    const [role, setRole] = useState();
 
-    useEffect(() => {
-        setAccount(data?.taiKhoan ?? "");
-        setPassword(data?.matKhau ?? "");
-        setRole(data?.phanQuyen ?? "");
-    }, [data]);
+
+    const handleAddAccount = async (taiKhoan, matKhau, role) => {
+        if (password === confirmPassword) {
+            const result = await authServices.register({
+                username: taiKhoan,
+                password: matKhau,
+                role: role,
+            });
+            console.log(result);
+        } else {
+            console.log("Mat khau khong khop");
+        }
+    };
 
     return (
         <div className={cx("wrapper-modal")}>
@@ -62,10 +73,21 @@ function ModalAccount() {
                             <MDBInput
                                 className={cx("input")}
                                 label={"Mật khẩu"}
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                }
+                                type="password"
+                            />
+
+                            <MDBInput
+                                className={cx("input")}
+                                label={"Xác nhận mật khẩu"}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 type="password"
                             />
+
                             <div className={cx("wrapper-dropdown")}>
                                 <MDBDropdown className={cx("dropdown")}>
                                     <MDBDropdownToggle>
@@ -108,7 +130,15 @@ function ModalAccount() {
                             >
                                 Huỷ
                             </MDBBtn>
-                            <MDBBtn className={cx("button_save")}>Lưu</MDBBtn>
+                            <MDBBtn
+                                className={cx("button_save")}
+                                onClick={() => {
+                                    handleAddAccount(account, password, role);
+                                    setIsModalAccountVisible(false);
+                                }}
+                            >
+                                Lưu
+                            </MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>

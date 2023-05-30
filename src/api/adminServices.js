@@ -13,3 +13,31 @@ export const getAllUser = async (role = "", q = "") => {
         console.log(e);
     }
 };
+
+export const updateAccount = async ({
+    maTaiKhoan,
+    taiKhoan,
+    matKhau,
+    phanQuyen,
+}) => {
+    try {
+        console.log(maTaiKhoan, taiKhoan, matKhau, phanQuyen);
+        const res = await request.post(
+            "updateInfoUser",
+            {
+                maTaiKhoan,
+                taiKhoan,
+                // matKhau,
+                // phanQuyen,
+            },
+            {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            }
+        );
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};

@@ -120,7 +120,7 @@ function Account() {
                                     )}
                                 </td>
                                 <td>
-                                    <MDBBtn
+                                    {/* <MDBBtn
                                         color="link"
                                         rounded
                                         size="sm"
@@ -134,7 +134,7 @@ function Account() {
                                             icon={faPen}
                                             className={cx("actions-btn")}
                                         />
-                                    </MDBBtn>
+                                    </MDBBtn> */}
                                     <MDBBtn color="link" rounded size="sm">
                                         <FontAwesomeIcon
                                             icon={faLock}

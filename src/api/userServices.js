@@ -11,16 +11,6 @@ export const updateProfile = async ({
     gioiTinh,
 }) => {
     try {
-        console.log(
-            maTaiKhoan,
-            email,
-            hoTen,
-            ngaySinh,
-            cccd,
-            sdt,
-            diaChi,
-            gioiTinh
-        );
         const res = await request.post(
             "updateInfoUser",
             {
