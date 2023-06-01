@@ -2,6 +2,16 @@
     margin-top: 20px;
 }
 
+.header {
+    color: var(--primary);
+    font-weight: bold;
+    margin-left: 10px;
+
+    &-icon {
+        margin-right: 20px;
+    }
+}
+
 .button_showModal {
     display: flex;
     justify-content: flex-end;

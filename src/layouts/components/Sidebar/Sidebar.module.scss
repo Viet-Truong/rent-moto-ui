@@ -25,7 +25,8 @@
 .wrapper{
     flex-shrink: 0;
     width: 340px;
-    border-right: 1px solid rgba(76, 78, 100, 0.38);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.22);
+    padding-left: 2rem;
 }
 
 .wrapper-fix {
@@ -33,7 +34,6 @@
     overflow: scroll;
     width: inherit;
     padding: 20px 0 0 0;
-    margin-left: -1px;
 }
 
 .wrapper-divider {

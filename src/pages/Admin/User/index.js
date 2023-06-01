@@ -1,13 +1,13 @@
-import React, { useState, useRef } from "react";
-import { MDBInput, MDBCol, MDBRow, MDBContainer } from "mdb-react-ui-kit";
-import classNames from "classnames/bind";
-import styles from "./User.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
-import Button from "~/components/Button";
-import { user } from "~/data/data";
-import { DatePicker, Space, Radio } from "antd";
-import moment from "moment";
+import React, { useState, useRef } from 'react';
+import { MDBInput, MDBCol, MDBRow, MDBContainer } from 'mdb-react-ui-kit';
+import classNames from 'classnames/bind';
+import styles from './User.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faUser } from '@fortawesome/free-solid-svg-icons';
+import Button from '~/components/Button';
+import { user } from '~/data/data';
+import { DatePicker, Radio } from 'antd';
+import moment from 'moment';
 
 const cx = classNames.bind(styles);
 function User() {
@@ -50,131 +50,134 @@ function User() {
     };
 
     return (
-        <div className={cx("wrapper")}>
-            <h1 className={cx("header")}>Thông tin cá nhân</h1>
-            <div className={cx("wrapper-content")}>
-                <MDBContainer className="overflow-hidden">
-                    <MDBRow className="gy-5">
-                        <MDBCol size="4" className={cx("col")}>
-                            <div className={cx("fields")}>
-                                <label htmlFor="">Tên</label>
-                                <div className={cx("input_field")}>
+        <div className={cx('wrapper')}>
+            <h1 className={cx('header')}>
+                <FontAwesomeIcon icon={faUser} className={cx('header-icon')} />
+                Thông tin cá nhân
+            </h1>
+            <div className={cx('wrapper-content')}>
+                <MDBContainer className='overflow-hidden'>
+                    <MDBRow className='gy-5'>
+                        <MDBCol size='4' className={cx('col')}>
+                            <div className={cx('fields')}>
+                                <label htmlFor=''>Tên</label>
+                                <div className={cx('input_field')}>
                                     <MDBInput
-                                        className={cx("input")}
+                                        className={cx('input')}
                                         value={name}
                                         onChange={(e) =>
                                             setName(e.target.value)
                                         }
-                                        id="formControlDisabled"
-                                        type="text"
+                                        id='formControlDisabled'
+                                        type='text'
                                         disabled={inputStates.name}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
-                                        className={cx("icon")}
-                                        onClick={() => handleEditClick("name")}
+                                        className={cx('icon')}
+                                        onClick={() => handleEditClick('name')}
                                     />
                                 </div>
                             </div>
-                            <div className={cx("fields")}>
-                                <label htmlFor="">Giới tính</label>
-                                <div className={cx("input_field")}>
+                            <div className={cx('fields')}>
+                                <label htmlFor=''>Giới tính</label>
+                                <div className={cx('input_field')}>
                                     <Radio.Group
                                         onChange={onChange}
                                         value={gender}
                                         disabled={inputStates.gender}
-                                        className={cx("input")}
+                                        className={cx('input')}
                                     >
-                                        <Radio value={"Nam"}>Nam</Radio>
-                                        <Radio value={"Nữ"}>Nữ</Radio>
-                                        <Radio value={"Khác"}>Khác</Radio>
+                                        <Radio value={'Nam'}>Nam</Radio>
+                                        <Radio value={'Nữ'}>Nữ</Radio>
+                                        <Radio value={'Khác'}>Khác</Radio>
                                     </Radio.Group>
                                     <FontAwesomeIcon
                                         icon={faPen}
-                                        className={cx("icon")}
+                                        className={cx('icon')}
                                         onClick={() =>
-                                            handleEditClick("gender")
+                                            handleEditClick('gender')
                                         }
                                     />
                                 </div>
                             </div>
-                            <div className={cx("fields")}>
-                                <label htmlFor="">Số điện thoại</label>
-                                <div className={cx("input_field")}>
+                            <div className={cx('fields')}>
+                                <label htmlFor=''>Số điện thoại</label>
+                                <div className={cx('input_field')}>
                                     <MDBInput
-                                        className={cx("input")}
+                                        className={cx('input')}
                                         value={phoneNumber}
                                         onChange={(e) =>
                                             setPhoneNumber(e.target.value)
                                         }
-                                        id="formControlDisabled"
-                                        type="text"
+                                        id='formControlDisabled'
+                                        type='text'
                                         disabled={inputStates.phoneNumber}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
-                                        className={cx("icon")}
+                                        className={cx('icon')}
                                         onClick={() =>
-                                            handleEditClick("phoneNumber")
+                                            handleEditClick('phoneNumber')
                                         }
                                     />
                                 </div>
                             </div>
                         </MDBCol>
-                        <MDBCol size="4">
-                            <div className={cx("fields")}>
-                                <label htmlFor="">Ngày sinh</label>
-                                <div className={cx("input_field")}>
+                        <MDBCol size='4'>
+                            <div className={cx('fields')}>
+                                <label htmlFor=''>Ngày sinh</label>
+                                <div className={cx('input_field')}>
                                     <DatePicker
-                                        className={cx("input")}
+                                        className={cx('input')}
                                         disabled={inputStates.dob}
                                         defaultValue={moment(dob)}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
-                                        className={cx("icon")}
-                                        onClick={() => handleEditClick("dob")}
+                                        className={cx('icon')}
+                                        onClick={() => handleEditClick('dob')}
                                     />
                                 </div>
                             </div>
-                            <div className={cx("fields")}>
-                                <label htmlFor="">Căn cước công dân</label>
-                                <div className={cx("input_field")}>
+                            <div className={cx('fields')}>
+                                <label htmlFor=''>Căn cước công dân</label>
+                                <div className={cx('input_field')}>
                                     <MDBInput
-                                        className={cx("input")}
+                                        className={cx('input')}
                                         value={cccd}
                                         onChange={(e) =>
                                             setCCCD(e.target.value)
                                         }
-                                        id="formControlDisabled"
-                                        type="text"
+                                        id='formControlDisabled'
+                                        type='text'
                                         disabled={inputStates.cccd}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
-                                        className={cx("icon")}
-                                        onClick={() => handleEditClick("cccd")}
+                                        className={cx('icon')}
+                                        onClick={() => handleEditClick('cccd')}
                                     />
                                 </div>
                             </div>
-                            <div className={cx("fields")}>
-                                <label htmlFor="">Địa chỉ</label>
-                                <div className={cx("input_field")}>
+                            <div className={cx('fields')}>
+                                <label htmlFor=''>Địa chỉ</label>
+                                <div className={cx('input_field')}>
                                     <MDBInput
-                                        className={cx("input")}
+                                        className={cx('input')}
                                         value={address}
                                         onChange={(e) =>
                                             setAddress(e.target.value)
                                         }
-                                        id="formControlDisabled"
-                                        type="text"
+                                        id='formControlDisabled'
+                                        type='text'
                                         disabled={inputStates.address}
                                     />
                                     <FontAwesomeIcon
                                         icon={faPen}
-                                        className={cx("icon")}
+                                        className={cx('icon')}
                                         onClick={() =>
-                                            handleEditClick("address")
+                                            handleEditClick('address')
                                         }
                                     />
                                 </div>
@@ -184,7 +187,7 @@ function User() {
                 </MDBContainer>
             </div>
             <Button
-                className={cx("btn", "btn-primary", "btn-save")}
+                className={cx('btn', 'btn-primary', 'btn-save')}
                 onClick={handleSaveClick}
             >
                 Lưu

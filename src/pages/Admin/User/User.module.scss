@@ -2,8 +2,22 @@
     margin-top: 20px;
 }
 
+.header {
+    color: var(--primary);
+    font-weight: bold;
+    margin-left: 10px;
+
+    &-icon {
+        margin-right: 20px;
+    }
+}
+
 .wrapper-content {
     margin-top: 50px;
+
+    div {
+        margin-left: 0 !important;
+    }
 }
 
 .input_field {
