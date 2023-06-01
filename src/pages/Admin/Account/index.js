@@ -162,12 +162,12 @@ function Account() {
                         </MDBPaginationLink>
                     </MDBPaginationItem>
                     <MDBPaginationItem>
-                        <MDBPaginationLink href='#'>1</MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem active aria-current='page'>
-                        <MDBPaginationLink href='#'>
-                            2 <span className='visually-hidden'>(current)</span>
+                        <MDBPaginationLink href='#' active aria-current='page'>
+                            1<span className='visually-hidden'>(current)</span>
                         </MDBPaginationLink>
+                    </MDBPaginationItem>
+                    <MDBPaginationItem>
+                        <MDBPaginationLink href='#'>2</MDBPaginationLink>
                     </MDBPaginationItem>
                     <MDBPaginationItem>
                         <MDBPaginationLink href='#'>3</MDBPaginationLink>
