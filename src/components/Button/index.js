@@ -1,6 +1,6 @@
-import classNames from "classnames/bind";
-import { Link } from "react-router-dom";
-import styles from "./Button.module.scss";
+import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
+import styles from './Button.module.scss';
 
 const cx = classNames.bind(styles);
 function Button({
@@ -21,7 +21,7 @@ function Button({
     ...passProps
 }) {
     // default is button
-    let Component = "button";
+    let Component = 'button';
     const props = {
         // default always onClick
         onClick,
@@ -31,7 +31,7 @@ function Button({
     // disable button
     if (disable) {
         Object.keys(props).forEach((key) => {
-            if (key.startsWith("on") && typeof props[key] == "function") {
+            if (key.startsWith('on') && typeof props[key] == 'function') {
                 delete props[key];
             }
         });
@@ -42,10 +42,10 @@ function Button({
         Component = Link;
     } else if (href) {
         props.href = href;
-        Component = "a";
+        Component = 'a';
     }
 
-    const classes = cx("wrapper", {
+    const classes = cx('wrapper', {
         primary,
         outline,
         text,
@@ -57,9 +57,9 @@ function Button({
     });
     return (
         <Component className={classes} {...props}>
-            {leftIcon && <span className={cx("icon")}>{leftIcon}</span>}
-            <span className={cx("text-btn")}>{children}</span>
-            {rightIcon && <span className={cx("icon")}>{rightIcon}</span>}
+            {leftIcon && <span className={cx('icon')}>{leftIcon}</span>}
+            <span className={cx('text-btn')}>{children}</span>
+            {rightIcon && <span className={cx('icon')}>{rightIcon}</span>}
         </Component>
     );
 }

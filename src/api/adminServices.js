@@ -1,8 +1,8 @@
-import * as request from "~/utils/request";
+import * as request from '~/utils/request';
 
-export const getAllUser = async (role = "", q = "") => {
+export const getAllUser = async (role = '', q = '') => {
     try {
-        const res = await request.get("getAllUser", {
+        const res = await request.get('getAllUser', {
             params: {
                 role,
                 q,
@@ -23,7 +23,7 @@ export const updateAccount = async ({
     try {
         console.log(maTaiKhoan, taiKhoan, matKhau, phanQuyen);
         const res = await request.post(
-            "updateInfoUser",
+            'updateInfoUser',
             {
                 maTaiKhoan,
                 taiKhoan,
@@ -32,7 +32,7 @@ export const updateAccount = async ({
             },
             {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         );

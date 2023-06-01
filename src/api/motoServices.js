@@ -1,8 +1,8 @@
-import * as request from "~/utils/request";
+import * as request from '~/utils/request';
 
 export const getAllXe = async (q) => {
     try {
-        const res = await request.get("getAllXe", {
+        const res = await request.get('getAllXe', {
             params: {
                 q,
             },

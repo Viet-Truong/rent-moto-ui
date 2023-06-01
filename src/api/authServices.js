@@ -1,8 +1,8 @@
-import * as request from "~/utils/request";
+import * as request from '~/utils/request';
 
 export const login = async ({ username, password }) => {
     try {
-        const res = await request.post("login", {
+        const res = await request.post('login', {
             username,
             password,
         });
@@ -12,9 +12,9 @@ export const login = async ({ username, password }) => {
     }
 };
 
-export const register = async ({ username, password, role = "Khách hàng" }) => {
+export const register = async ({ username, password, role = 'Khách hàng' }) => {
     try {
-        const res = await request.post("addAccount", {
+        const res = await request.post('addAccount', {
             username,
             password,
             role,

@@ -1,4 +1,4 @@
-import * as request from "~/utils/request";
+import * as request from '~/utils/request';
 
 export const updateProfile = async ({
     maTaiKhoan,
@@ -12,7 +12,7 @@ export const updateProfile = async ({
 }) => {
     try {
         const res = await request.post(
-            "updateInfoUser",
+            'updateInfoUser',
             {
                 maTaiKhoan,
                 email,
@@ -25,7 +25,7 @@ export const updateProfile = async ({
             },
             {
                 headers: {
-                    "Content-Type": "multipart/form-data",
+                    'Content-Type': 'multipart/form-data',
                 },
             }
         );
