@@ -1,19 +1,17 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import * as authServices from "~/api/authServices";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import * as authServices from '~/api/authServices';
 
 export const authRegister = createAsyncThunk(
-    "authRegister",
+    'authRegister',
     async ({ username, password }, { rejectWithValue }) => {
         try {
             const auth = await authServices.register({
                 username,
                 password,
             });
-            auth && localStorage.setItem("auth", JSON.stringify(auth));
-            console.log(auth);
+            auth && localStorage.setItem('auth', JSON.stringify(auth));
             return auth;
         } catch (error) {
-            console.log(error);
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);
             } else {
@@ -24,11 +22,11 @@ export const authRegister = createAsyncThunk(
 );
 
 export const authLogin = createAsyncThunk(
-    "authLogin",
+    'authLogin',
     async ({ username, password }, { rejectWithValue }) => {
         try {
             const auth = await authServices.login({ username, password });
-            auth && localStorage.setItem("auth", JSON.stringify(auth));
+            auth && localStorage.setItem('auth', JSON.stringify(auth));
             return auth.data;
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -40,6 +38,6 @@ export const authLogin = createAsyncThunk(
     }
 );
 
-export const authLogout = createAsyncThunk("authLogout", async () => {
-    localStorage.removeItem("auth");
+export const authLogout = createAsyncThunk('authLogout', async () => {
+    localStorage.removeItem('auth');
 });

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import classNames from "classnames/bind";
-import styles from "./Profile.module.scss";
+import React, { useState } from 'react';
+import classNames from 'classnames/bind';
+import styles from './Profile.module.scss';
 import {
     MDBCol,
     MDBContainer,
@@ -8,47 +8,46 @@ import {
     MDBCard,
     MDBCardText,
     MDBCardBody,
-} from "mdb-react-ui-kit";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faPen } from "@fortawesome/free-solid-svg-icons";
-import Image from "~/components/Image";
-import { useSelector } from "react-redux";
-import { DatePicker } from "antd";
-import moment from "moment";
-import * as userServices from "~/api/userServices";
+} from 'mdb-react-ui-kit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCamera, faPen } from '@fortawesome/free-solid-svg-icons';
+import Image from '~/components/Image';
+import { useSelector } from 'react-redux';
+import { DatePicker } from 'antd';
+import moment from 'moment';
+import * as userServices from '~/api/userServices';
 
 const cx = classNames.bind(styles);
 
 function Avatar() {
     const { auth } = useSelector((state) => state.auth);
-    console.log(auth);
 
     return (
-        <MDBCard className={cx("mb-4", "card")}>
-            <MDBCardBody className={cx("text-center", "card__body")}>
+        <MDBCard className={cx('mb-4', 'card')}>
+            <MDBCardBody className={cx('text-center', 'card__body')}>
                 <Image
-                    src={`http://localhost:5000/${auth?.avatar}` || ""}
-                    alt="avatar"
-                    className="rounded-circle"
-                    style={{ width: "150px" }}
+                    src={`http://localhost:5000/${auth?.avatar}` || ''}
+                    alt='avatar'
+                    className='rounded-circle'
+                    style={{ width: '150px' }}
                     fluid
                 />
                 <div
                     className={cx(
-                        "d-flex",
-                        "justify-content-center",
-                        "mb-2",
-                        "mt-5",
-                        "card__body--icon"
+                        'd-flex',
+                        'justify-content-center',
+                        'mb-2',
+                        'mt-5',
+                        'card__body--icon'
                     )}
                 >
-                    <label className={cx("label")} htmlFor="avatar">
+                    <label className={cx('label')} htmlFor='avatar'>
                         <FontAwesomeIcon icon={faCamera} />
                     </label>
                     <input
-                        type="file"
-                        id="avatar"
-                        style={{ display: "none" }}
+                        type='file'
+                        id='avatar'
+                        style={{ display: 'none' }}
                     />
                 </div>
             </MDBCardBody>
@@ -59,22 +58,22 @@ function Avatar() {
 function ProfileField({ label, value, editing, onEdit, onChange }) {
     return (
         <MDBRow>
-            <MDBCol sm="3">
+            <MDBCol sm='3'>
                 <MDBCardText>{label}</MDBCardText>
             </MDBCol>
-            <MDBCol sm="8">
+            <MDBCol sm='8'>
                 {editing ? (
                     <input
-                        type="text"
-                        className={cx("form-control")}
+                        type='text'
+                        className={cx('form-control')}
                         value={value}
                         onChange={onChange}
                     />
                 ) : (
-                    <p className="text-muted mb-0">{value}</p>
+                    <p className='text-muted mb-0'>{value}</p>
                 )}
             </MDBCol>
-            <MDBCol sm="1">
+            <MDBCol sm='1'>
                 {!editing && <FontAwesomeIcon icon={faPen} onClick={onEdit} />}
             </MDBCol>
         </MDBRow>
@@ -92,7 +91,7 @@ function Profile() {
         cccd: auth?.cccd,
         diaChi: auth?.diaChi,
     });
-    const [editingField, setEditingField] = useState("");
+    const [editingField, setEditingField] = useState('');
 
     const handleEditClick = (field) => {
         setEditingField(field);
@@ -103,7 +102,6 @@ function Profile() {
         // và cập nhật giá trị mới cho trường tương ứng trong state
         // ở đây tôi giả sử "hoTen" là trường tương ứng
         const { value } = event.target;
-        console.log(value);
         setProfile({ ...profile, [editingField]: value });
     };
 
@@ -128,7 +126,7 @@ function Profile() {
             diaChi,
             gioiTinh,
         });
-        setEditingField("");
+        setEditingField('');
     };
 
     const onChange = (date) => {
@@ -142,60 +140,60 @@ function Profile() {
     return (
         <section
             style={{
-                backgroundColor: "#fff",
-                display: "flex",
-                justifyContent: "center",
-                width: "100vw",
-                marginTop: "10vh",
+                backgroundColor: '#fff',
+                display: 'flex',
+                justifyContent: 'center',
+                width: '100vw',
+                marginTop: '10vh',
             }}
-            className={cx("wrapper")}
+            className={cx('wrapper')}
         >
-            <MDBContainer className="py-5">
+            <MDBContainer className='py-5'>
                 <MDBRow
                     style={{
-                        display: "flex",
-                        justifyContent: "center",
+                        display: 'flex',
+                        justifyContent: 'center',
                     }}
                 >
-                    <MDBCol lg="8">
+                    <MDBCol lg='8'>
                         <Avatar />
                     </MDBCol>
 
-                    <MDBCol lg="8">
-                        <MDBCard className="mb-4">
+                    <MDBCol lg='8'>
+                        <MDBCard className='mb-4'>
                             <MDBCardBody>
                                 <ProfileField
-                                    label="Họ và tên"
+                                    label='Họ và tên'
                                     value={profile?.hoTen}
-                                    editing={editingField === "hoTen"}
-                                    onEdit={() => handleEditClick("hoTen")}
+                                    editing={editingField === 'hoTen'}
+                                    onEdit={() => handleEditClick('hoTen')}
                                     onChange={handleInputChange}
                                 />
                                 <hr />
                                 <ProfileField
-                                    label="Email"
+                                    label='Email'
                                     value={profile?.email}
-                                    editing={editingField === "email"}
-                                    onEdit={() => handleEditClick("email")}
+                                    editing={editingField === 'email'}
+                                    onEdit={() => handleEditClick('email')}
                                     onChange={handleInputChange}
                                 />
                                 <hr />
 
                                 <MDBRow>
-                                    <MDBCol sm="3">
+                                    <MDBCol sm='3'>
                                         <MDBCardText>Ngày sinh</MDBCardText>
                                     </MDBCol>
-                                    <MDBCol sm="8">
+                                    <MDBCol sm='8'>
                                         <DatePicker
-                                            className={cx("input")}
+                                            className={cx('input')}
                                             defaultValue={moment(
                                                 profile?.ngaySinh
                                             )}
-                                            format={"DD/MM/YYYYY"}
+                                            format={'DD/MM/YYYYY'}
                                             onChange={onChange}
                                         />
                                     </MDBCol>
-                                    <MDBCol sm="1">
+                                    <MDBCol sm='1'>
                                         <FontAwesomeIcon icon={faPen} />
                                     </MDBCol>
                                 </MDBRow>
@@ -203,20 +201,20 @@ function Profile() {
                                 <hr />
 
                                 <MDBRow>
-                                    <MDBCol sm="3">
+                                    <MDBCol sm='3'>
                                         <MDBCardText>Giới tính</MDBCardText>
                                     </MDBCol>
-                                    <MDBCol sm="8">
+                                    <MDBCol sm='8'>
                                         <select
                                             defaultValue={profile?.gioiTinh}
                                             onChange={handleGenderChange}
                                         >
-                                            <option value="M">Nam</option>
-                                            <option value="W">Nữ</option>
-                                            <option value="O">Khác</option>
+                                            <option value='M'>Nam</option>
+                                            <option value='W'>Nữ</option>
+                                            <option value='O'>Khác</option>
                                         </select>
                                     </MDBCol>
-                                    <MDBCol sm="1">
+                                    <MDBCol sm='1'>
                                         <FontAwesomeIcon icon={faPen} />
                                     </MDBCol>
                                 </MDBRow>
@@ -224,26 +222,26 @@ function Profile() {
                                 <hr />
 
                                 <ProfileField
-                                    label="Số điện thoại"
+                                    label='Số điện thoại'
                                     value={profile?.sdt}
-                                    editing={editingField === "sdt"}
-                                    onEdit={() => handleEditClick("sdt")}
+                                    editing={editingField === 'sdt'}
+                                    onEdit={() => handleEditClick('sdt')}
                                     onChange={handleInputChange}
                                 />
                                 <hr />
                                 <ProfileField
-                                    label="CCCD"
+                                    label='CCCD'
                                     value={profile?.cccd}
-                                    editing={editingField === "cccd"}
-                                    onEdit={() => handleEditClick("cccd")}
+                                    editing={editingField === 'cccd'}
+                                    onEdit={() => handleEditClick('cccd')}
                                     onChange={handleInputChange}
                                 />
                                 <hr />
                                 <ProfileField
-                                    label="Địa chỉ"
+                                    label='Địa chỉ'
                                     value={profile?.diaChi}
-                                    editing={editingField === "diaChi"}
-                                    onEdit={() => handleEditClick("diaChi")}
+                                    editing={editingField === 'diaChi'}
+                                    onEdit={() => handleEditClick('diaChi')}
                                     onChange={handleInputChange}
                                 />
                                 <hr />
@@ -251,7 +249,7 @@ function Profile() {
                             {editingField && (
                                 <MDBCardBody>
                                     <button
-                                        className="btn btn-primary"
+                                        className='btn btn-primary'
                                         onClick={() =>
                                             handleSaveClick(
                                                 auth.maTaiKhoan,

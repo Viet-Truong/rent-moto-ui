@@ -1,6 +1,6 @@
-import classNames from "classnames/bind";
-import styles from "./ModalAccount.module.scss";
-import React, { useState, useEffect, useContext } from "react";
+import classNames from 'classnames/bind';
+import styles from './ModalAccount.module.scss';
+import React, { useState, useEffect, useContext } from 'react';
 import {
     MDBBtn,
     MDBModal,
@@ -15,9 +15,9 @@ import {
     MDBDropdownMenu,
     MDBDropdownToggle,
     MDBDropdownItem,
-} from "mdb-react-ui-kit";
-import { AppContext } from "~/Context/AppContext";
-import * as authServices from "~/api/authServices";
+} from 'mdb-react-ui-kit';
+import { AppContext } from '~/Context/AppContext';
+import * as authServices from '~/api/authServices';
 
 const cx = classNames.bind(styles);
 function ModalAccount() {
@@ -35,86 +35,85 @@ function ModalAccount() {
                 password: matKhau,
                 role: role,
             });
-            console.log(result);
         } else {
-            console.log("Mat khau khong khop");
+            console.log('Mat khau khong khop');
         }
     };
 
     return (
-        <div className={cx("wrapper-modal")}>
-            <MDBModal show={isModalAccountVisible} tabIndex="-1">
+        <div className={cx('wrapper-modal')}>
+            <MDBModal show={isModalAccountVisible} tabIndex='-1'>
                 <MDBModalDialog>
                     <MDBModalContent>
                         <MDBModalHeader>
                             <MDBModalTitle>
-                                {typeModal == "ADD"
-                                    ? "Thêm tài khoản"
-                                    : "Sửa thông tin tài khoản"}
+                                {typeModal == 'ADD'
+                                    ? 'Thêm tài khoản'
+                                    : 'Sửa thông tin tài khoản'}
                             </MDBModalTitle>
                             <MDBBtn
-                                className="btn-close"
-                                color="none"
+                                className='btn-close'
+                                color='none'
                                 onClick={() => setIsModalAccountVisible(false)}
                             ></MDBBtn>
                         </MDBModalHeader>
 
                         <MDBModalBody>
                             <MDBInput
-                                className={cx("input")}
-                                label={"Tài khoản"}
+                                className={cx('input')}
+                                label={'Tài khoản'}
                                 value={account}
                                 onChange={(e) => setAccount(e.target.value)}
-                                type="text"
+                                type='text'
                             />
 
                             <MDBInput
-                                className={cx("input")}
-                                label={"Mật khẩu"}
+                                className={cx('input')}
+                                label={'Mật khẩu'}
                                 value={confirmPassword}
                                 onChange={(e) =>
                                     setConfirmPassword(e.target.value)
                                 }
-                                type="password"
+                                type='password'
                             />
 
                             <MDBInput
-                                className={cx("input")}
-                                label={"Xác nhận mật khẩu"}
+                                className={cx('input')}
+                                label={'Xác nhận mật khẩu'}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                type="password"
+                                type='password'
                             />
 
-                            <div className={cx("wrapper-dropdown")}>
-                                <MDBDropdown className={cx("dropdown")}>
+                            <div className={cx('wrapper-dropdown')}>
+                                <MDBDropdown className={cx('dropdown')}>
                                     <MDBDropdownToggle>
                                         Vai trò
                                     </MDBDropdownToggle>
                                     <MDBDropdownMenu>
                                         <MDBDropdownItem
                                             link
-                                            onClick={() => setRole("Admin")}
+                                            onClick={() => setRole('Admin')}
                                         >
                                             Admin
                                         </MDBDropdownItem>
                                         <MDBDropdownItem
                                             link
-                                            onClick={() => setRole("Nhân viên")}
+                                            onClick={() => setRole('Nhân viên')}
                                         >
                                             Nhân viên
                                         </MDBDropdownItem>
                                         <MDBDropdownItem
                                             link
                                             onClick={() =>
-                                                setRole("Khách hàng")
+                                                setRole('Khách hàng')
                                             }
                                         >
                                             Khách hàng
                                         </MDBDropdownItem>
                                     </MDBDropdownMenu>
                                 </MDBDropdown>
-                                <div className={cx("value_dropdown")}>
+                                <div className={cx('value_dropdown')}>
                                     {role}
                                 </div>
                             </div>
@@ -122,14 +121,14 @@ function ModalAccount() {
 
                         <MDBModalFooter>
                             <MDBBtn
-                                className={cx("button_save")}
-                                color="secondary"
+                                className={cx('button_save')}
+                                color='secondary'
                                 onClick={() => setIsModalAccountVisible(false)}
                             >
                                 Huỷ
                             </MDBBtn>
                             <MDBBtn
-                                className={cx("button_save")}
+                                className={cx('button_save')}
                                 onClick={() => {
                                     handleAddAccount(account, password, role);
                                     setIsModalAccountVisible(false);

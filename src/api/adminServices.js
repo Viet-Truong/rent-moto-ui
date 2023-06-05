@@ -21,7 +21,6 @@ export const updateAccount = async ({
     phanQuyen,
 }) => {
     try {
-        console.log(maTaiKhoan, taiKhoan, matKhau, phanQuyen);
         const res = await request.post(
             'updateInfoUser',
             {

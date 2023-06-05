@@ -19,7 +19,6 @@ export const register = async ({ username, password, role = 'Khách hàng' }) =>
             password,
             role,
         });
-        console.log(res);
         return res;
     } catch (e) {
         console.log(e);

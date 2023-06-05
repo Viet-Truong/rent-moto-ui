@@ -1,5 +1,5 @@
-import classNames from "classnames/bind";
-import styles from "./ModalHandleSignMoto.module.scss";
+import classNames from 'classnames/bind';
+import styles from './ModalHandleSignMoto.module.scss';
 import {
     MDBBadge,
     MDBBtn,
@@ -12,12 +12,12 @@ import {
     MDBModalHeader,
     MDBModalTitle,
     MDBModalBody,
-} from "mdb-react-ui-kit";
-import { AppContext } from "~/Context/AppContext";
-import { useState, useEffect, useContext } from "react";
-import { moto } from "~/data/data";
-import Button from "~/components/Button";
-import ModalAddError from "../ModalAddError";
+} from 'mdb-react-ui-kit';
+import { AppContext } from '~/Context/AppContext';
+import { useState, useEffect, useContext } from 'react';
+import { moto } from '~/data/data';
+import Button from '~/components/Button';
+import ModalAddError from '../ModalAddError';
 
 const cx = classNames.bind(styles);
 function ModalHandleSignMoto() {
@@ -36,8 +36,6 @@ function ModalHandleSignMoto() {
     // const [status, setStatus] = useState(data?.status ?? "");
     const [dataModal, setDataModal] = useState(data ?? []);
     const [motoFounded, setMotoFounded] = useState([]);
-
-    console.log(motoFounded);
 
     const findMotoByID = (id) => {
         const foundMoto = moto.find((item) => item.id === id);
@@ -85,44 +83,44 @@ function ModalHandleSignMoto() {
     }, [data]);
 
     return (
-        <div className={cx("wrapper")}>
-            <MDBModal show={isModalAcceptVisible} tabIndex="-1">
-                <MDBModalDialog className={cx("modal_dialog")}>
+        <div className={cx('wrapper')}>
+            <MDBModal show={isModalAcceptVisible} tabIndex='-1'>
+                <MDBModalDialog className={cx('modal_dialog')}>
                     <MDBModalContent>
                         <MDBModalHeader>
                             <MDBModalTitle>
-                                {typeModal == "ACCEPT"
-                                    ? "Duyệt đăng kí thuê xe"
-                                    : "Xác nhận trả xe"}
+                                {typeModal == 'ACCEPT'
+                                    ? 'Duyệt đăng kí thuê xe'
+                                    : 'Xác nhận trả xe'}
                             </MDBModalTitle>
                             <MDBBtn
-                                className="btn-close"
-                                color="none"
+                                className='btn-close'
+                                color='none'
                                 onClick={() => setIsModalAcceptVisible(false)}
                             ></MDBBtn>
                         </MDBModalHeader>
 
-                        <MDBModalBody className={cx("modal_body")}>
-                            <MDBTable align="middle" className={cx("table")}>
+                        <MDBModalBody className={cx('modal_body')}>
+                            <MDBTable align='middle' className={cx('table')}>
                                 <MDBTableHead>
                                     <tr>
-                                        <th scope="col">
+                                        <th scope='col'>
                                             <input
-                                                type="checkbox"
+                                                type='checkbox'
                                                 style={{
-                                                    cursor: "pointer",
+                                                    cursor: 'pointer',
                                                 }}
                                                 checked={checkAll}
                                                 onChange={handleCheckAll}
                                             />
                                         </th>
-                                        <th scope="col">ID xe</th>
-                                        <th scope="col">Tên xe</th>
-                                        <th scope="col">Hãng xe</th>
-                                        <th scope="col">Loại xe</th>
-                                        <th scope="col">Biển số xe</th>
-                                        <th scope="col">Giá thuê</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope='col'>ID xe</th>
+                                        <th scope='col'>Tên xe</th>
+                                        <th scope='col'>Hãng xe</th>
+                                        <th scope='col'>Loại xe</th>
+                                        <th scope='col'>Biển số xe</th>
+                                        <th scope='col'>Giá thuê</th>
+                                        <th scope='col'>Actions</th>
                                     </tr>
                                 </MDBTableHead>
                                 <MDBTableBody>
@@ -131,10 +129,10 @@ function ModalHandleSignMoto() {
                                             <tr key={item?.id}>
                                                 <td>
                                                     <input
-                                                        type="checkbox"
-                                                        className="fw-bold mb-1"
+                                                        type='checkbox'
+                                                        className='fw-bold mb-1'
                                                         style={{
-                                                            cursor: "pointer",
+                                                            cursor: 'pointer',
                                                         }}
                                                         checked={item.checked}
                                                         onChange={() =>
@@ -145,48 +143,48 @@ function ModalHandleSignMoto() {
                                                     />
                                                 </td>
                                                 <td>
-                                                    <p className="fw-bold mb-1">
+                                                    <p className='fw-bold mb-1'>
                                                         {item?.id}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <div className="ms-3">
-                                                        <p className="fw-bold mb-1">
+                                                    <div className='ms-3'>
+                                                        <p className='fw-bold mb-1'>
                                                             {item?.name}
                                                         </p>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p className="fw-normal mb-1">
+                                                    <p className='fw-normal mb-1'>
                                                         {item?.autoMaker}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p className="fw-normal mb-1">
+                                                    <p className='fw-normal mb-1'>
                                                         {item?.type}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p className="fw-normal mb-1">
+                                                    <p className='fw-normal mb-1'>
                                                         {item?.licensePlates}
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <p className="fw-normal mb-1">
+                                                    <p className='fw-normal mb-1'>
                                                         {item?.price}.000
                                                     </p>
                                                 </td>
                                                 <td>
                                                     {dataModal.status ==
-                                                    "Đã duyệt" ? (
+                                                    'Đã duyệt' ? (
                                                         <Button
-                                                            color="link"
-                                                            size="sm"
+                                                            color='link'
+                                                            size='sm'
                                                             small={true}
                                                             className={cx(
-                                                                "fw-normal",
-                                                                "mb-1",
-                                                                "btn"
+                                                                'fw-normal',
+                                                                'mb-1',
+                                                                'btn'
                                                             )}
                                                         >
                                                             CHI TIẾT
@@ -194,27 +192,27 @@ function ModalHandleSignMoto() {
                                                     ) : (
                                                         <>
                                                             <MDBBtn
-                                                                color="link"
+                                                                color='link'
                                                                 rounded
-                                                                size="sm"
+                                                                size='sm'
                                                                 className={cx(
-                                                                    "fw-normal",
-                                                                    "mb-1",
-                                                                    "btn"
+                                                                    'fw-normal',
+                                                                    'mb-1',
+                                                                    'btn'
                                                                 )}
                                                             >
                                                                 Duyệt
                                                             </MDBBtn>
                                                             {typeModal !=
-                                                            "ACCEPT" ? (
+                                                            'ACCEPT' ? (
                                                                 <Button
-                                                                    color="link"
-                                                                    size="sm"
+                                                                    color='link'
+                                                                    size='sm'
                                                                     small={true}
                                                                     className={cx(
-                                                                        "fw-normal",
-                                                                        "mb-1",
-                                                                        "btn"
+                                                                        'fw-normal',
+                                                                        'mb-1',
+                                                                        'btn'
                                                                     )}
                                                                     onClick={() =>
                                                                         setIsModalAddErrorVisible(
@@ -225,7 +223,7 @@ function ModalHandleSignMoto() {
                                                                     THÊM LỖI
                                                                 </Button>
                                                             ) : (
-                                                                ""
+                                                                ''
                                                             )}
                                                         </>
                                                     )}
@@ -234,7 +232,7 @@ function ModalHandleSignMoto() {
                                         );
                                     })}
                                 </MDBTableBody>
-                                {typeModal == "ACCEPT" ? (
+                                {typeModal == 'ACCEPT' ? (
                                     <tfoot>
                                         <tr>
                                             <td></td>
@@ -246,13 +244,13 @@ function ModalHandleSignMoto() {
                                             <td></td>
                                             <td>
                                                 <Button
-                                                    color="link"
-                                                    size="sm"
+                                                    color='link'
+                                                    size='sm'
                                                     small={true}
                                                     className={cx(
-                                                        "fw-normal",
-                                                        "mb-1",
-                                                        "btn"
+                                                        'fw-normal',
+                                                        'mb-1',
+                                                        'btn'
                                                     )}
                                                 >
                                                     Duyệt
@@ -263,7 +261,7 @@ function ModalHandleSignMoto() {
                                 ) : (
                                     <tfoot>
                                         <tr>
-                                            <td className="fw-bold mb-1">
+                                            <td className='fw-bold mb-1'>
                                                 Tổng tiền:
                                             </td>
                                             <td></td>
@@ -274,13 +272,13 @@ function ModalHandleSignMoto() {
                                             <td>{totalAmount}.000</td>
                                             <td>
                                                 <Button
-                                                    color="link"
-                                                    size="sm"
+                                                    color='link'
+                                                    size='sm'
                                                     small={true}
                                                     className={cx(
-                                                        "fw-normal",
-                                                        "mb-1",
-                                                        "btn"
+                                                        'fw-normal',
+                                                        'mb-1',
+                                                        'btn'
                                                     )}
                                                 >
                                                     XÁC NHẬN

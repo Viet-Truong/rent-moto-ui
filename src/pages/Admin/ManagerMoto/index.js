@@ -34,7 +34,6 @@ function ManagerMoto() {
     useEffect(() => {
         const fetch = async () => {
             const result = await motoServices.getAllXe();
-            console.log(result);
             setMotoData(result);
         };
 

@@ -1,22 +1,23 @@
-import classNames from "classnames/bind";
-import Image from "../../../../components/Image";
-import styles from "./MotoItem.module.scss";
-import { Link } from "react-router-dom";
+import classNames from 'classnames/bind';
+import Image from '../../../../components/Image';
+import styles from './MotoItem.module.scss';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function CarItem({ data }) {
+    console.log(data);
     return (
-        <Link to={`/moto/${data.slug}`} className={cx("wrapper")}>
+        <Link to={`/moto/${data.slug}`} className={cx('wrapper')}>
             <Image
-                src={data?.avatar || ""}
+                src={`http://localhost:5000/${data?.hinhAnh[0]}` || ''}
                 alt={data.tenXe}
-                className={cx("avatar")}
+                className={cx('avatar')}
             />
-            <div className={cx("info")}>
-                <h4 className={cx("name")}>
+            <div className={cx('info')}>
+                <h4 className={cx('name')}>
                     <span>{data.tenXe}</span>
                 </h4>
-                <span className={cx("price")}>
+                <span className={cx('price')}>
                     {data.giaThue}.000 VNĐ / 1 ngày
                 </span>
             </div>

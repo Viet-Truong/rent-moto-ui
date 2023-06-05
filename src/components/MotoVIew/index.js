@@ -19,7 +19,6 @@ function MotoView({ item }) {
     const [previewImage, setPreviewImage] = useState('');
     const { addCartItem } = useContext(CartContext);
 
-    console.log(item);
 
     useEffect(() => {
         setProduct(item);

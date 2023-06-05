@@ -34,7 +34,6 @@ function Account() {
     useEffect(() => {
         const fetch = async () => {
             const result = await adminServices.getAllUser();
-            console.log(result);
             setAccountData(result);
         };
 
