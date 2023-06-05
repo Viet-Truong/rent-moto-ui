@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 function CarItem({ data }) {
-    console.log(data);
     return (
         <Link to={`/moto/${data.slug}`} className={cx('wrapper')}>
             <Image
