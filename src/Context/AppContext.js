@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useMemo } from "react";
+import { createContext, useContext, useState, useMemo } from 'react';
 
 export const AppContext = createContext();
 
@@ -9,6 +9,7 @@ export const AppContextProvider = ({ children }) => {
     const [isModalAcceptVisible, setIsModalAcceptVisible] = useState(false);
     const [isModalReturnVisible, setIsModalReturnVisible] = useState(false);
     const [data, setData] = useState();
+    const [dataMoto, setDataMoto] = useState();
     const [typeModal, setTypeModal] = useState();
 
     return (
@@ -28,6 +29,8 @@ export const AppContextProvider = ({ children }) => {
                 setTypeModal,
                 isModalAddErrorVisible,
                 setIsModalAddErrorVisible,
+                dataMoto,
+                setDataMoto,
             }}
         >
             {children}
