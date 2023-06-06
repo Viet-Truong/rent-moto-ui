@@ -91,6 +91,7 @@ function Profile() {
         cccd: auth?.cccd,
         diaChi: auth?.diaChi,
     });
+
     const [editingField, setEditingField] = useState('');
 
     const handleEditClick = (field) => {
@@ -126,11 +127,12 @@ function Profile() {
             diaChi,
             gioiTinh,
         });
+        console.log(result);
         setEditingField('');
     };
 
-    const onChange = (date) => {
-        setProfile({ ...profile, [editingField]: date });
+    const onChangeDate = (date, dateString) => {
+        setProfile({ ...profile, ngaySinh: dateString });
     };
 
     const handleGenderChange = (e) => {
@@ -160,7 +162,10 @@ function Profile() {
                     </MDBCol>
 
                     <MDBCol lg='8'>
-                        <MDBCard className='mb-4'>
+                        <MDBCard
+                            className='mb-4'
+                            style={{ borderRadius: '15px' }}
+                        >
                             <MDBCardBody>
                                 <ProfileField
                                     label='Họ và tên'
@@ -189,12 +194,22 @@ function Profile() {
                                             defaultValue={moment(
                                                 profile?.ngaySinh
                                             )}
-                                            format={'DD/MM/YYYYY'}
-                                            onChange={onChange}
+                                            format={'DD/MM/YYYY'}
+                                            onChange={onChangeDate}
+                                            disabled={
+                                                editingField !== 'ngaySinh'
+                                            }
                                         />
                                     </MDBCol>
                                     <MDBCol sm='1'>
-                                        <FontAwesomeIcon icon={faPen} />
+                                        {editingField !== 'ngaySinh' && (
+                                            <FontAwesomeIcon
+                                                icon={faPen}
+                                                onClick={() =>
+                                                    handleEditClick('ngaySinh')
+                                                }
+                                            />
+                                        )}
                                     </MDBCol>
                                 </MDBRow>
 
@@ -208,6 +223,9 @@ function Profile() {
                                         <select
                                             defaultValue={profile?.gioiTinh}
                                             onChange={handleGenderChange}
+                                            disabled={
+                                                editingField !== 'gioiTinh'
+                                            }
                                         >
                                             <option value='M'>Nam</option>
                                             <option value='W'>Nữ</option>
@@ -215,7 +233,14 @@ function Profile() {
                                         </select>
                                     </MDBCol>
                                     <MDBCol sm='1'>
-                                        <FontAwesomeIcon icon={faPen} />
+                                        {editingField !== 'gioiTinh' && (
+                                            <FontAwesomeIcon
+                                                icon={faPen}
+                                                onClick={() =>
+                                                    handleEditClick('gioiTinh')
+                                                }
+                                            />
+                                        )}
                                     </MDBCol>
                                 </MDBRow>
 
@@ -249,7 +274,7 @@ function Profile() {
                             {editingField && (
                                 <MDBCardBody>
                                     <button
-                                        className='btn btn-primary'
+                                        className='btn btn-primary p-3 text-xl-center'
                                         onClick={() =>
                                             handleSaveClick(
                                                 auth.maTaiKhoan,
@@ -263,7 +288,7 @@ function Profile() {
                                             )
                                         }
                                     >
-                                        Save
+                                        Lưu
                                     </button>
                                 </MDBCardBody>
                             )}
