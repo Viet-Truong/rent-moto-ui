@@ -19,7 +19,6 @@ function MotoView({ item }) {
     const [previewImage, setPreviewImage] = useState('');
     const { addCartItem } = useContext(CartContext);
 
-
     useEffect(() => {
         setProduct(item);
         if (item?.hinhAnh?.length > 0) {
@@ -125,7 +124,7 @@ function MotoView({ item }) {
                             onClick={() =>
                                 addCartItem({
                                     id: `${product.slug}-${uuid()}`,
-                                    image: product.image[0].url,
+                                    image: product.image[0],
                                     name: product.name,
                                     price: product.price,
                                     slug: product.slug,

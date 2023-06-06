@@ -1,18 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { authRegister, authLogin, authLogout } from "./authAction";
+import { createSlice } from '@reduxjs/toolkit';
+import { authRegister, authLogin, authLogout } from './authAction';
 
-const authJSON = localStorage.getItem("auth");
-const auth = JSON.parse(authJSON)?.data || null;
+// Hàm helper để lấy giá trị auth từ localStorage
+const getInitialAuth = () => {
+    const authJSON = localStorage.getItem('auth');
+    const auth = JSON.parse(authJSON)?.data || null;
+    return auth;
+};
 
 const initialState = {
     loading: false,
-    auth: auth,
+    auth: getInitialAuth(), // Sử dụng hàm helper để lấy giá trị auth từ localStorage
     error: null,
     success: false,
 };
 
 const authSlice = createSlice({
-    name: "auth",
+    name: 'auth',
     initialState,
     reducers: {},
     extraReducers: {

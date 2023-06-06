@@ -117,17 +117,24 @@ function Profile() {
         gioiTinh
     ) => {
         // Thực hiện lưu các thay đổi vào cơ sở dữ liệu hoặc nơi lưu trữ phù hợp
-        const result = await userServices.updateProfile({
-            maTaiKhoan,
-            email,
-            hoTen,
-            ngaySinh,
-            cccd,
-            sdt,
-            diaChi,
-            gioiTinh,
-        });
-        console.log(result);
+        try {
+            const result = await userServices.updateProfile({
+                maTaiKhoan,
+                email,
+                hoTen,
+                ngaySinh,
+                cccd,
+                sdt,
+                diaChi,
+                gioiTinh,
+            });
+            // Cập nhật dữ liệu mới vào localStorage
+            localStorage.setItem('auth', JSON.stringify(result));
+            console.log(auth);
+        } catch (error) {
+            // Xử lý lỗi nếu cần
+        }
+
         setEditingField('');
     };
 
