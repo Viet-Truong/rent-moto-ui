@@ -34,3 +34,23 @@ export const updateProfile = async ({
         console.log(e);
     }
 };
+
+export const updateAvatar = async ({ maTaiKhoan, avatar }) => {
+    try {
+        const res = await request.post(
+            'updateInfoUser',
+            {
+                maTaiKhoan,
+                avatar,
+            },
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            }
+        );
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};

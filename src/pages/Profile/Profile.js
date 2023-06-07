@@ -18,20 +18,82 @@ import moment from 'moment';
 import * as userServices from '~/api/userServices';
 import Toast from '~/components/Toast';
 import { AppContext } from '~/Context/AppContext';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
 function Avatar() {
     const { auth } = useSelector((state) => state.auth);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [previewImage, setPreviewImage] = useState('');
+    const { isToastVisible, setIsToastVisible } = useContext(AppContext);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setSelectedImage(file);
+        setPreviewImage(URL.createObjectURL(file));
+        setIsEditing(true);
+    };
+
+    const handleCancel = () => {
+        setSelectedImage(null);
+        setIsEditing(false);
+        setPreviewImage('');
+    };
+
+    const handleSave = async (maTaiKhoan, avatar) => {
+        // Call your API to save the selected image
+        // ...
+        try {
+            const result = await userServices.updateAvatar({
+                maTaiKhoan,
+                avatar,
+            });
+            // Cập nhật dữ liệu mới vào localStorage
+            // localStorage.setItem('auth', JSON.stringify(result));
+            console.log(result);
+            if (result.status === 'success') {
+                setIsToastVisible({
+                    type: 'success',
+                    message: 'Đã cập nhật thông tin thành công',
+                    title: 'Thành công',
+                    open: true,
+                });
+            } else {
+                setIsToastVisible({
+                    type: 'error',
+                    message: 'Có lỗi xảy ra. Vui lòng thử lại sau',
+                    title: 'Thất bại',
+                    open: true,
+                });
+            }
+            console.log(result);
+        } catch (error) {
+            // Xử lý lỗi nếu cần
+            setIsToastVisible({
+                type: 'error',
+                message: 'Có lỗi xảy ra. Vui lòng thử lại sau',
+                title: 'Thất bại',
+                open: true,
+            });
+        }
+
+        setIsEditing(false);
+    };
 
     return (
         <MDBCard className={cx('mb-4', 'card')}>
             <MDBCardBody className={cx('text-center', 'card__body')}>
                 <Image
-                    src={`http://localhost:5000/${auth?.avatar}` || ''}
+                    src={
+                        isEditing
+                            ? previewImage
+                            : `http://localhost:5000/${auth?.avatar}` || ''
+                    }
                     alt='avatar'
                     className='rounded-circle'
-                    style={{ width: '150px' }}
+                    style={{ width: '150px', height: '150px' }}
                     fluid
                 />
                 <div
@@ -44,14 +106,36 @@ function Avatar() {
                     )}
                 >
                     <label className={cx('label')} htmlFor='avatar'>
-                        <FontAwesomeIcon icon={faCamera} />
+                        {!isEditing ? <FontAwesomeIcon icon={faCamera} /> : ''}
                     </label>
                     <input
                         type='file'
                         id='avatar'
                         style={{ display: 'none' }}
+                        onChange={handleImageChange}
                     />
                 </div>
+                {isEditing && (
+                    <div style={{ marginTop: '10px' }}>
+                        <Button
+                            primary
+                            style={{ padding: '5px', marginLeft: '10px' }}
+                            onClick={handleCancel}
+                        >
+                            Huỷ
+                        </Button>
+                        <Button
+                            primary
+                            style={{ padding: '5px', marginLeft: '10px' }}
+                            onClick={() => {
+                                console.log(auth.maTaiKhoan, selectedImage);
+                                handleSave(auth.maTaiKhoan, selectedImage);
+                            }}
+                        >
+                            Lưu
+                        </Button>
+                    </div>
+                )}
             </MDBCardBody>
         </MDBCard>
     );
