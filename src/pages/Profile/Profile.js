@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import {
@@ -16,6 +16,8 @@ import { useSelector } from 'react-redux';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import * as userServices from '~/api/userServices';
+import Toast from '~/components/Toast';
+import { AppContext } from '~/Context/AppContext';
 
 const cx = classNames.bind(styles);
 
@@ -91,6 +93,11 @@ function Profile() {
         cccd: auth?.cccd,
         diaChi: auth?.diaChi,
     });
+    // const [toast, setToast] = useState({
+    //     open: false,
+    // });
+
+    const { isToastVisible, setIsToastVisible } = useContext(AppContext);
 
     const [editingField, setEditingField] = useState('');
 
@@ -130,9 +137,30 @@ function Profile() {
             });
             // Cập nhật dữ liệu mới vào localStorage
             localStorage.setItem('auth', JSON.stringify(result));
-            console.log(auth);
+            if (result.status === 'success') {
+                setIsToastVisible({
+                    type: 'success',
+                    message: 'Đã cập nhật thông tin thành công',
+                    title: 'Thành công',
+                    open: true,
+                });
+            } else {
+                setIsToastVisible({
+                    type: 'error',
+                    message: 'Có lỗi xảy ra. Vui lòng thử lại sau',
+                    title: 'Thất bại',
+                    open: true,
+                });
+            }
+            console.log(result);
         } catch (error) {
             // Xử lý lỗi nếu cần
+            setIsToastVisible({
+                type: 'error',
+                message: 'Có lỗi xảy ra. Vui lòng thử lại sau',
+                title: 'Thất bại',
+                open: true,
+            });
         }
 
         setEditingField('');
@@ -303,6 +331,11 @@ function Profile() {
                     </MDBCol>
                 </MDBRow>
             </MDBContainer>
+            <Toast
+                type={isToastVisible?.type}
+                message={isToastVisible?.message}
+                title={isToastVisible?.title}
+            />
         </section>
     );
 }

@@ -8,6 +8,9 @@ export const AppContextProvider = ({ children }) => {
     const [isModalMotoVisible, setIsModalMotoVisible] = useState(false);
     const [isModalAcceptVisible, setIsModalAcceptVisible] = useState(false);
     const [isModalReturnVisible, setIsModalReturnVisible] = useState(false);
+    const [isToastVisible, setIsToastVisible] = useState({
+        open: false,
+    });
     const [data, setData] = useState();
     const [dataMoto, setDataMoto] = useState();
     const [typeModal, setTypeModal] = useState();
@@ -31,6 +34,8 @@ export const AppContextProvider = ({ children }) => {
                 setIsModalAddErrorVisible,
                 dataMoto,
                 setDataMoto,
+                isToastVisible,
+                setIsToastVisible,
             }}
         >
             {children}
