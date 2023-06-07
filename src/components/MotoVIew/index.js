@@ -34,7 +34,6 @@ function MotoView({ item }) {
     const handleRangePickerChange = (dates) => {
         const startDate = dates[0].format('DD-MM-YYYY');
         const endDate = dates[1].format('DD-MM-YYYY');
-        console.log(startDate, endDate);
         setStartDate(startDate);
         setEndDate(endDate);
     };

@@ -11,11 +11,19 @@ import {
     MDBPaginationLink,
 } from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+    faPen,
+    faCheckCircle,
+    faDatabase,
+    faExclamation,
+    faMoneyBill,
+} from '@fortawesome/free-solid-svg-icons';
 import { acceptMoto } from '~/data/data';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '~/Context/AppContext';
 import ModalHandleSignMoto from '~/components/Modal/ModalHandleSignMoto';
+import Search from '~/components/Search';
+import Policy from '~/components/Policy';
 
 const cx = classNames.bind(styles);
 
@@ -32,6 +40,29 @@ function AcceptMoto() {
                 />
                 Duyệt đăng kí thuê xe
             </h1>
+            <div className={cx('wrapper-policy')}>
+                <Policy
+                    icon={<FontAwesomeIcon icon={faDatabase} />}
+                    name={'Tổng đơn đăng kí'}
+                    value={5}
+                />
+                <Policy
+                    icon={<FontAwesomeIcon icon={faCheckCircle} />}
+                    name={'Số đơn đã duyệt'}
+                    value={5}
+                />
+                <Policy
+                    icon={<FontAwesomeIcon icon={faExclamation} />}
+                    name={'Số đơn chưa duyệt'}
+                    value={5}
+                />
+                <Policy
+                    icon={<FontAwesomeIcon icon={faMoneyBill} />}
+                    name={'Tổng tiền'}
+                    value={5}
+                />
+            </div>
+            <Search />
             <MDBTable align='middle' className={cx('table')}>
                 <MDBTableHead>
                     <tr>

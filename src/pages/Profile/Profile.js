@@ -68,7 +68,6 @@ function Avatar() {
                     open: true,
                 });
             }
-            console.log(result);
         } catch (error) {
             // Xử lý lỗi nếu cần
             setIsToastVisible({
