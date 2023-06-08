@@ -35,14 +35,21 @@ export const updateProfile = async ({
     }
 };
 
-export const updateAvatar = async ({ maTaiKhoan, avatar }) => {
+function formDataToJSON(formData) {
+    const json = {};
+    for (const [key, value] of formData.entries()) {
+        json[key] = value;
+    }
+    return json;
+}
+
+export const updateAvatar = async (formData) => {
     try {
         const res = await request.post(
             'updateInfoUser',
-            {
-                maTaiKhoan,
-                avatar,
-            },
+
+            formData,
+
             {
                 headers: {
                     'Content-Type': 'multipart/form-data',

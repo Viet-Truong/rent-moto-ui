@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import {
@@ -28,9 +28,11 @@ function Avatar() {
     const [isEditing, setIsEditing] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const { isToastVisible, setIsToastVisible } = useContext(AppContext);
+    const formDataRef = useRef(new FormData());
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
+        formDataRef.current.append('avatar', file);
         setSelectedImage(file);
         setPreviewImage(URL.createObjectURL(file));
         setIsEditing(true);
@@ -42,17 +44,22 @@ function Avatar() {
         setPreviewImage('');
     };
 
-    const handleSave = async (maTaiKhoan, avatar) => {
+    function formDataToJSON(formData) {
+        const json = {};
+        for (const [key, value] of formData.entries()) {
+            json[key] = value;
+        }
+        return json;
+    }
+
+    const handleSave = async () => {
         // Call your API to save the selected image
         // ...
+        formDataRef.current.append('maTaiKhoan', auth.maTaiKhoan);
         try {
-            const result = await userServices.updateAvatar({
-                maTaiKhoan,
-                avatar,
-            });
+            const result = await userServices.updateAvatar(formDataRef.current);
             // Cập nhật dữ liệu mới vào localStorage
-            // localStorage.setItem('auth', JSON.stringify(result));
-            console.log(result);
+            localStorage.setItem('auth', JSON.stringify(result));
             if (result.status === 'success') {
                 setIsToastVisible({
                     type: 'success',
@@ -126,10 +133,7 @@ function Avatar() {
                         <Button
                             primary
                             style={{ padding: '5px', marginLeft: '10px' }}
-                            onClick={() => {
-                                console.log(auth.maTaiKhoan, selectedImage);
-                                handleSave(auth.maTaiKhoan, selectedImage);
-                            }}
+                            onClick={handleSave}
                         >
                             Lưu
                         </Button>
