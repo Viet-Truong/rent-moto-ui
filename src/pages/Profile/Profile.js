@@ -27,6 +27,9 @@ function Avatar() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [isEditing, setIsEditing] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
+    const [avatarUrl, setAvatarUrl] = useState(
+        `http://localhost:5000/${auth?.avatar}` || ''
+    );
     const { isToastVisible, setIsToastVisible } = useContext(AppContext);
     const formDataRef = useRef(new FormData());
 
@@ -61,6 +64,7 @@ function Avatar() {
             // Cập nhật dữ liệu mới vào localStorage
             localStorage.setItem('auth', JSON.stringify(result));
             if (result.status === 'success') {
+                setAvatarUrl(`http://localhost:5000/${result.data.avatar}`);
                 setIsToastVisible({
                     type: 'success',
                     message: 'Đã cập nhật thông tin thành công',
@@ -92,11 +96,7 @@ function Avatar() {
         <MDBCard className={cx('mb-4', 'card')}>
             <MDBCardBody className={cx('text-center', 'card__body')}>
                 <Image
-                    src={
-                        isEditing
-                            ? previewImage
-                            : `http://localhost:5000/${auth?.avatar}` || ''
-                    }
+                    src={isEditing ? previewImage : avatarUrl}
                     alt='avatar'
                     className='rounded-circle'
                     style={{ width: '150px', height: '150px' }}
