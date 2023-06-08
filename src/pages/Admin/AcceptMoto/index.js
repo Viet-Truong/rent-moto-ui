@@ -62,7 +62,20 @@ function AcceptMoto() {
                     value={5}
                 />
             </div>
-            <Search />
+            <div className={cx('action-table')}>
+                <Search />
+                <div>
+                    <div>
+                        <select className={cx('select')}>
+                            <option value='DF'>Mặc định</option>
+                            <option value='StartDate'>Ngày bắt đầu</option>
+                            <option value='Accepted'>Đã duyệt</option>
+                            <option value='StartDate'>Chưa duyệt</option>
+                            <option value='Money'>Tổng tiền</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <MDBTable align='middle' className={cx('table')}>
                 <MDBTableHead>
                     <tr>

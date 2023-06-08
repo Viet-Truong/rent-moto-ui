@@ -18,6 +18,8 @@ import { useState, useEffect, useContext } from 'react';
 import { moto } from '~/data/data';
 import Button from '~/components/Button';
 import ModalAddError from '../ModalAddError';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 function ModalHandleSignMoto() {
@@ -187,7 +189,14 @@ function ModalHandleSignMoto() {
                                                                 'btn'
                                                             )}
                                                         >
-                                                            CHI TIẾT
+                                                            <FontAwesomeIcon
+                                                                icon={
+                                                                    faInfoCircle
+                                                                }
+                                                                className={cx(
+                                                                    'fw-icon'
+                                                                )}
+                                                            />
                                                         </Button>
                                                     ) : (
                                                         <>
@@ -244,14 +253,9 @@ function ModalHandleSignMoto() {
                                             <td></td>
                                             <td>
                                                 <Button
-                                                    color='link'
                                                     size='sm'
-                                                    small={true}
-                                                    className={cx(
-                                                        'fw-normal',
-                                                        'mb-1',
-                                                        'btn'
-                                                    )}
+                                                    primary
+                                                    className={cx('fw-normal')}
                                                 >
                                                     Duyệt
                                                 </Button>

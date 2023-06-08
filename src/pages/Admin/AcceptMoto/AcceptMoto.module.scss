@@ -12,6 +12,19 @@
     }
 }
 
+.action-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.select {
+    width: 8vw;
+    padding: 5px;
+    outline: none;
+}
+
 .table {
     margin-top: 20px;
     font-size: 1.4rem !important;
