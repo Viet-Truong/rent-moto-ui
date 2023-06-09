@@ -24,12 +24,26 @@ import { AppContext } from '~/Context/AppContext';
 import ModalHandleSignMoto from '~/components/Modal/ModalHandleSignMoto';
 import Search from '~/components/Search';
 import Policy from '~/components/Policy';
+import * as adminServices from '~/api/adminServices';
 
 const cx = classNames.bind(styles);
+const PAGE = 1;
 
 function AcceptMoto() {
     const { setIsModalAcceptVisible, setTypeModal, setData } =
         useContext(AppContext);
+    const [page, setPage] = useState(PAGE);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const result = await adminServices.getAllOrder({
+                q: '',
+                page,
+            });
+            console.log(result);
+        };
+        fetch();
+    }, [page]);
     return (
         <div className={cx('wrapper')}>
             <ModalHandleSignMoto />

@@ -40,3 +40,17 @@ export const updateAccount = async ({
         console.log(e);
     }
 };
+
+export const getAllOrder = async (page, q = '') => {
+    try {
+        const res = await request.get('getAllOrder', {
+            params: {
+                page,
+                q,
+            },
+        });
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+};
