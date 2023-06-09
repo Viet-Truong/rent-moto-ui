@@ -98,6 +98,7 @@ function AcceptMoto() {
                         <th scope='col'>Ngày bắt đầu</th>
                         <th scope='col'>Ngày kết thúc</th>
                         <th scope='col'>Trạng thái</th>
+                        <th scope='col'>Nhân viên duyệt</th>
                         <th scope='col'>Giá thuê</th>
                         <th scope='col'>Actions</th>
                     </tr>
@@ -151,6 +152,9 @@ function AcceptMoto() {
                                             {item.status}
                                         </MDBBadge>
                                     )}
+                                </td>
+                                <td>
+                                    <p className='fw-bold mb-1'>Nhân viên 1</p>
                                 </td>
                                 <td>
                                     <p className='fw-bold mb-1'>{item.price}</p>
