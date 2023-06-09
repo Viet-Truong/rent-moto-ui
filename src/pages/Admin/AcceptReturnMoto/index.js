@@ -15,12 +15,32 @@ import { faPen, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
 import { acceptReturnMoto } from '~/data/data';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '~/Context/AppContext';
-import ModalHandleSignMoto from '~/components/Modal/ModalHandleSignMoto';
+import ModalHandleSignMoto from '~/components/Modal/ModalHandleRentMoto';
+import * as adminServices from '~/api/adminServices';
 
 const cx = classNames.bind(styles);
+const PAGE = 1;
 function AcceptReturnMoto() {
-    const { setIsModalAcceptVisible, setTypeModal, setData } =
-        useContext(AppContext);
+    const {
+        setIsModalAcceptVisible,
+        setTypeModal,
+        setData,
+        dataRentMoto,
+        setDataRentMoto,
+    } = useContext(AppContext);
+    const [page, setPage] = useState(PAGE);
+
+    useEffect(() => {
+        const fetch = async () => {
+            const result = await adminServices.getAllOrder({
+                q: '',
+                page,
+            });
+            setDataRentMoto(result);
+            console.log(result);
+        };
+        fetch();
+    }, [page]);
     return (
         <div className={cx('wrapper')}>
             <ModalHandleSignMoto />
@@ -44,7 +64,7 @@ function AcceptReturnMoto() {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {acceptReturnMoto.map((item) => {
+                    {dataRentMoto?.map((item) => {
                         return (
                             <tr
                                 key={item.id}

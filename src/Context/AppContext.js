@@ -12,6 +12,7 @@ export const AppContextProvider = ({ children }) => {
         open: false,
     });
     const [data, setData] = useState();
+    const [dataRentMoto, setDataRentMoto] = useState();
     const [dataMoto, setDataMoto] = useState();
     const [typeModal, setTypeModal] = useState();
 
@@ -28,6 +29,8 @@ export const AppContextProvider = ({ children }) => {
                 setIsModalReturnVisible,
                 data,
                 setData,
+                dataRentMoto,
+                setDataRentMoto,
                 typeModal,
                 setTypeModal,
                 isModalAddErrorVisible,

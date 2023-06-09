@@ -9,7 +9,7 @@ import AdminLayout from "~/layouts/AdminLayout";
 import Account from "~/pages/Admin/Account";
 import User from "~/pages/Admin/User";
 import ManagerMoto from "~/pages/Admin/ManagerMoto";
-import AcceptMoto from "~/pages/Admin/AcceptMoto";
+import AcceptMoto from "~/pages/Admin/AcceptRentMoto";
 import AcceptReturnMoto from "~/pages/Admin/AcceptReturnMoto";
 import History from "~/pages/History";
 

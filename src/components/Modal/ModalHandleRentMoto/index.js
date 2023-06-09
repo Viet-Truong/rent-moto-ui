@@ -37,37 +37,28 @@ function ModalHandleSignMoto() {
     // const [endDate, setEndDate] = useState(data?.endDate ?? "");
     // const [status, setStatus] = useState(data?.status ?? "");
     const [dataModal, setDataModal] = useState(data ?? []);
-    const [motoFounded, setMotoFounded] = useState([]);
-
-    const findMotoByID = (id) => {
-        const foundMoto = moto.find((item) => item.id === id);
-        return { ...foundMoto, checked: false };
-    };
-
-    const founded = data?.idMoto?.map((item) => {
-        return findMotoByID(item);
-    });
+    console.log(dataModal);
 
     const handleCheckAll = () => {
-        const updatedCheckboxes = motoFounded.map((checkbox) => ({
+        const updatedCheckboxes = dataModal.map((checkbox) => ({
             ...checkbox,
             checked: !checkAll,
         }));
         setCheckAll(!checkAll);
-        setMotoFounded(updatedCheckboxes);
+        setDataModal(updatedCheckboxes);
     };
 
     const handleCheckboxChange = (checkboxId) => {
-        const updatedCheckboxes = motoFounded.map((checkbox) =>
+        const updatedCheckboxes = dataModal.map((checkbox) =>
             checkbox.id === checkboxId
                 ? { ...checkbox, checked: !checkbox.checked }
                 : checkbox
         );
-        setMotoFounded(updatedCheckboxes);
+        setDataModal(updatedCheckboxes);
         setCheckAll(updatedCheckboxes.every((checkbox) => checkbox.checked));
     };
 
-    const totalAmount = motoFounded?.reduce((total, item) => {
+    const totalAmount = dataModal?.reduce((total, item) => {
         if (item.checked) {
             return total + item.price;
         }
@@ -75,12 +66,6 @@ function ModalHandleSignMoto() {
     }, 0);
 
     useEffect(() => {
-        // setId(data?.id ?? "");
-        // setName(data?.name ?? "");
-        // setStartDate(data?.startDate ?? "");
-        // setEndDate(data?.endDate ?? "");
-        // setStatus(data?.status ?? "");
-        setMotoFounded(founded);
         setDataModal(data ?? []);
     }, [data]);
 
@@ -106,114 +91,95 @@ function ModalHandleSignMoto() {
                             <MDBTable align='middle' className={cx('table')}>
                                 <MDBTableHead>
                                     <tr>
-                                        <th scope='col'>
-                                            <input
-                                                type='checkbox'
-                                                style={{
-                                                    cursor: 'pointer',
-                                                }}
-                                                checked={checkAll}
-                                                onChange={handleCheckAll}
-                                            />
-                                        </th>
+                                        {typeModal !== 'ACCEPT' ? (
+                                            <th scope='col'>
+                                                <input
+                                                    type='checkbox'
+                                                    style={{
+                                                        cursor: 'pointer',
+                                                    }}
+                                                    checked={checkAll}
+                                                    onChange={handleCheckAll}
+                                                />
+                                            </th>
+                                        ) : (
+                                            ''
+                                        )}
                                         <th scope='col'>ID xe</th>
                                         <th scope='col'>Tên xe</th>
                                         <th scope='col'>Hãng xe</th>
                                         <th scope='col'>Loại xe</th>
                                         <th scope='col'>Biển số xe</th>
                                         <th scope='col'>Giá thuê</th>
-                                        <th scope='col'>Actions</th>
+                                        {typeModal !== 'ACCEPT' ? (
+                                            <th scope='col'>Actions</th>
+                                        ) : (
+                                            ''
+                                        )}
                                     </tr>
                                 </MDBTableHead>
                                 <MDBTableBody>
-                                    {motoFounded?.map((item) => {
+                                    {dataModal?.map((item) => {
                                         return (
                                             <tr key={item?.id}>
-                                                <td>
-                                                    <input
-                                                        type='checkbox'
-                                                        className='fw-bold mb-1'
-                                                        style={{
-                                                            cursor: 'pointer',
-                                                        }}
-                                                        checked={item.checked}
-                                                        onChange={() =>
-                                                            handleCheckboxChange(
-                                                                item.id
-                                                            )
-                                                        }
-                                                    />
-                                                </td>
+                                                {typeModal !== 'ACCEPT' ? (
+                                                    <td>
+                                                        <input
+                                                            type='checkbox'
+                                                            className='fw-bold mb-1'
+                                                            style={{
+                                                                cursor: 'pointer',
+                                                            }}
+                                                            checked={
+                                                                item.checked
+                                                            }
+                                                            onChange={() =>
+                                                                handleCheckboxChange(
+                                                                    item.maXe
+                                                                )
+                                                            }
+                                                        />
+                                                    </td>
+                                                ) : (
+                                                    ''
+                                                )}
                                                 <td>
                                                     <p className='fw-bold mb-1'>
-                                                        {item?.id}
+                                                        {item?.maXe}
                                                     </p>
                                                 </td>
                                                 <td>
                                                     <div className='ms-3'>
                                                         <p className='fw-bold mb-1'>
-                                                            {item?.name}
+                                                            {item?.tenXe}
                                                         </p>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <p className='fw-normal mb-1'>
-                                                        {item?.autoMaker}
+                                                        {item?.hangXe}
                                                     </p>
                                                 </td>
                                                 <td>
                                                     <p className='fw-normal mb-1'>
-                                                        {item?.type}
+                                                        {item?.loaiXe}
                                                     </p>
                                                 </td>
                                                 <td>
                                                     <p className='fw-normal mb-1'>
-                                                        {item?.licensePlates}
+                                                        {item?.bienSoXe}
                                                     </p>
                                                 </td>
                                                 <td>
                                                     <p className='fw-normal mb-1'>
-                                                        {item?.price}.000
+                                                        {item?.giaThue}.000
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    {dataModal.status ==
-                                                    'Đã duyệt' ? (
-                                                        <Button
-                                                            color='link'
-                                                            size='sm'
-                                                            small={true}
-                                                            className={cx(
-                                                                'fw-normal',
-                                                                'mb-1',
-                                                                'btn'
-                                                            )}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                icon={
-                                                                    faInfoCircle
-                                                                }
-                                                                className={cx(
-                                                                    'fw-icon'
-                                                                )}
-                                                            />
-                                                        </Button>
-                                                    ) : (
+                                                    {typeModal !== 'ACCEPT' && (
                                                         <>
-                                                            <MDBBtn
-                                                                color='link'
-                                                                rounded
-                                                                size='sm'
-                                                                className={cx(
-                                                                    'fw-normal',
-                                                                    'mb-1',
-                                                                    'btn'
-                                                                )}
-                                                            >
-                                                                Duyệt
-                                                            </MDBBtn>
-                                                            {typeModal !=
-                                                            'ACCEPT' ? (
+                                                            {item.trangThai ===
+                                                            'Đã duyệt' ? (
                                                                 <Button
                                                                     color='link'
                                                                     size='sm'
@@ -232,7 +198,18 @@ function ModalHandleSignMoto() {
                                                                     THÊM LỖI
                                                                 </Button>
                                                             ) : (
-                                                                ''
+                                                                <MDBBtn
+                                                                    color='link'
+                                                                    rounded
+                                                                    size='sm'
+                                                                    className={cx(
+                                                                        'fw-normal',
+                                                                        'mb-1',
+                                                                        'btn'
+                                                                    )}
+                                                                >
+                                                                    Duyệt
+                                                                </MDBBtn>
                                                             )}
                                                         </>
                                                     )}
@@ -241,11 +218,9 @@ function ModalHandleSignMoto() {
                                         );
                                     })}
                                 </MDBTableBody>
-                                {typeModal == 'ACCEPT' ? (
+                                {typeModal === 'ACCEPT' ? (
                                     <tfoot>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>

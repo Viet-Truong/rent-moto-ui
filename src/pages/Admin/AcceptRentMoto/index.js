@@ -18,10 +18,9 @@ import {
     faExclamation,
     faMoneyBill,
 } from '@fortawesome/free-solid-svg-icons';
-import { acceptMoto } from '~/data/data';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '~/Context/AppContext';
-import ModalHandleSignMoto from '~/components/Modal/ModalHandleSignMoto';
+import ModalHandleSignMoto from '~/components/Modal/ModalHandleRentMoto';
 import Search from '~/components/Search';
 import Policy from '~/components/Policy';
 import * as adminServices from '~/api/adminServices';
@@ -30,8 +29,13 @@ const cx = classNames.bind(styles);
 const PAGE = 1;
 
 function AcceptMoto() {
-    const { setIsModalAcceptVisible, setTypeModal, setData } =
-        useContext(AppContext);
+    const {
+        setIsModalAcceptVisible,
+        setTypeModal,
+        setData,
+        dataRentMoto,
+        setDataRentMoto,
+    } = useContext(AppContext);
     const [page, setPage] = useState(PAGE);
 
     useEffect(() => {
@@ -40,6 +44,7 @@ function AcceptMoto() {
                 q: '',
                 page,
             });
+            setDataRentMoto(result);
             console.log(result);
         };
         fetch();
@@ -104,44 +109,46 @@ function AcceptMoto() {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {acceptMoto.map((item) => {
+                    {dataRentMoto?.map((item) => {
                         return (
                             <tr
                                 key={item.id}
                                 onClick={() => {
                                     setIsModalAcceptVisible(true);
                                     setTypeModal('ACCEPT');
-                                    setData(item);
+                                    setData(item.chiTiet);
                                 }}
                             >
                                 <td>
-                                    <p className='fw-bold mb-1'>{item.id}</p>
+                                    <p className='fw-bold mb-1'>
+                                        {item.maThue}
+                                    </p>
                                 </td>
                                 <td>
                                     <div className='ms-3'>
                                         <p className='fw-bold mb-1'>
-                                            {item.name}
+                                            {item.maKH}
                                         </p>
                                     </div>
                                 </td>
                                 <td>
                                     <p className='fw-normal mb-1'>
-                                        {item.startDate}
+                                        {item.ngayBD}
                                     </p>
                                 </td>
                                 <td>
                                     <p className='fw-bold mb-1'>
-                                        {item.endDate}
+                                        {item.ngayKT}
                                     </p>
                                 </td>
                                 <td>
-                                    {item.status == 'Đã duyệt' ? (
+                                    {item.trangThai == 'Đã duyệt' ? (
                                         <MDBBadge
                                             color='success'
                                             pill
                                             className='fw-bold mb-1'
                                         >
-                                            {item.status}
+                                            {item.trangThai}
                                         </MDBBadge>
                                     ) : (
                                         <MDBBadge
@@ -149,15 +156,17 @@ function AcceptMoto() {
                                             pill
                                             className='fw-bold mb-1'
                                         >
-                                            {item.status}
+                                            {item.trangThai}
                                         </MDBBadge>
                                     )}
                                 </td>
                                 <td>
-                                    <p className='fw-bold mb-1'>Nhân viên 1</p>
+                                    <p className='fw-bold mb-1'>
+                                        {item.maNVDuyet}
+                                    </p>
                                 </td>
                                 <td>
-                                    <p className='fw-bold mb-1'>{item.price}</p>
+                                    <p className='fw-bold mb-1'></p>
                                 </td>
                                 <td>
                                     <MDBBtn
@@ -169,6 +178,11 @@ function AcceptMoto() {
                                         <FontAwesomeIcon
                                             icon={faPen}
                                             className={cx('actions-btn')}
+                                            onClick={() => {
+                                                setIsModalAcceptVisible(true);
+                                                setTypeModal('ACCEPT');
+                                                setData(item.chiTiet);
+                                            }}
                                         />
                                     </MDBBtn>
                                 </td>
