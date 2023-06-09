@@ -12,10 +12,9 @@ import {
 } from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
-import { acceptReturnMoto } from '~/data/data';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '~/Context/AppContext';
-import ModalHandleSignMoto from '~/components/Modal/ModalHandleRentMoto';
+import ModalHandleRentMoto from '~/components/Modal/ModalHandleRentMoto';
 import * as adminServices from '~/api/adminServices';
 
 const cx = classNames.bind(styles);
@@ -37,13 +36,12 @@ function AcceptReturnMoto() {
                 page,
             });
             setDataRentMoto(result);
-            console.log(result);
         };
         fetch();
     }, [page]);
     return (
         <div className={cx('wrapper')}>
-            <ModalHandleSignMoto />
+            <ModalHandleRentMoto />
             <h1 className={cx('header')}>
                 <FontAwesomeIcon
                     icon={faRotateLeft}

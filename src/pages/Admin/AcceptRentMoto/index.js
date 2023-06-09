@@ -20,7 +20,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '~/Context/AppContext';
-import ModalHandleSignMoto from '~/components/Modal/ModalHandleRentMoto';
+import ModalHandleRentMoto from '~/components/Modal/ModalHandleRentMoto';
 import Search from '~/components/Search';
 import Policy from '~/components/Policy';
 import * as adminServices from '~/api/adminServices';
@@ -45,13 +45,12 @@ function AcceptMoto() {
                 page,
             });
             setDataRentMoto(result);
-            console.log(result);
         };
         fetch();
     }, [page]);
     return (
         <div className={cx('wrapper')}>
-            <ModalHandleSignMoto />
+            <ModalHandleRentMoto />
             <h1 className={cx('header')}>
                 <FontAwesomeIcon
                     icon={faCheckCircle}

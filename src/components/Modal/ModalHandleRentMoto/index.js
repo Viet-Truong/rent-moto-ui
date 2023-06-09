@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './ModalHandleSignMoto.module.scss';
 import {
-    MDBBadge,
     MDBBtn,
     MDBTable,
     MDBTableHead,
@@ -15,14 +14,11 @@ import {
 } from 'mdb-react-ui-kit';
 import { AppContext } from '~/Context/AppContext';
 import { useState, useEffect, useContext } from 'react';
-import { moto } from '~/data/data';
 import Button from '~/components/Button';
 import ModalAddError from '../ModalAddError';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
-function ModalHandleSignMoto() {
+function ModalHandleRentMoto() {
     const {
         isModalAcceptVisible,
         data,
@@ -37,7 +33,6 @@ function ModalHandleSignMoto() {
     // const [endDate, setEndDate] = useState(data?.endDate ?? "");
     // const [status, setStatus] = useState(data?.status ?? "");
     const [dataModal, setDataModal] = useState(data ?? []);
-    console.log(dataModal);
 
     const handleCheckAll = () => {
         const updatedCheckboxes = dataModal.map((checkbox) => ({
@@ -276,4 +271,4 @@ function ModalHandleSignMoto() {
     );
 }
 
-export default ModalHandleSignMoto;
+export default ModalHandleRentMoto;
