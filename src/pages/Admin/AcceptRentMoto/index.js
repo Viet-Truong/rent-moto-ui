@@ -48,6 +48,20 @@ function AcceptMoto() {
         };
         fetch();
     }, [page]);
+
+    const totalRentPrice = dataRentMoto?.reduce((total, item) => {
+        const chiTiet = item.chiTiet;
+        const giaThueSum = chiTiet.reduce(
+            (sum, detail) => sum + detail.giaThue,
+            0
+        );
+        return total + giaThueSum;
+    }, 0);
+
+    const TotalUnApproved = dataRentMoto?.filter(
+        (item) => item.status === 'Chưa duyệt'
+    ).length;
+
     return (
         <div className={cx('wrapper')}>
             <ModalHandleRentMoto />
@@ -62,22 +76,22 @@ function AcceptMoto() {
                 <Policy
                     icon={<FontAwesomeIcon icon={faDatabase} />}
                     name={'Tổng đơn đăng kí'}
-                    value={5}
+                    value={dataRentMoto?.length}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faCheckCircle} />}
                     name={'Số đơn đã duyệt'}
-                    value={5}
+                    value={TotalUnApproved}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faExclamation} />}
                     name={'Số đơn chưa duyệt'}
-                    value={5}
+                    value={`${dataRentMoto?.length - TotalUnApproved}`}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faMoneyBill} />}
                     name={'Tổng tiền'}
-                    value={5}
+                    value={`${totalRentPrice}.000 VND`}
                 />
             </div>
             <div className={cx('action-table')}>

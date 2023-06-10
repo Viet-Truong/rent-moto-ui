@@ -8,7 +8,7 @@ function Policy({ icon, name, value }) {
             <div className={cx('policy__icon')}>{icon}</div>
             <div className={cx('policy__info')}>
                 <h4 className={cx('policy__title')}>{name}</h4>
-                <p className={cx('policy__description')}>{value}</p>
+                <h2 className={cx('policy__description')}>{value}</h2>
             </div>
         </div>
     );
