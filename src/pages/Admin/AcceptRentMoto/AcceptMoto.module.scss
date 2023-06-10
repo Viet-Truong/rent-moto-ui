@@ -32,10 +32,6 @@
     border-radius: 10px;
 }
 
-.page_navigation {
-    margin-top: 20px;
-    font-size: 1.4rem !important;
-}
 
 .actions-btn {
     font-size: 1.2rem;
@@ -45,6 +41,13 @@
     align-items: center;
     justify-content: space-around;
     margin-top: 50px;
+}
+
+.page_navigation {
+  margin-top: 50px;
+  font-size: 1.4rem !important;
+  display: flex;
+  justify-content: center;
 }
 
 .pagination,
@@ -64,6 +67,7 @@
   border-radius: 50%;
   background-color: #fff;
   cursor: pointer;
+  margin: 0 5px;
 }
 
 .btn-nav {
@@ -75,6 +79,7 @@
   height: 42px;
   border: 1.5px solid var(--primary);
   color: var(--primary);
+  margin: 0 5px;
 }
 
 .btn-nav:hover,

@@ -17,6 +17,8 @@ import {
     faDatabase,
     faExclamation,
     faMoneyBill,
+    faAngleLeft,
+    faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect, useContext } from 'react';
 import { AppContext } from '~/Context/AppContext';
@@ -218,8 +220,10 @@ function AcceptMoto() {
                 </MDBTableBody>
             </MDBTable>
             <nav aria-label='...' className={cx('page_navigation')}>
-                <button class='btn-nav left-btn'></button>
-                <div class='page-numbers'>
+                <button className={cx('btn-nav', 'left-btn')}>
+                    <FontAwesomeIcon icon={faAngleLeft} />
+                </button>
+                <div className={cx('page-numbers')}>
                     <button className={cx('btn-page', 'btn-selected')}>
                         1
                     </button>
@@ -229,7 +233,9 @@ function AcceptMoto() {
                     <button className={cx('btn-page')}>5</button>
                     <button className={cx('btn-page')}>6</button>
                 </div>
-                <button class='btn-nav right-btn'></button>
+                <button className={cx('btn-nav', 'right-btn')}>
+                    <FontAwesomeIcon icon={faAngleRight} />
+                </button>
             </nav>
         </div>
     );
