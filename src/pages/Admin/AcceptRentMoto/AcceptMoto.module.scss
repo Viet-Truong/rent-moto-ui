@@ -46,3 +46,51 @@
     justify-content: space-around;
     margin-top: 50px;
 }
+
+.pagination,
+.page-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pagination {
+  margin-top: 128px;
+}
+
+.btn-nav,
+.btn-page {
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.btn-nav {
+  padding: 8px;
+}
+
+.btn-nav {
+  width: 42px;
+  height: 42px;
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-nav:hover,
+.btn-page:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.btn-page {
+  border: none;
+  width: 36px;
+  height: 36px;
+  font-size: 16px;
+}
+
+.btn-selected {
+  background-color: var(--primary);
+  color: #fff;
+}

@@ -49,6 +49,19 @@ function AcceptMoto() {
         fetch();
     }, [page]);
 
+    const fetchDataRent = async (page_value) => {
+        const result = await adminServices.getAllOrder({
+            type: '',
+            page: page_value,
+        });
+        return result;
+    };
+
+    const fetchData = async (value) => {
+        const result = await fetchDataRent(value);
+        setDataRentMoto(result);
+    };
+
     const totalRentPrice = dataRentMoto?.reduce((total, item) => {
         const chiTiet = item.chiTiet;
         const giaThueSum = chiTiet.reduce(
@@ -205,31 +218,18 @@ function AcceptMoto() {
                 </MDBTableBody>
             </MDBTable>
             <nav aria-label='...' className={cx('page_navigation')}>
-                <MDBPagination className='mb-0'>
-                    <MDBPaginationItem disabled>
-                        <MDBPaginationLink
-                            href='#'
-                            tabIndex={-1}
-                            aria-disabled='true'
-                        >
-                            Previous
-                        </MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem>
-                        <MDBPaginationLink href='#'>1</MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem active aria-current='page'>
-                        <MDBPaginationLink href='#'>
-                            2 <span className='visually-hidden'>(current)</span>
-                        </MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem>
-                        <MDBPaginationLink href='#'>3</MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem>
-                        <MDBPaginationLink href='#'>Next</MDBPaginationLink>
-                    </MDBPaginationItem>
-                </MDBPagination>
+                <button class='btn-nav left-btn'></button>
+                <div class='page-numbers'>
+                    <button className={cx('btn-page', 'btn-selected')}>
+                        1
+                    </button>
+                    <button className={cx('btn-page')}>2</button>
+                    <button className={cx('btn-page')}>3</button>
+                    <button className={cx('btn-page')}>4</button>
+                    <button className={cx('btn-page')}>5</button>
+                    <button className={cx('btn-page')}>6</button>
+                </div>
+                <button class='btn-nav right-btn'></button>
             </nav>
         </div>
     );
