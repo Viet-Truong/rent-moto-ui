@@ -38,45 +38,24 @@ function AcceptMoto() {
         dataRentMoto,
         setDataRentMoto,
     } = useContext(AppContext);
-    const [page, setPage] = useState(PAGE);
-    console.log(dataRentMoto);
+    const [pageNumber, setPageNumber] = useState(PAGE);
+    const [dash, setDash] = useState();
 
     useEffect(() => {
         const fetch = async () => {
             const result = await adminServices.getAllOrder({
                 q: '',
-                page,
+                pageNumber,
             });
-            setDataRentMoto(result);
+            setDataRentMoto(result.data);
         };
+        const thongKe = async () => {
+            const result = await adminServices.thongKe();
+            setDash(result);
+        };
+        thongKe();
         fetch();
-    }, [page]);
-
-    const fetchDataRent = async (page_value) => {
-        const result = await adminServices.getAllOrder({
-            type: '',
-            page: page_value,
-        });
-        return result;
-    };
-
-    const fetchData = async (value) => {
-        const result = await fetchDataRent(value);
-        setDataRentMoto(result);
-    };
-
-    const totalRentPrice = dataRentMoto?.reduce((total, item) => {
-        const chiTiet = item.chiTiet;
-        const giaThueSum = chiTiet.reduce(
-            (sum, detail) => sum + detail.giaThue,
-            0
-        );
-        return total + giaThueSum;
-    }, 0);
-
-    const TotalApproved = dataRentMoto?.filter(
-        (item) => item.trangThai === 'Chưa duyệt'
-    ).length;
+    }, [pageNumber]);
 
     return (
         <div className={cx('wrapper')}>
@@ -92,22 +71,22 @@ function AcceptMoto() {
                 <Policy
                     icon={<FontAwesomeIcon icon={faDatabase} />}
                     name={'Tổng đơn đăng kí'}
-                    value={dataRentMoto?.length}
+                    value={dash?.TongSoDangKyThueXe}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faCheckCircle} />}
                     name={'Số đơn đã duyệt'}
-                    value={`${dataRentMoto?.length - TotalApproved}`}
+                    value={dash?.TongSoDangKyThueXeDaDuyet}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faExclamation} />}
                     name={'Số đơn chưa duyệt'}
-                    value={TotalApproved}
+                    value={dash?.TongSoDangKyThueXeChuaDuyet}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faMoneyBill} />}
                     name={'Tổng tiền'}
-                    value={`${totalRentPrice}.000 VND`}
+                    value={`${dash?.TongTienDangKyThueXe}.000 VND`}
                 />
             </div>
             <div className={cx('action-table')}>
@@ -229,11 +208,7 @@ function AcceptMoto() {
                     <button className={cx('btn-page', 'btn-selected')}>
                         1
                     </button>
-                    <button className={cx('btn-page')}>2</button>
-                    <button className={cx('btn-page')}>3</button>
-                    <button className={cx('btn-page')}>4</button>
-                    <button className={cx('btn-page')}>5</button>
-                    <button className={cx('btn-page')}>6</button>
+                    <button className={cx('btn-page')}></button>
                 </div>
                 <button className={cx('btn-nav', 'right-btn')}>
                     <FontAwesomeIcon icon={faAngleRight} />

@@ -49,7 +49,16 @@ export const getAllOrder = async (page, q = '') => {
                 q,
             },
         });
-        return res.data;
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const thongKe = async () => {
+    try {
+        const res = await request.get('thongke');
+        return JSON.parse(res);
     } catch (e) {
         console.log(e);
     }
