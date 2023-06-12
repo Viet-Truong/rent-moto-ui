@@ -41,7 +41,7 @@ export const updateAccount = async ({
     }
 };
 
-export const getAllOrder = async (page, q = '') => {
+export const getAllOrder = async ({ page, q = '' }) => {
     try {
         const res = await request.get('getAllOrder', {
             params: {

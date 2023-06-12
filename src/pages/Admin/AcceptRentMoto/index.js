@@ -43,10 +43,10 @@ function AcceptMoto() {
     const [dash, setDash] = useState();
 
     useEffect(() => {
-        const fetch = async () => {
+        const fetchData = async () => {
             const result = await adminServices.getAllOrder({
                 q: '',
-                pageNumber,
+                page: pageNumber,
             });
             setDataRentMoto(result.data);
             setTotalPage(result.soTrang);
@@ -56,7 +56,7 @@ function AcceptMoto() {
             setDash(result);
         };
         thongKe();
-        fetch();
+        fetchData();
     }, [pageNumber]);
 
     return (
@@ -203,7 +203,12 @@ function AcceptMoto() {
                 </MDBTableBody>
             </MDBTable>
             <nav aria-label='...' className={cx('page_navigation')}>
-                <button className={cx('btn-nav', 'left-btn')}>
+                <button
+                    className={cx('btn-nav', 'left-btn')}
+                    onClick={() => {
+                        if (pageNumber > 1) setPageNumber((prev) => prev - 1);
+                    }}
+                >
                     <FontAwesomeIcon icon={faAngleLeft} />
                 </button>
                 <div className={cx('page-numbers')}>
@@ -214,6 +219,7 @@ function AcceptMoto() {
                                     'btn-page',
                                     pageNumber == page ? 'btn-selected' : ''
                                 )}
+                                onClick={() => setPageNumber(page)}
                                 key={page}
                             >
                                 {page}
@@ -221,7 +227,15 @@ function AcceptMoto() {
                         )
                     )}
                 </div>
-                <button className={cx('btn-nav', 'right-btn')}>
+                <button
+                    className={cx('btn-nav', 'right-btn')}
+                    onClick={() => {
+                        if (pageNumber < totalPage) {
+                            setPageNumber((prev) => prev + 1);
+                        } else {
+                        }
+                    }}
+                >
                     <FontAwesomeIcon icon={faAngleRight} />
                 </button>
             </nav>
