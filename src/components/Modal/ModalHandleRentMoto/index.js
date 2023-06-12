@@ -12,13 +12,17 @@ import {
     MDBModalTitle,
     MDBModalBody,
 } from 'mdb-react-ui-kit';
-import { AppContext } from '~/Context/AppContext';
 import { useState, useEffect, useContext } from 'react';
+import { useSelector } from 'react-redux';
+
+import { AppContext } from '~/Context/AppContext';
 import Button from '~/components/Button';
 import ModalAddError from '../ModalAddError';
+import * as adminServices from '~/api/adminServices';
 
 const cx = classNames.bind(styles);
 function ModalHandleRentMoto() {
+    const { auth } = useSelector((state) => state.auth);
     const {
         isModalAcceptVisible,
         data,
@@ -27,38 +31,44 @@ function ModalHandleRentMoto() {
         setIsModalAddErrorVisible,
     } = useContext(AppContext);
     const [checkAll, setCheckAll] = useState(false);
-    // const [id, setId] = useState(data?.id ?? "");
-    // const [name, setName] = useState(data?.name ?? "");
-    // const [startDate, setStartDate] = useState(data?.startDate ?? "");
-    // const [endDate, setEndDate] = useState(data?.endDate ?? "");
-    // const [status, setStatus] = useState(data?.status ?? "");
     const [dataModal, setDataModal] = useState(data ?? []);
+    console.log(dataModal);
 
-    const handleCheckAll = () => {
-        const updatedCheckboxes = dataModal.map((checkbox) => ({
-            ...checkbox,
-            checked: !checkAll,
-        }));
-        setCheckAll(!checkAll);
-        setDataModal(updatedCheckboxes);
-    };
-
-    const handleCheckboxChange = (checkboxId) => {
-        const updatedCheckboxes = dataModal.map((checkbox) =>
-            checkbox.id === checkboxId
-                ? { ...checkbox, checked: !checkbox.checked }
-                : checkbox
-        );
-        setDataModal(updatedCheckboxes);
-        setCheckAll(updatedCheckboxes.every((checkbox) => checkbox.checked));
-    };
-
-    const totalAmount = dataModal?.reduce((total, item) => {
-        if (item.checked) {
-            return total + item.price;
+    const handleAcceptRent = async () => {
+        const result = await adminServices.accpetRentOrder({
+            maNVDuyet: auth.maTaiKhoan,
+            maThue: dataModal.maThue,
+        });
+        if (result.status === 'success') {
+            setIsModalAcceptVisible(false);
         }
-        return total;
-    }, 0);
+    };
+
+    // const handleCheckAll = () => {
+    //     const updatedCheckboxes = dataModal.map((checkbox) => ({
+    //         ...checkbox,
+    //         checked: !checkAll,
+    //     }));
+    //     setCheckAll(!checkAll);
+    //     setDataModal(updatedCheckboxes);
+    // };
+
+    // const handleCheckboxChange = (checkboxId) => {
+    //     const updatedCheckboxes = dataModal.map((checkbox) =>
+    //         checkbox.id === checkboxId
+    //             ? { ...checkbox, checked: !checkbox.checked }
+    //             : checkbox
+    //     );
+    //     setDataModal(updatedCheckboxes);
+    //     setCheckAll(updatedCheckboxes.every((checkbox) => checkbox.checked));
+    // };
+
+    // const totalAmount = dataModal?.reduce((total, item) => {
+    //     if (item.checked) {
+    //         return total + item.price;
+    //     }
+    //     return total;
+    // }, 0);
 
     useEffect(() => {
         setDataModal(data ?? []);
@@ -94,7 +104,7 @@ function ModalHandleRentMoto() {
                                                         cursor: 'pointer',
                                                     }}
                                                     checked={checkAll}
-                                                    onChange={handleCheckAll}
+                                                    // onChange={handleCheckAll}
                                                 />
                                             </th>
                                         ) : (
@@ -114,7 +124,7 @@ function ModalHandleRentMoto() {
                                     </tr>
                                 </MDBTableHead>
                                 <MDBTableBody>
-                                    {dataModal?.map((item) => {
+                                    {dataModal?.chiTiet?.map((item) => {
                                         return (
                                             <tr key={item?.id}>
                                                 {typeModal !== 'ACCEPT' ? (
@@ -128,11 +138,11 @@ function ModalHandleRentMoto() {
                                                             checked={
                                                                 item.checked
                                                             }
-                                                            onChange={() =>
-                                                                handleCheckboxChange(
-                                                                    item.maXe
-                                                                )
-                                                            }
+                                                            // onChange={() =>
+                                                            //     handleCheckboxChange(
+                                                            //         item.maXe
+                                                            //     )
+                                                            // }
                                                         />
                                                     </td>
                                                 ) : (
@@ -226,6 +236,7 @@ function ModalHandleRentMoto() {
                                                     size='sm'
                                                     primary
                                                     className={cx('fw-normal')}
+                                                    onClick={handleAcceptRent}
                                                 >
                                                     Duyệt
                                                 </Button>
@@ -243,7 +254,7 @@ function ModalHandleRentMoto() {
                                             <td></td>
                                             <td></td>
                                             <td></td>
-                                            <td>{totalAmount}.000</td>
+                                            {/* <td>{totalAmount}.000</td> */}
                                             <td>
                                                 <Button
                                                     color='link'

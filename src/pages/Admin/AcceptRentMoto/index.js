@@ -39,6 +39,7 @@ function AcceptMoto() {
         setDataRentMoto,
     } = useContext(AppContext);
     const [page, setPage] = useState(PAGE);
+    console.log(dataRentMoto);
 
     useEffect(() => {
         const fetch = async () => {
@@ -73,8 +74,8 @@ function AcceptMoto() {
         return total + giaThueSum;
     }, 0);
 
-    const TotalUnApproved = dataRentMoto?.filter(
-        (item) => item.status === 'Chưa duyệt'
+    const TotalApproved = dataRentMoto?.filter(
+        (item) => item.trangThai === 'Chưa duyệt'
     ).length;
 
     return (
@@ -96,12 +97,12 @@ function AcceptMoto() {
                 <Policy
                     icon={<FontAwesomeIcon icon={faCheckCircle} />}
                     name={'Số đơn đã duyệt'}
-                    value={TotalUnApproved}
+                    value={`${dataRentMoto?.length - TotalApproved}`}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faExclamation} />}
                     name={'Số đơn chưa duyệt'}
-                    value={`${dataRentMoto?.length - TotalUnApproved}`}
+                    value={TotalApproved}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faMoneyBill} />}
@@ -140,11 +141,12 @@ function AcceptMoto() {
                     {dataRentMoto?.map((item) => {
                         return (
                             <tr
+                                style={{ cursor: 'pointer' }}
                                 key={item.id}
                                 onClick={() => {
                                     setIsModalAcceptVisible(true);
                                     setTypeModal('ACCEPT');
-                                    setData(item.chiTiet);
+                                    setData(item);
                                 }}
                             >
                                 <td>
@@ -209,7 +211,7 @@ function AcceptMoto() {
                                             onClick={() => {
                                                 setIsModalAcceptVisible(true);
                                                 setTypeModal('ACCEPT');
-                                                setData(item.chiTiet);
+                                                setData(item);
                                             }}
                                         />
                                     </MDBBtn>

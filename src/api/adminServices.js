@@ -54,3 +54,16 @@ export const getAllOrder = async (page, q = '') => {
         console.log(e);
     }
 };
+
+export const accpetRentOrder = async ({ maNVDuyet, maThue }) => {
+    try {
+        const res = await request.post('nvSetOrder', {
+            maNVDuyet,
+            maThue,
+            trangThai: 'Đã duyệt',
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
