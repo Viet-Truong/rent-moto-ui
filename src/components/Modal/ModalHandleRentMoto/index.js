@@ -32,7 +32,6 @@ function ModalHandleRentMoto() {
     } = useContext(AppContext);
     const [checkAll, setCheckAll] = useState(false);
     const [dataModal, setDataModal] = useState(data ?? []);
-    console.log(dataModal);
 
     const handleAcceptRent = async () => {
         const result = await adminServices.accpetRentOrder({

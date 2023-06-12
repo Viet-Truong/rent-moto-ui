@@ -38,6 +38,7 @@ function AcceptMoto() {
         dataRentMoto,
         setDataRentMoto,
     } = useContext(AppContext);
+    const [totalPage, setTotalPage] = useState();
     const [pageNumber, setPageNumber] = useState(PAGE);
     const [dash, setDash] = useState();
 
@@ -48,6 +49,7 @@ function AcceptMoto() {
                 pageNumber,
             });
             setDataRentMoto(result.data);
+            setTotalPage(result.soTrang);
         };
         const thongKe = async () => {
             const result = await adminServices.thongKe();
@@ -117,11 +119,11 @@ function AcceptMoto() {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {dataRentMoto?.map((item) => {
+                    {dataRentMoto?.map((item, index) => {
                         return (
                             <tr
                                 style={{ cursor: 'pointer' }}
-                                key={item.id}
+                                key={index}
                                 onClick={() => {
                                     setIsModalAcceptVisible(true);
                                     setTypeModal('ACCEPT');
@@ -205,10 +207,19 @@ function AcceptMoto() {
                     <FontAwesomeIcon icon={faAngleLeft} />
                 </button>
                 <div className={cx('page-numbers')}>
-                    <button className={cx('btn-page', 'btn-selected')}>
-                        1
-                    </button>
-                    <button className={cx('btn-page')}></button>
+                    {Array.from({ length: totalPage }, (_, i) => i + 1).map(
+                        (page) => (
+                            <button
+                                className={cx(
+                                    'btn-page',
+                                    pageNumber == page ? 'btn-selected' : ''
+                                )}
+                                key={page}
+                            >
+                                {page}
+                            </button>
+                        )
+                    )}
                 </div>
                 <button className={cx('btn-nav', 'right-btn')}>
                     <FontAwesomeIcon icon={faAngleRight} />
