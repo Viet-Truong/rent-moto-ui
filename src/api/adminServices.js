@@ -76,3 +76,25 @@ export const accpetRentOrder = async ({ maNVDuyet, maThue }) => {
         console.log(e);
     }
 };
+
+export const getAllOrderAccepted = async ({ page, q = '' }) => {
+    try {
+        const res = await request.get('getOrderAccepted', {
+            params: { page, q },
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const getAllOrderUnAccepted = async ({ page, q = '' }) => {
+    try {
+        const res = await request.get('getOrderUnAccepted', {
+            params: { page, q },
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};

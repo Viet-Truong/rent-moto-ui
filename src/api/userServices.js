@@ -35,14 +35,6 @@ export const updateProfile = async ({
     }
 };
 
-function formDataToJSON(formData) {
-    const json = {};
-    for (const [key, value] of formData.entries()) {
-        json[key] = value;
-    }
-    return json;
-}
-
 export const updateAvatar = async (formData) => {
     try {
         const res = await request.post(

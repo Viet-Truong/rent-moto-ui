@@ -41,16 +41,9 @@ function AcceptMoto() {
     const [totalPage, setTotalPage] = useState();
     const [pageNumber, setPageNumber] = useState(PAGE);
     const [dash, setDash] = useState();
+    const [selectedOption, setSelectedOption] = useState('DF');
 
     useEffect(() => {
-        const fetchData = async () => {
-            const result = await adminServices.getAllOrder({
-                q: '',
-                page: pageNumber,
-            });
-            setDataRentMoto(result.data);
-            setTotalPage(result.soTrang);
-        };
         const thongKe = async () => {
             const result = await adminServices.thongKe();
             setDash(result);
@@ -58,6 +51,47 @@ function AcceptMoto() {
         thongKe();
         fetchData();
     }, [pageNumber, isModalAcceptVisible]);
+
+    const fetchData = async () => {
+        const result = await adminServices.getAllOrder({
+            q: '',
+            page: pageNumber,
+        });
+        setDataRentMoto(result.data);
+        setTotalPage(result.soTrang);
+    };
+
+    const fetchDataAccepted = async () => {
+        const result = await adminServices.getAllOrderAccepted({
+            q: '',
+            page: 1,
+        });
+        setDataRentMoto(result.data);
+        setTotalPage(result.soTrang);
+    };
+
+    const fetchDataUnAccepted = async () => {
+        const result = await adminServices.getAllOrderUnAccepted({
+            q: '',
+            page: 1,
+        });
+        setDataRentMoto(result.data);
+        setTotalPage(result.soTrang);
+    };
+
+    const handleChange = (event) => {
+        const selectedValue = event.target.value;
+        setSelectedOption(selectedValue);
+
+        // Gọi API tương ứng với giá trị đã chọn
+        if (selectedValue === 'DF') {
+            fetchData();
+        } else if (selectedValue === 'Accepted') {
+            fetchDataAccepted();
+        } else if (selectedValue === 'UnAccepted') {
+            fetchDataUnAccepted();
+        }
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -95,10 +129,13 @@ function AcceptMoto() {
                 <Search />
                 <div>
                     <div>
-                        <select className={cx('select')}>
+                        <select
+                            className={cx('select')}
+                            onChange={handleChange}
+                        >
                             <option value='DF'>Mặc định</option>
                             <option value='Accepted'>Đã duyệt</option>
-                            <option value='StartDate'>Chưa duyệt</option>
+                            <option value='UnAccepted'>Chưa duyệt</option>
                         </select>
                     </div>
                 </div>
