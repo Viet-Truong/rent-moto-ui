@@ -32,6 +32,7 @@ const PAGE = 1;
 
 function AcceptMoto() {
     const {
+        isModalAcceptVisible,
         setIsModalAcceptVisible,
         setTypeModal,
         setData,
@@ -57,7 +58,7 @@ function AcceptMoto() {
         };
         thongKe();
         fetchData();
-    }, [pageNumber]);
+    }, [pageNumber, isModalAcceptVisible]);
 
     return (
         <div className={cx('wrapper')}>
@@ -97,10 +98,8 @@ function AcceptMoto() {
                     <div>
                         <select className={cx('select')}>
                             <option value='DF'>Mặc định</option>
-                            <option value='StartDate'>Ngày bắt đầu</option>
                             <option value='Accepted'>Đã duyệt</option>
                             <option value='StartDate'>Chưa duyệt</option>
-                            <option value='Money'>Tổng tiền</option>
                         </select>
                     </div>
                 </div>
