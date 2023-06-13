@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,17 +10,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import useDebounce from '~/hooks/useDebounce';
+import { AppContext } from '~/Context/AppContext';
+import * as adminServices from '~/api/adminServices';
 
 const cx = classNames.bind(styles);
 function Search() {
+    const { filter, setFilter, setDataRentMoto } = useContext(AppContext);
     const inputRef = useRef();
     const [searchValue, setSearchValue] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
     const [loading, setLoading] = useState(false);
     const debouncedValue = useDebounce(searchValue, 500);
     const handleClear = () => {
         setSearchValue('');
-        setSearchResults([]);
         inputRef.current.focus();
     };
 
@@ -34,17 +35,40 @@ function Search() {
     useEffect(() => {
         // handle input = ''
         if (!debouncedValue.trim()) {
-            setSearchResults([]);
             return;
         }
         // call API
-        // const fetch = async () => {
-        //     setLoading(true);
-        //     const result = await searchService.search(debouncedValue);
-        //     setSearchResults(result);
-        //     setLoading(false);
-        // };
-        // fetch();
+        if (filter === 'DF') {
+            const fetch = async () => {
+                setLoading(true);
+                const result = await adminServices.getAllOrder({
+                    q: debouncedValue,
+                });
+                setDataRentMoto(result.data);
+                setLoading(false);
+            };
+            fetch();
+        } else if (filter === 'Accepted') {
+            const fetch = async () => {
+                setLoading(true);
+                const result = await adminServices.getAllOrderAccepted({
+                    q: debouncedValue,
+                });
+                setDataRentMoto(result.data);
+                setLoading(false);
+            };
+            fetch();
+        } else {
+            const fetch = async () => {
+                setLoading(true);
+                const result = await adminServices.getAllOrderUnAccepted({
+                    q: debouncedValue,
+                });
+                setDataRentMoto(result.data);
+                setLoading(false);
+            };
+            fetch();
+        }
     }, [debouncedValue]);
 
     return (
@@ -72,7 +96,7 @@ function Search() {
                     className={cx('search-btn')}
                     onMouseDown={(e) => e.preventDefault()}
                 >
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <FontAwesomeIcon icon={faMagnifyingGlass} on/>
                 </button>
             </div>
         </div>

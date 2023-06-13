@@ -7,7 +7,7 @@ import {
     MDBTableHead,
     MDBTableBody,
 } from 'mdb-react-ui-kit';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,11 +18,14 @@ import {
     faMoneyBill,
     faAngleLeft,
     faAngleRight,
+    faCircleXmark,
+    faMagnifyingGlass,
+    faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
 
+import useDebounce from '~/hooks/useDebounce';
 import { AppContext } from '~/Context/AppContext';
 import ModalHandleRentMoto from '~/components/Modal/ModalHandleRentMoto';
-import Search from '~/components/Search';
 import Policy from '~/components/Policy';
 import * as adminServices from '~/api/adminServices';
 
@@ -43,36 +46,86 @@ function AcceptMoto() {
     const [dash, setDash] = useState();
     const [selectedOption, setSelectedOption] = useState('DF');
 
+    const inputRef = useRef();
+    const [searchValue, setSearchValue] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const debouncedValue = useDebounce(searchValue, 500);
+    const handleClear = () => {
+        setSearchValue('');
+        inputRef.current.focus();
+    };
+
+    const handleChangeInput = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
     useEffect(() => {
         const thongKe = async () => {
             const result = await adminServices.thongKe();
             setDash(result);
         };
         thongKe();
-        fetchData();
-    }, [pageNumber, isModalAcceptVisible]);
+        // fetchData();
 
-    const fetchData = async () => {
+        if (!debouncedValue.trim()) {
+            if (selectedOption === 'DF') {
+                fetchData();
+            } else if (selectedOption === 'Accepted') {
+                fetchDataAccepted();
+            } else if (selectedOption === 'UnAccepted') {
+                fetchDataUnAccepted();
+            }
+        }
+        // call API
+        if (selectedOption === 'DF') {
+            const fetch = async () => {
+                setLoading(true);
+                fetchData(debouncedValue);
+                setLoading(false);
+            };
+            fetch();
+        } else if (selectedOption === 'Accepted') {
+            const fetch = async () => {
+                setLoading(true);
+                fetchDataAccepted(debouncedValue);
+                setLoading(false);
+            };
+            fetch();
+        } else {
+            const fetch = async () => {
+                setLoading(true);
+                fetchDataUnAccepted(debouncedValue);
+                setLoading(false);
+            };
+            fetch();
+        }
+    }, [pageNumber, isModalAcceptVisible, debouncedValue]);
+
+    const fetchData = async (debouncedValue = '') => {
         const result = await adminServices.getAllOrder({
-            q: '',
+            q: debouncedValue,
             page: pageNumber,
         });
         setDataRentMoto(result.data);
         setTotalPage(result.soTrang);
     };
 
-    const fetchDataAccepted = async () => {
+    const fetchDataAccepted = async (debouncedValue = '') => {
         const result = await adminServices.getAllOrderAccepted({
-            q: '',
+            q: debouncedValue,
             page: 1,
         });
         setDataRentMoto(result.data);
         setTotalPage(result.soTrang);
     };
 
-    const fetchDataUnAccepted = async () => {
+    const fetchDataUnAccepted = async (debouncedValue = '') => {
         const result = await adminServices.getAllOrderUnAccepted({
-            q: '',
+            q: debouncedValue,
             page: 1,
         });
         setDataRentMoto(result.data);
@@ -126,7 +179,38 @@ function AcceptMoto() {
                 />
             </div>
             <div className={cx('action-table')}>
-                <Search />
+                {/* <Search /> */}
+                <div>
+                    <div className={cx('search')}>
+                        <input
+                            value={searchValue}
+                            placeholder='Tìm xe'
+                            type='text'
+                            spellCheck={false}
+                            onChange={handleChangeInput}
+                        />
+                        {!!searchValue && !loading && (
+                            <button
+                                className={cx('clear')}
+                                onClick={handleClear}
+                            >
+                                <FontAwesomeIcon icon={faCircleXmark} />
+                            </button>
+                        )}
+                        {loading && (
+                            <FontAwesomeIcon
+                                className={cx('loading')}
+                                icon={faSpinner}
+                            />
+                        )}
+                        <button
+                            className={cx('search-btn')}
+                            onMouseDown={(e) => e.preventDefault()}
+                        >
+                            <FontAwesomeIcon icon={faMagnifyingGlass} on />
+                        </button>
+                    </div>
+                </div>
                 <div>
                     <div>
                         <select
@@ -173,7 +257,7 @@ function AcceptMoto() {
                                 <td>
                                     <div className='ms-3'>
                                         <p className='fw-bold mb-1'>
-                                            {item.maKH}
+                                            {item.hoTen}
                                         </p>
                                     </div>
                                 </td>
