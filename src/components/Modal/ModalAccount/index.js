@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './ModalAccount.module.scss';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import {
     MDBBtn,
     MDBModal,
@@ -16,6 +16,7 @@ import {
     MDBDropdownToggle,
     MDBDropdownItem,
 } from 'mdb-react-ui-kit';
+
 import { AppContext } from '~/Context/AppContext';
 import * as authServices from '~/api/authServices';
 

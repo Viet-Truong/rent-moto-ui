@@ -1,8 +1,8 @@
-import { forwardRef, useState } from "react";
-import images from "~/assets/image";
-import classNames from "classnames/bind";
-import styles from "./Image.module.scss";
+import { forwardRef, useState } from 'react';
+import classNames from 'classnames/bind';
+import styles from './Image.module.scss';
 
+import images from '~/assets/image';
 const Image = forwardRef(
     (
         {
@@ -14,7 +14,7 @@ const Image = forwardRef(
         },
         ref
     ) => {
-        const [fallback, setFallback] = useState("");
+        const [fallback, setFallback] = useState('');
         const handleError = () => {
             setFallback(customFallback);
         };

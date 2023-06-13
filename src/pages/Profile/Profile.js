@@ -9,12 +9,14 @@ import {
     MDBCardText,
     MDBCardBody,
 } from 'mdb-react-ui-kit';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera, faPen } from '@fortawesome/free-solid-svg-icons';
-import Image from '~/components/Image';
 import { useSelector } from 'react-redux';
 import { DatePicker } from 'antd';
 import moment from 'moment';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCamera, faPen } from '@fortawesome/free-solid-svg-icons';
+
+import Image from '~/components/Image';
 import * as userServices from '~/api/userServices';
 import Toast from '~/components/Toast';
 import { AppContext } from '~/Context/AppContext';

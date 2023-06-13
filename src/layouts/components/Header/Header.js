@@ -1,20 +1,21 @@
-import { Link, useNavigate } from "react-router-dom";
-import classNames from "classnames/bind";
-import styles from "./Header.module.scss";
+import { Link, useNavigate } from 'react-router-dom';
+import classNames from 'classnames/bind';
+import styles from './Header.module.scss';
+import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import config from "~/config";
-import image from "~/assets/image";
-import Button from "~/components/Button";
-import Image from "~/components/Image";
-import Menu from "~/components/Popper/Menu";
-import { userMenu } from "~/data/userMenu";
-import Search from "../Search";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
-import { CartContext } from "~/Context/CartContext";
-import { useDispatch, useSelector } from "react-redux";
-import { authLogout } from "~/redux/authAction";
+import config from '~/config';
+import image from '~/assets/image';
+import Button from '~/components/Button';
+import Image from '~/components/Image';
+import Menu from '~/components/Popper/Menu';
+import { userMenu } from '~/data/userMenu';
+import Search from '../Search';
+import { CartContext } from '~/Context/CartContext';
+import { authLogout } from '~/redux/authAction';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 function Header() {
@@ -25,7 +26,7 @@ function Header() {
 
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
-            case "logout":
+            case 'logout':
                 dispatch(authLogout());
                 break;
             default:
@@ -34,53 +35,53 @@ function Header() {
     };
 
     return (
-        <div className={cx("wrapper")}>
-            <div className={cx("wrapper-header")}>
-                <div className={cx("logo")}>
-                    <Link to={config.routes.home} className={"logo-link"}>
-                        <Image src={image.logo} alt="Website logo" />
+        <div className={cx('wrapper')}>
+            <div className={cx('wrapper-header')}>
+                <div className={cx('logo')}>
+                    <Link to={config.routes.home} className={'logo-link'}>
+                        <Image src={image.logo} alt='Website logo' />
                     </Link>
                 </div>
 
-                <div className={cx("wrapper-menu")}>
-                    <ul className={cx("menu")}>
+                <div className={cx('wrapper-menu')}>
+                    <ul className={cx('menu')}>
                         <li>
                             <Button to={config.routes.home} className>
                                 Trang Chủ
                             </Button>
                         </li>
                         <li>
-                            <Button to={""}>Xe</Button>
+                            <Button to={''}>Xe</Button>
                         </li>
                         <li>
-                            <Button to={""}>Giới Thiệu</Button>
+                            <Button to={''}>Giới Thiệu</Button>
                         </li>
                         <li>
-                            <Button to={""}>Liên Hệ</Button>
+                            <Button to={''}>Liên Hệ</Button>
                         </li>
                     </ul>
                 </div>
 
                 <Search />
 
-                <div className={cx("actions")}>
+                <div className={cx('actions')}>
                     {auth ? (
                         <>
-                            <Button className={cx("cart-btn")}>
+                            <Button className={cx('cart-btn')}>
                                 <FontAwesomeIcon
                                     icon={faCartShopping}
-                                    className={cx("cart")}
+                                    className={cx('cart')}
                                     onClick={() => setIsOpen(true)}
                                 />
-                                <div className={cx("quantity")}>
+                                <div className={cx('quantity')}>
                                     {cartItems.length}
                                 </div>
                             </Button>
                             <Menu items={userMenu} onChange={handleMenuChange}>
                                 <Image
-                                    className={cx("user-avatar")}
-                                    src={""}
-                                    alt={"avatar"}
+                                    className={cx('user-avatar')}
+                                    src={''}
+                                    alt={'avatar'}
                                 />
                             </Menu>
                         </>

@@ -1,17 +1,17 @@
-import { useState, useEffect, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames/bind';
+import styles from './Slider.module.scss';
 
-import classNames from "classnames/bind";
-import styles from "./Slider.module.scss";
+import images from '~/assets/image';
+import Button from '../Button';
+import Image from '../Image';
 
-import images from "~/assets/image";
-import Button from "../Button";
-import Image from "../Image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faChevronLeft,
     faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 function Slider(props) {
@@ -45,8 +45,8 @@ function Slider(props) {
     }, [nextSlide, timeOut, props]);
     return (
         <>
-            <Image src={images.banner} className={cx("slider__banner")} />
-            <div className={cx("slider")}>
+            <Image src={images.banner} className={cx('slider__banner')} />
+            <div className={cx('slider')}>
                 {props.data.map((item, index) => (
                     <SliderItem
                         key={index}
@@ -55,26 +55,26 @@ function Slider(props) {
                     />
                 ))}
                 {props.control ? (
-                    <div className={cx("slider__control")}>
+                    <div className={cx('slider__control')}>
                         <div
-                            className={cx("slider__control__item")}
+                            className={cx('slider__control__item')}
                             onClick={prevSlide}
                         >
                             <FontAwesomeIcon
                                 icon={faChevronLeft}
-                                className={cx("slider__control__icon")}
+                                className={cx('slider__control__icon')}
                             />
                         </div>
-                        <div className={cx("slider__control__item")}>
-                            <div className={cx("index")}>{activeSlide + 1}</div>
+                        <div className={cx('slider__control__item')}>
+                            <div className={cx('index')}>{activeSlide + 1}</div>
                         </div>
                         <div
-                            className={cx("slider__control__item")}
+                            className={cx('slider__control__item')}
                             onClick={nextSlide}
                         >
                             <FontAwesomeIcon
                                 icon={faChevronRight}
-                                className={cx("slider__control__icon")}
+                                className={cx('slider__control__icon')}
                             />
                         </div>
                     </div>
@@ -85,23 +85,23 @@ function Slider(props) {
 }
 
 const SliderItem = (props) => (
-    <div className={cx("slider-item", `${props.active ? "active" : ""}`)}>
-        <div className={cx("slider-item__info")}>
-            <div className={cx("slider-item__info__title")}>
+    <div className={cx('slider-item', `${props.active ? 'active' : ''}`)}>
+        <div className={cx('slider-item__info')}>
+            <div className={cx('slider-item__info__title')}>
                 <span>{props.item.title}</span>
             </div>
-            <div className={cx("slider-item__info__description")}>
+            <div className={cx('slider-item__info__description')}>
                 <span>{props.item.description}</span>
             </div>
-            <div className={cx("slider-item__info__btn")}>
+            <div className={cx('slider-item__info__btn')}>
                 <Link to={props.item.path}>
                     <Button primary>Bắt đầu</Button>
                 </Link>
             </div>
         </div>
-        <div className={cx("slider-item__image")}>
-            <div className={cx("shape-item")}></div>
-            <Image src={props.item.img} alt={"image-item"} />
+        <div className={cx('slider-item__image')}>
+            <div className={cx('shape-item')}></div>
+            <Image src={props.item.img} alt={'image-item'} />
         </div>
     </div>
 );

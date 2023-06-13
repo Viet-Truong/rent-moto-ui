@@ -1,4 +1,3 @@
-import ModalMoto from '~/components/Modal/ModalMoto';
 import classNames from 'classnames/bind';
 import styles from './ManagerMoto.module.scss';
 import {
@@ -11,10 +10,12 @@ import {
     MDBPaginationItem,
     MDBPaginationLink,
 } from 'mdb-react-ui-kit';
+import { useState, useEffect, useContext } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faPlus, faMotorcycle } from '@fortawesome/free-solid-svg-icons';
-import { moto } from '~/data/data';
-import { useState, useEffect, useContext } from 'react';
+
+import ModalMoto from '~/components/Modal/ModalMoto';
 import { AppContext } from '~/Context/AppContext';
 import * as motoServices from '~/api/motoServices';
 
@@ -26,7 +27,7 @@ const TYPE_MODAL = {
 };
 
 function ManagerMoto() {
-    const [motoData, setMotoData] = useState(moto);
+    const [motoData, setMotoData] = useState();
     const [page, setPage] = useState();
     const { setIsModalMotoVisible, setTypeModal, setData } =
         useContext(AppContext);
@@ -75,7 +76,7 @@ function ManagerMoto() {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {motoData.map((item) => {
+                    {motoData?.map((item) => {
                         return (
                             <tr key={item.maXe}>
                                 <td>

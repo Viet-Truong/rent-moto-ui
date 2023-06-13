@@ -1,10 +1,13 @@
 import classNames from 'classnames/bind';
+import styles from './Sidebar.module.scss';
+import { Link } from 'react-router-dom';
+
 import config from '~/config';
 import Menu, { MenuItem } from './Menu';
-import styles from './Sidebar.module.scss';
 import image from '~/assets/image';
 import Image from '~/components/Image';
-import { Link } from 'react-router-dom';
+import Button from '~/components/Button';
+
 import {
     faUsers,
     faUser,
@@ -14,7 +17,6 @@ import {
     faRightToBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 

@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
+import { useEffect, useContext } from 'react';
+
 import Slider from '~/components/Slider';
 import { slider_data } from '~/data/slide';
 import { policy } from '~/data/data';
-import { useState, useEffect, useContext } from 'react';
 import Moto from '~/components/Moto';
 import * as motoServices from '~/api/motoServices';
 import { AppContext } from '~/Context/AppContext';

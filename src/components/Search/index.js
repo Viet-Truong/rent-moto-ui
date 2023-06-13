@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { useState, useRef, useEffect } from 'react';
-import useDebounce from '~/hooks/useDebounce';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -9,6 +8,8 @@ import {
     faMagnifyingGlass,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
+
+import useDebounce from '~/hooks/useDebounce';
 
 const cx = classNames.bind(styles);
 function Search() {

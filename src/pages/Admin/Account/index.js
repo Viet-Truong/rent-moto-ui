@@ -11,11 +11,12 @@ import {
     MDBPaginationItem,
     MDBPaginationLink,
 } from 'mdb-react-ui-kit';
-import { account } from '~/data/data';
 import { useState, useEffect, useContext } from 'react';
-import { AppContext } from '~/Context/AppContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import { AppContext } from '~/Context/AppContext';
 import * as adminServices from '~/api/adminServices';
 
 const cx = classNames.bind(styles);
@@ -26,7 +27,7 @@ const TYPE_MODAL = {
 };
 
 function Account() {
-    const [accountData, setAccountData] = useState(account);
+    const [accountData, setAccountData] = useState();
     const [page, setPage] = useState(1);
     const { setIsModalAccountVisible, setTypeModal, setData } =
         useContext(AppContext);
@@ -68,7 +69,7 @@ function Account() {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {accountData.map((item) => {
+                    {accountData?.map((item) => {
                         return (
                             <tr key={item.maTaiKhoan}>
                                 <td>

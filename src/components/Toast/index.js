@@ -1,13 +1,15 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import styles from './Toast.module.scss';
+import { useEffect, useContext } from 'react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCheck,
     faClose,
     faExclamation,
     faXmark,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect, useContext } from 'react';
+
 import { AppContext } from '~/Context/AppContext';
 
 const cx = classNames.bind(styles);

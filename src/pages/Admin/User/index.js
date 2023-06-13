@@ -1,13 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { MDBInput, MDBCol, MDBRow, MDBContainer } from 'mdb-react-ui-kit';
 import classNames from 'classnames/bind';
 import styles from './User.module.scss';
+import moment from 'moment';
+import { DatePicker, Radio } from 'antd';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faUser } from '@fortawesome/free-solid-svg-icons';
+
 import Button from '~/components/Button';
 import { user } from '~/data/data';
-import { DatePicker, Radio } from 'antd';
-import moment from 'moment';
 
 const cx = classNames.bind(styles);
 function User() {

@@ -10,9 +10,11 @@ import {
     MDBPaginationItem,
     MDBPaginationLink,
 } from 'mdb-react-ui-kit';
+import { useState, useEffect, useContext } from 'react';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faRotateLeft } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect, useContext } from 'react';
+
 import { AppContext } from '~/Context/AppContext';
 import ModalHandleRentMoto from '~/components/Modal/ModalHandleRentMoto';
 import * as adminServices from '~/api/adminServices';
