@@ -30,15 +30,17 @@ function AcceptReturnMoto() {
     const [page, setPage] = useState(PAGE);
 
     useEffect(() => {
-        const fetch = async () => {
+        const fetchData = async () => {
             const result = await adminServices.getAllOrder({
                 q: '',
                 page,
             });
-            setDataRentMoto(result);
+            setDataRentMoto(result.data);
+            console.log(dataRentMoto);
         };
-        fetch();
+        fetchData();
     }, [page]);
+
     return (
         <div className={cx('wrapper')}>
             <ModalHandleRentMoto />
@@ -62,10 +64,10 @@ function AcceptReturnMoto() {
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
-                    {dataRentMoto?.map((item) => {
+                    {dataRentMoto?.map((item, index) => {
                         return (
                             <tr
-                                key={item.id}
+                                key={index}
                                 onClick={() => {
                                     setIsModalAcceptVisible(true);
                                     setTypeModal('RETURN');
@@ -73,23 +75,25 @@ function AcceptReturnMoto() {
                                 }}
                             >
                                 <td>
-                                    <p className='fw-bold mb-1'>{item.id}</p>
+                                    <p className='fw-bold mb-1'>
+                                        {item.maThue}
+                                    </p>
                                 </td>
                                 <td>
                                     <div className='ms-3'>
                                         <p className='fw-bold mb-1'>
-                                            {item.name}
+                                            {item.maKH}
                                         </p>
                                     </div>
                                 </td>
                                 <td>
                                     <p className='fw-normal mb-1'>
-                                        {item.startDate}
+                                        {item.ngayBD}
                                     </p>
                                 </td>
                                 <td>
                                     <p className='fw-bold mb-1'>
-                                        {item.endDate}
+                                        {item.ngayKT}
                                     </p>
                                 </td>
                                 <td>
@@ -98,11 +102,13 @@ function AcceptReturnMoto() {
                                         pill
                                         className='fw-bold mb-1'
                                     >
-                                        {item.status}
+                                        {item.trangThai}
                                     </MDBBadge>
                                 </td>
                                 <td>
-                                    <p className='fw-bold mb-1'>{item.price}</p>
+                                    {/* <p className='fw-bold mb-1'>
+                                        {item.giaThue}
+                                    </p> */}
                                 </td>
                                 <td>
                                     <MDBBtn
