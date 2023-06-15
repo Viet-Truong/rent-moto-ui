@@ -69,7 +69,6 @@ function AcceptMoto() {
             setDash(result);
         };
         thongKe();
-        // fetchData();
 
         if (!debouncedValue.trim()) {
             if (selectedOption === 'DF') {
@@ -144,6 +143,15 @@ function AcceptMoto() {
         } else if (selectedValue === 'UnAccepted') {
             fetchDataUnAccepted();
         }
+    };
+
+    const handleTotalOneRent = (item) => {
+        if (item?.chiTiet) {
+            return item.chiTiet.reduce((total, item) => {
+                return total + item.giaThue;
+            }, 0);
+        }
+        return 0;
     };
 
     return (
@@ -296,7 +304,9 @@ function AcceptMoto() {
                                     </p>
                                 </td>
                                 <td>
-                                    <p className='fw-bold mb-1'></p>
+                                    <p className='fw-bold mb-1'>
+                                        {handleTotalOneRent(item)}.000
+                                    </p>
                                 </td>
                                 <td>
                                     <MDBBtn

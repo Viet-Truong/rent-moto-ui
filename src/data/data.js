@@ -248,8 +248,50 @@ export const acceptReturnMoto = [
         startDate: '07-05-2023',
         endDate: '09-05-2023',
         status: 'Đang thuê',
-        price: '420.000 VNĐ',
-        idMoto: [1, 2, 3],
+        ChiTiet: [
+            {
+                id: 1,
+                name: 'Honda winner X',
+                autoMaker: 'Honda',
+                price: 130.0,
+                type: 'Xe côn tay',
+                status: 'Sẵn sàng',
+                licensePlates: '43F1-123.45',
+                description: 'Winner X',
+                slug: 'honda-winner-x',
+                image: [
+                    {
+                        id: 1,
+                        url: 'https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png',
+                    },
+                    {
+                        id: 2,
+                        url: 'https://cdn.honda.com.vn/motorbike-versions/November2022/v3mHZHIh1RLL4P8nndyd.png',
+                    },
+                ],
+            },
+            {
+                id: 2,
+                name: 'Super Cub C125',
+                autoMaker: 'Honda',
+                price: 110.0,
+                type: 'Xe số',
+                status: 'Sẵn sàng',
+                licensePlates: '43F1-145.12',
+                description: 'Super Cub C125',
+                slug: 'Super-Cub-C125',
+                image: [
+                    {
+                        id: 1,
+                        url: 'https://cdn.honda.com.vn/motorbike-strong-points/October2021/WwL6LIRJq466Z2Z5irlr.png',
+                    },
+                    {
+                        id: 2,
+                        url: 'https://cdn.honda.com.vn/motorbike-versions/October2021/rekvNMjwCvz3tiYHy27g.png',
+                    },
+                ],
+            },
+        ],
     },
     {
         id: 2,
@@ -257,7 +299,49 @@ export const acceptReturnMoto = [
         startDate: '04-05-2023',
         endDate: '11-05-2023',
         status: 'Đang thuê',
-        price: '350.000 VNĐ',
-        idMoto: [1, 3, 4],
+        ChiTiet: [
+            {
+                id: 1,
+                name: 'Honda winner X',
+                autoMaker: 'Honda',
+                price: 130.0,
+                type: 'Xe côn tay',
+                status: 'Sẵn sàng',
+                licensePlates: '43F1-123.45',
+                description: 'Winner X',
+                slug: 'honda-winner-x',
+                image: [
+                    {
+                        id: 1,
+                        url: 'https://cdn.honda.com.vn/motorbike-versions/December2021/AjAslqMuYpko2d6wmuEs.png',
+                    },
+                    {
+                        id: 2,
+                        url: 'https://cdn.honda.com.vn/motorbike-versions/November2022/v3mHZHIh1RLL4P8nndyd.png',
+                    },
+                ],
+            },
+            {
+                id: 2,
+                name: 'Super Cub C125',
+                autoMaker: 'Honda',
+                price: 110.0,
+                type: 'Xe số',
+                status: 'Sẵn sàng',
+                licensePlates: '43F1-145.12',
+                description: 'Super Cub C125',
+                slug: 'Super-Cub-C125',
+                image: [
+                    {
+                        id: 1,
+                        url: 'https://cdn.honda.com.vn/motorbike-strong-points/October2021/WwL6LIRJq466Z2Z5irlr.png',
+                    },
+                    {
+                        id: 2,
+                        url: 'https://cdn.honda.com.vn/motorbike-versions/October2021/rekvNMjwCvz3tiYHy27g.png',
+                    },
+                ],
+            },
+        ],
     },
 ];
