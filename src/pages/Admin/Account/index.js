@@ -41,7 +41,7 @@ function Account() {
     const [dash, setDash] = useState();
     const [totalPage, setTotalPage] = useState();
     const [pageNumber, setPageNumber] = useState(PAGE);
-    const [selectedOption, setSelectedOption] = useState('DF');
+    const [selectedOption, setSelectedOption] = useState('');
 
     // Search
     const inputRef = useRef();
@@ -67,15 +67,19 @@ function Account() {
             setDash(result);
         };
         thongKe();
+
         const fetch = async () => {
             const result = await adminServices.getAllUser({
+                q: debouncedValue,
+                role: selectedOption,
                 page: pageNumber,
             });
             setAccountData(result.data);
             setTotalPage(result.soTrang);
         };
+
         fetch();
-    }, [pageNumber]);
+    }, [pageNumber, selectedOption, debouncedValue]);
 
     const handleChange = (event) => {
         const selectedValue = event.target.value;
@@ -164,9 +168,9 @@ function Account() {
                             className={cx('select')}
                             onChange={handleChange}
                         >
-                            <option value='DF'>Mặc định</option>
-                            <option value='Accepted'>Nhân viên</option>
-                            <option value='UnAccepted'>Khách hàng</option>
+                            <option value=''>Mặc định</option>
+                            <option value='Nhân viên'>Nhân viên</option>
+                            <option value='Khách hàng'>Khách hàng</option>
                         </select>
                     </div>
                 </div>

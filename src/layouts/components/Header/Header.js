@@ -21,7 +21,6 @@ const cx = classNames.bind(styles);
 function Header() {
     const { auth } = useSelector((state) => state.auth);
     const { setIsOpen, cartItems } = useContext(CartContext);
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleMenuChange = (menuItem) => {

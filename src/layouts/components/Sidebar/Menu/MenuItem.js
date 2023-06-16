@@ -1,25 +1,32 @@
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
-import classNames from "classnames/bind";
-import styles from "./Menu.module.scss";
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
+import classNames from 'classnames/bind';
+import styles from './Menu.module.scss';
 
 const cx = classNames.bind(styles);
-function MenuItem({ title, to, icon, activeIcon }) {
+function MenuItem({ title, to, icon, activeIcon, disable }) {
+    const handleClick = (e) => {
+        if (disable) {
+            e.preventDefault(); // Ngăn chặn xử lý sự kiện onClick
+        }
+    };
     return (
         <NavLink
             // properties end fix always active item home
+            disabled={disable}
+            onClick={handleClick}
             end
-            className={({ isActive }) => cx("menu-item", { active: isActive })}
+            className={({ isActive }) => cx('menu-item', { active: isActive })}
             to={to}
             children={({ isActive }) => {
                 const iconCurrent = isActive ? activeIcon : icon;
-                if (to === "") {
+                if (to === '') {
                     iconCurrent = icon;
                 }
                 return (
                     <>
                         {iconCurrent}
-                        <span className={cx("title")}>{title}</span>
+                        <span className={cx('title')}>{title}</span>
                     </>
                 );
             }}
