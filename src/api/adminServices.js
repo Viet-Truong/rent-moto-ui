@@ -1,14 +1,24 @@
 import * as request from '~/utils/request';
 
-export const getAllUser = async (role = '', q = '') => {
+export const getAllUser = async ({ role = '', q = '', page = '' }) => {
     try {
         const res = await request.get('getAllUser', {
             params: {
                 role,
+                page,
                 q,
             },
         });
-        return res.data;
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const thongKeUser = async () => {
+    try {
+        const res = await request.get('thongkeUser');
+        return JSON.parse(res);
     } catch (e) {
         console.log(e);
     }

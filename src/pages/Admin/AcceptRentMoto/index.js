@@ -192,7 +192,7 @@ function AcceptMoto() {
                     <div className={cx('search')}>
                         <input
                             value={searchValue}
-                            placeholder='Tìm xe'
+                            placeholder='Tìm kiếm'
                             type='text'
                             spellCheck={false}
                             onChange={handleChangeInput}
