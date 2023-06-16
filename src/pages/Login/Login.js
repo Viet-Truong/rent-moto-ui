@@ -24,7 +24,21 @@ function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (auth) {
+        // if (auth) {
+        //     navigate(-1);
+        // }
+        const previousPage = localStorage.getItem('previousPage');
+
+        if (auth && previousPage) {
+            // Kiểm tra quyền truy cập vào previousPage ở đây
+
+            if (previousPage.includes('/admin')) {
+                navigate('/admin');
+            } else {
+                navigate(previousPage);
+            }
+            localStorage.removeItem('previousPage');
+        } else if (auth) {
             navigate(-1);
         }
     }, [navigate, auth]);

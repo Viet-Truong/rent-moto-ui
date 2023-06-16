@@ -12,6 +12,7 @@ function AdminLayout({ children }) {
     const navigate = useNavigate();
     useEffect(() => {
         if (!auth) {
+            localStorage.setItem('previousPage', window.location.pathname);
             navigate('/login');
         }
     }, [auth]);
