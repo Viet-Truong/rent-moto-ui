@@ -1,14 +1,14 @@
-import { Fragment } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "antd/dist/antd.css";
+import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'antd/dist/antd.css';
 
-import { publicRoutes } from "./routes";
-import DefaultLayout from "./layouts/DefaultLayout";
+import { publicRoutes } from './routes';
+import DefaultLayout from './layouts/DefaultLayout';
 
 function App() {
     return (
         <Router>
-            <div className="App">
+            <div className='App'>
                 <Routes>
                     {publicRoutes.map((route, key) => {
                         // must use Fragment, use <> </> do not active/work

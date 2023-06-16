@@ -98,3 +98,12 @@ export const getAllOrderUnAccepted = async ({ page, q = '' }) => {
         console.log(e);
     }
 };
+
+export const getOrderByID = async (maTaiKhoan) => {
+    try {
+        const res = await request.get(`getOrderByIdUser/${maTaiKhoan}`);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};

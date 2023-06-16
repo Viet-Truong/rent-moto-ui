@@ -18,6 +18,7 @@ import { faLock, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { AppContext } from '~/Context/AppContext';
 import * as adminServices from '~/api/adminServices';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -74,8 +75,11 @@ function Account() {
                             <tr key={item.maTaiKhoan}>
                                 <td>
                                     <div className='d-flex align-items-center'>
-                                        <img
-                                            src='https://mdbootstrap.com/img/new/avatars/8.jpg'
+                                        <Image
+                                            src={
+                                                `http://localhost:5000/${item?.avatar}` ||
+                                                ''
+                                            }
                                             alt=''
                                             style={{
                                                 width: '45px',
