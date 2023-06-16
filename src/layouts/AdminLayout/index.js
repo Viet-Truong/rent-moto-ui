@@ -14,11 +14,14 @@ function AdminLayout({ children }) {
         if (!auth) {
             localStorage.setItem('previousPage', window.location.pathname);
             navigate('/login');
+        } else if (auth.phanQuyen === 'Khách hàng') {
+            navigate('/');
+            alert('Tài khoản của bạn không thể truy cập vào trang admin');
         }
     }, [auth]);
     return (
         <div>
-            {auth ? (
+            {auth && auth.phanQuyen !== 'Khách hàng' ? (
                 <div className={cx('wrapper')}>
                     <div className={cx('container')}>
                         <Sidebar />

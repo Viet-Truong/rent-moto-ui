@@ -32,10 +32,13 @@ function Login() {
         if (auth && previousPage) {
             // Kiểm tra quyền truy cập vào previousPage ở đây
 
-            if (previousPage.includes('/admin')) {
+            if (
+                previousPage.includes('/admin') &&
+                auth.phanQuyen !== 'Khách hàng'
+            ) {
                 navigate('/admin');
-            } else {
-                navigate(previousPage);
+            } else if (auth.phanQuyen === 'Khách hàng') {
+                navigate('/');
             }
             localStorage.removeItem('previousPage');
         } else if (auth) {
