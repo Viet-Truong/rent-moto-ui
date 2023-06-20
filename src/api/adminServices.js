@@ -15,6 +15,34 @@ export const getAllUser = async ({ role = '', q = '', page = '' }) => {
     }
 };
 
+export const getAllCustomer = async ({ q = '', page = '' }) => {
+    try {
+        const res = await request.get('getAllCustomer', {
+            params: {
+                page,
+                q,
+            },
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const getAllEmployees = async ({ q = '', page = '' }) => {
+    try {
+        const res = await request.get('getAllEmployees', {
+            params: {
+                page,
+                q,
+            },
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export const thongKeUser = async () => {
     try {
         const res = await request.get('thongkeUser');
@@ -24,20 +52,13 @@ export const thongKeUser = async () => {
     }
 };
 
-export const updateAccount = async ({
-    maTaiKhoan,
-    taiKhoan,
-    matKhau,
-    phanQuyen,
-}) => {
+export const updateAccount = async ({ maTaiKhoan, taiKhoan }) => {
     try {
         const res = await request.post(
             'updateInfoUser',
             {
                 maTaiKhoan,
                 taiKhoan,
-                // matKhau,
-                // phanQuyen,
             },
             {
                 headers: {

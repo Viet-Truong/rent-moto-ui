@@ -33,7 +33,7 @@ function Moto(props) {
 
                                     <a className={cx('cart')} href=''>
                                         <span className={cx('price')}>
-                                            {props.price}
+                                            {props.price}.000 / 1 ngày
                                         </span>
                                         <span className={cx('add-to-cart')}>
                                             <span className={cx('txt')}>

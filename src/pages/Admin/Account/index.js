@@ -36,7 +36,6 @@ const PAGE = 1;
 
 function Account() {
     const [accountData, setAccountData] = useState();
-    const [page, setPage] = useState(1);
     const { setIsModalAccountVisible, setData } = useContext(AppContext);
     const [dash, setDash] = useState();
     const [totalPage, setTotalPage] = useState();
@@ -68,30 +67,79 @@ function Account() {
         };
         thongKe();
 
-        const fetch = async () => {
-            const result = await adminServices.getAllUser({
-                q: debouncedValue,
-                role: selectedOption,
-                page: pageNumber,
-            });
-            setAccountData(result.data);
-            setTotalPage(result.soTrang);
-        };
+        if (!debouncedValue.trim()) {
+            if (selectedOption === '') {
+                fetchData();
+            } else if (selectedOption === 'Customer') {
+                fetchDataCustomer();
+            } else if (selectedOption === 'Employees') {
+                fetchDataEmployees();
+            }
+        }
 
-        fetch();
+        // call API search
+        if (selectedOption === '') {
+            const fetch = async () => {
+                setLoading(true);
+                fetchData(debouncedValue);
+                setLoading(false);
+            };
+            fetch();
+        } else if (selectedOption === 'Customer') {
+            const fetch = async () => {
+                setLoading(true);
+                fetchDataCustomer(debouncedValue);
+                setLoading(false);
+            };
+            fetch();
+        } else {
+            const fetch = async () => {
+                setLoading(true);
+                fetchDataEmployees(debouncedValue);
+                setLoading(false);
+            };
+            fetch();
+        }
     }, [pageNumber, selectedOption, debouncedValue]);
+
+    const fetchData = async () => {
+        const result = await adminServices.getAllUser({
+            q: debouncedValue,
+            page: pageNumber,
+        });
+        setAccountData(result.data);
+        setTotalPage(result.soTrang);
+    };
+
+    const fetchDataCustomer = async () => {
+        const result = await adminServices.getAllCustomer({
+            q: debouncedValue,
+            page: pageNumber,
+        });
+        setAccountData(result.data);
+        setTotalPage(result.soTrang);
+    };
+
+    const fetchDataEmployees = async () => {
+        const result = await adminServices.getAllEmployees({
+            q: debouncedValue,
+            page: pageNumber,
+        });
+        setAccountData(result.data);
+        setTotalPage(result.soTrang);
+    };
 
     const handleChange = (event) => {
         const selectedValue = event.target.value;
         setSelectedOption(selectedValue);
 
         // Gọi API tương ứng với giá trị đã chọn
-        if (selectedValue === 'DF') {
-            // fetchData();
-        } else if (selectedValue === 'Accepted') {
-            // fetchDataAccepted();
-        } else if (selectedValue === 'UnAccepted') {
-            // fetchDataUnAccepted();
+        if (selectedValue === '') {
+            fetchData();
+        } else if (selectedValue === 'Employees') {
+            fetchDataEmployees();
+        } else if (selectedValue === 'Customer') {
+            fetchDataCustomer();
         }
     };
 
@@ -169,8 +217,8 @@ function Account() {
                             onChange={handleChange}
                         >
                             <option value=''>Mặc định</option>
-                            <option value='Nhân viên'>Nhân viên</option>
-                            <option value='Khách hàng'>Khách hàng</option>
+                            <option value='Employees'>Nhân viên</option>
+                            <option value='Customer'>Khách hàng</option>
                         </select>
                     </div>
                 </div>

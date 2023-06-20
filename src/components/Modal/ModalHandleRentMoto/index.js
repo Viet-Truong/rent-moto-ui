@@ -223,25 +223,35 @@ function ModalHandleRentMoto() {
                                     })}
                                 </MDBTableBody>
                                 {typeModal === 'ACCEPT' ? (
-                                    <tfoot>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <Button
-                                                    size='sm'
-                                                    primary
-                                                    className={cx('fw-normal')}
-                                                    onClick={handleAcceptRent}
-                                                >
-                                                    Duyệt
-                                                </Button>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
+                                    <>
+                                        {dataModal?.trangThai !== 'Đã duyệt' ? (
+                                            <tfoot>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <Button
+                                                            size='sm'
+                                                            primary
+                                                            className={cx(
+                                                                'fw-normal'
+                                                            )}
+                                                            onClick={
+                                                                handleAcceptRent
+                                                            }
+                                                        >
+                                                            Duyệt
+                                                        </Button>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        ) : (
+                                            ''
+                                        )}
+                                    </>
                                 ) : (
                                     <tfoot>
                                         <tr>
