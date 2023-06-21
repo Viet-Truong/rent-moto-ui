@@ -28,7 +28,7 @@ import {
 import useDebounce from '~/hooks/useDebounce';
 import Policy from '~/components/Policy';
 import { AppContext } from '~/Context/AppContext';
-import * as adminServices from '~/api/adminServices';
+import * as userServices from '~/api/userServices';
 import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
@@ -62,7 +62,7 @@ function Account() {
 
     useEffect(() => {
         const thongKe = async () => {
-            const result = await adminServices.thongKeUser();
+            const result = await userServices.thongKeUser();
             setDash(result);
         };
         thongKe();
@@ -103,7 +103,7 @@ function Account() {
     }, [pageNumber, selectedOption, debouncedValue]);
 
     const fetchData = async () => {
-        const result = await adminServices.getAllUser({
+        const result = await userServices.getAllUser({
             q: debouncedValue,
             page: pageNumber,
         });
@@ -112,7 +112,7 @@ function Account() {
     };
 
     const fetchDataCustomer = async () => {
-        const result = await adminServices.getAllCustomer({
+        const result = await userServices.getAllCustomer({
             q: debouncedValue,
             page: pageNumber,
         });
@@ -121,7 +121,7 @@ function Account() {
     };
 
     const fetchDataEmployees = async () => {
-        const result = await adminServices.getAllEmployees({
+        const result = await userServices.getAllEmployees({
             q: debouncedValue,
             page: pageNumber,
         });

@@ -28,6 +28,10 @@ function ModalAccount() {
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
     const [role, setRole] = useState();
+    const [error, setError] = useState({
+        isError: false,
+        message: '',
+    });
 
     const handleAddAccount = async (taiKhoan, matKhau, role) => {
         if (password === confirmPassword) {
@@ -36,8 +40,21 @@ function ModalAccount() {
                 password: matKhau,
                 role: role,
             });
+            console.log(result);
+            if (result.status === 'success') {
+                setIsModalAccountVisible(false);
+            } else {
+                setError({
+                    isError: true,
+                    message: result.mess,
+                });
+            }
         } else {
-            console.log('Mat khau khong khop');
+            setError({
+                isError: true,
+                message: 'Mật khẩu không trùng khớp',
+            });
+            console.log('Mật khẩu không trùng khớp');
         }
     };
 
@@ -118,6 +135,9 @@ function ModalAccount() {
                                     {role}
                                 </div>
                             </div>
+                            <p className={cx('error-message')}>
+                                {error.message}
+                            </p>
                         </MDBModalBody>
 
                         <MDBModalFooter>
@@ -132,7 +152,6 @@ function ModalAccount() {
                                 className={cx('button_save')}
                                 onClick={() => {
                                     handleAddAccount(account, password, role);
-                                    setIsModalAccountVisible(false);
                                 }}
                             >
                                 Lưu

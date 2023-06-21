@@ -32,3 +32,10 @@
     background-color: var(--primary) !important;
     color: var(--white-color) !important;
 }
+
+.error-message {
+    margin-top: 20px;
+    color: red;
+    font-style: italic;
+    font-size: 1.2rem;
+}
