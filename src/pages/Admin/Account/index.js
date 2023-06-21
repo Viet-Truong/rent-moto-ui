@@ -23,6 +23,7 @@ import {
     faUsersRectangle,
     faUserTie,
     faUser,
+    faLockOpen,
 } from '@fortawesome/free-solid-svg-icons';
 
 import useDebounce from '~/hooks/useDebounce';
@@ -30,13 +31,19 @@ import Policy from '~/components/Policy';
 import { AppContext } from '~/Context/AppContext';
 import * as userServices from '~/api/userServices';
 import Image from '~/components/Image';
+import Toast from '~/components/Toast';
 
 const cx = classNames.bind(styles);
 const PAGE = 1;
 
 function Account() {
     const [accountData, setAccountData] = useState();
-    const { setIsModalAccountVisible, setData } = useContext(AppContext);
+    const {
+        setIsModalAccountVisible,
+        setData,
+        setIsToastVisible,
+        isToastVisible,
+    } = useContext(AppContext);
     const [dash, setDash] = useState();
     const [totalPage, setTotalPage] = useState();
     const [pageNumber, setPageNumber] = useState(PAGE);
@@ -100,7 +107,7 @@ function Account() {
             };
             fetch();
         }
-    }, [pageNumber, selectedOption, debouncedValue]);
+    }, [pageNumber, selectedOption, debouncedValue, isToastVisible]);
 
     const fetchData = async () => {
         const result = await userServices.getAllUser({
@@ -140,6 +147,32 @@ function Account() {
             fetchDataEmployees();
         } else if (selectedValue === 'Customer') {
             fetchDataCustomer();
+        }
+    };
+
+    const handleLockAccount = async (maTaiKhoan, trangThai) => {
+        const result = await userServices.updateProfile({
+            maTaiKhoan: maTaiKhoan,
+            trangThai: trangThai,
+        });
+        console.log(result);
+        if (result.status === 'success') {
+            setIsToastVisible({
+                type: 'success',
+                message:
+                    trangThai === 'Khoá'
+                        ? 'Đã khoá tài khoản thành công'
+                        : 'Đã mở khoá tài khoản thành công',
+                title: 'Thành công',
+                open: true,
+            });
+        } else {
+            setIsToastVisible({
+                type: 'error',
+                message: 'Có lỗi xảy ra. Vui lòng thử lại sau',
+                title: 'Thất bại',
+                open: true,
+            });
         }
     };
 
@@ -236,7 +269,12 @@ function Account() {
                 <MDBTableBody>
                     {accountData?.map((item) => {
                         return (
-                            <tr key={item.maTaiKhoan}>
+                            <tr
+                                key={item.maTaiKhoan}
+                                className={cx(
+                                    item.trangThai === 'Khoá' ? 'lock' : ''
+                                )}
+                            >
                                 <td>
                                     <div className='d-flex align-items-center'>
                                         <Image
@@ -291,12 +329,41 @@ function Account() {
                                     )}
                                 </td>
                                 <td>
-                                    <MDBBtn color='link' rounded size='sm'>
-                                        <FontAwesomeIcon
-                                            icon={faLock}
-                                            className={cx('actions-btn')}
-                                        />
-                                    </MDBBtn>
+                                    {item.trangThai === 'Hoạt động' ? (
+                                        <MDBBtn
+                                            color='link'
+                                            rounded
+                                            size='sm'
+                                            onClick={() =>
+                                                handleLockAccount(
+                                                    item.maTaiKhoan,
+                                                    'Khoá'
+                                                )
+                                            }
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faLock}
+                                                className={cx('actions-btn')}
+                                            />
+                                        </MDBBtn>
+                                    ) : (
+                                        <MDBBtn
+                                            color='link'
+                                            rounded
+                                            size='sm'
+                                            onClick={() =>
+                                                handleLockAccount(
+                                                    item.maTaiKhoan,
+                                                    'Hoạt động'
+                                                )
+                                            }
+                                        >
+                                            <FontAwesomeIcon
+                                                icon={faLockOpen}
+                                                className={cx('actions-btn')}
+                                            />
+                                        </MDBBtn>
+                                    )}
                                 </td>
                             </tr>
                         );
@@ -340,6 +407,11 @@ function Account() {
                     <FontAwesomeIcon icon={faAngleRight} />
                 </button>
             </nav>
+            <Toast
+                type={isToastVisible?.type}
+                message={isToastVisible?.message}
+                title={isToastVisible?.title}
+            />
         </div>
     );
 }
