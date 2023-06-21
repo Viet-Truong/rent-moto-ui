@@ -24,6 +24,7 @@ import {
     faUserTie,
     faUser,
     faLockOpen,
+    faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons';
 
 import useDebounce from '~/hooks/useDebounce';
@@ -188,6 +189,11 @@ function Account() {
                     icon={<FontAwesomeIcon icon={faUsersRectangle} />}
                     name={'Tổng người dùng'}
                     value={dash?.SumUser}
+                />
+                <Policy
+                    icon={<FontAwesomeIcon icon={faUserAstronaut} />}
+                    name={'Tổng admin'}
+                    value={dash?.SumUser - dash?.SumUserEmpl - dash?.SumUserCus}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faUserTie} />}

@@ -6,21 +6,32 @@ import {
     MDBTable,
     MDBTableHead,
     MDBTableBody,
-    MDBPagination,
-    MDBPaginationItem,
-    MDBPaginationLink,
 } from 'mdb-react-ui-kit';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faPlus, faMotorcycle } from '@fortawesome/free-solid-svg-icons';
+import {
+    faPen,
+    faPlus,
+    faMotorcycle,
+    faAngleLeft,
+    faAngleRight,
+    faCircleXmark,
+    faMagnifyingGlass,
+    faSpinner,
+    faLockOpen,
+    faToggleOn,
+    faExclamation,
+} from '@fortawesome/free-solid-svg-icons';
 
+import Policy from '~/components/Policy';
+import useDebounce from '~/hooks/useDebounce';
 import ModalMoto from '~/components/Modal/ModalMoto';
 import { AppContext } from '~/Context/AppContext';
 import * as motoServices from '~/api/motoServices';
 
 const cx = classNames.bind(styles);
-
+const PAGE = 1;
 const TYPE_MODAL = {
     add: 'ADD',
     update: 'UPDATE',
@@ -32,14 +43,56 @@ function ManagerMoto() {
     const { setIsModalMotoVisible, setTypeModal, setData } =
         useContext(AppContext);
 
+    const [dash, setDash] = useState();
+    const [totalPage, setTotalPage] = useState();
+    const [pageNumber, setPageNumber] = useState(PAGE);
+    const [selectedOption, setSelectedOption] = useState('');
+
+    // Search
+
+    const inputRef = useRef();
+    const [searchValue, setSearchValue] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const debouncedValue = useDebounce(searchValue, 500);
+    const handleClear = () => {
+        setSearchValue('');
+        inputRef.current.focus();
+    };
+
+    const handleChangeInput = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
     useEffect(() => {
         const fetch = async () => {
-            const result = await motoServices.getAllXe();
-            setMotoData(result);
+            const result = await motoServices.getAllXeAdmin({
+                q: debouncedValue,
+                page: pageNumber,
+            });
+            setMotoData(result.data);
+            setTotalPage(result.soTrang);
         };
 
         fetch();
-    }, [page]);
+    }, [page, debouncedValue, pageNumber]);
+
+    const handleChange = (event) => {
+        const selectedValue = event.target.value;
+        setSelectedOption(selectedValue);
+
+        // Gọi API tương ứng với giá trị đã chọn
+        if (selectedValue === '') {
+            // fetchData();
+        } else if (selectedValue === 'Employees') {
+            // fetchDataEmployees();
+        } else if (selectedValue === 'Customer') {
+            // fetchDataCustomer();
+        }
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -50,17 +103,79 @@ function ManagerMoto() {
                 />
                 Cập nhật thông tin xe
             </h1>
-            <MDBBtn
-                onClick={() => {
-                    setIsModalMotoVisible(true);
-                    setTypeModal(TYPE_MODAL.add);
-                    setData(undefined);
-                }}
-                className={cx('button_showModal')}
-            >
-                <FontAwesomeIcon icon={faPlus} />
-            </MDBBtn>
+
             <ModalMoto />
+            <div className={cx('wrapper-policy')}>
+                <Policy
+                    icon={<FontAwesomeIcon icon={faMotorcycle} />}
+                    name={'Tổng số xe'}
+                    value={''}
+                />
+                <Policy
+                    icon={<FontAwesomeIcon icon={faToggleOn} />}
+                    name={'Tổng xe hiện đang cho thuê'}
+                    value={''}
+                />
+                <Policy
+                    icon={<FontAwesomeIcon icon={faExclamation} />}
+                    name={'Tổng xe đang hư'}
+                    value={''}
+                />
+            </div>
+            <div className={cx('action-table')}>
+                {/* <Search /> */}
+                <div>
+                    <div className={cx('search')}>
+                        <input
+                            value={searchValue}
+                            placeholder='Tìm kiếm'
+                            type='text'
+                            spellCheck={false}
+                            onChange={handleChangeInput}
+                        />
+                        {!!searchValue && !loading && (
+                            <button
+                                className={cx('clear')}
+                                onClick={handleClear}
+                            >
+                                <FontAwesomeIcon icon={faCircleXmark} />
+                            </button>
+                        )}
+                        {loading && (
+                            <FontAwesomeIcon
+                                className={cx('loading')}
+                                icon={faSpinner}
+                            />
+                        )}
+                        <button
+                            className={cx('search-btn')}
+                            onMouseDown={(e) => e.preventDefault()}
+                        >
+                            <FontAwesomeIcon icon={faMagnifyingGlass} on />
+                        </button>
+                    </div>
+                </div>
+                <div className={cx('right-action')}>
+                    <MDBBtn
+                        onClick={() => {
+                            setIsModalMotoVisible(true);
+                            setTypeModal(TYPE_MODAL.add);
+                            setData(undefined);
+                        }}
+                        className={cx('button_showModal')}
+                    >
+                        <FontAwesomeIcon icon={faPlus} />
+                    </MDBBtn>
+                    <div>
+                        <select
+                            className={cx('select')}
+                            onChange={handleChange}
+                        >
+                            <option value=''>Mặc định</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <MDBTable align='middle' className={cx('table')}>
                 <MDBTableHead>
                     <tr>
@@ -156,31 +271,41 @@ function ManagerMoto() {
                 </MDBTableBody>
             </MDBTable>
             <nav aria-label='...' className={cx('page_navigation')}>
-                <MDBPagination className='mb-0'>
-                    <MDBPaginationItem disabled>
-                        <MDBPaginationLink
-                            href='#'
-                            tabIndex={-1}
-                            aria-disabled='true'
-                        >
-                            Previous
-                        </MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem>
-                        <MDBPaginationLink href='#'>1</MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem active aria-current='page'>
-                        <MDBPaginationLink href='#'>
-                            2 <span className='visually-hidden'>(current)</span>
-                        </MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem>
-                        <MDBPaginationLink href='#'>3</MDBPaginationLink>
-                    </MDBPaginationItem>
-                    <MDBPaginationItem>
-                        <MDBPaginationLink href='#'>Next</MDBPaginationLink>
-                    </MDBPaginationItem>
-                </MDBPagination>
+                <button
+                    className={cx('btn-nav', 'left-btn')}
+                    onClick={() => {
+                        if (pageNumber > 1) setPageNumber((prev) => prev - 1);
+                    }}
+                >
+                    <FontAwesomeIcon icon={faAngleLeft} />
+                </button>
+                <div className={cx('page-numbers')}>
+                    {Array.from({ length: totalPage }, (_, i) => i + 1).map(
+                        (page) => (
+                            <button
+                                className={cx(
+                                    'btn-page',
+                                    pageNumber == page ? 'btn-selected' : ''
+                                )}
+                                onClick={() => setPageNumber(page)}
+                                key={page}
+                            >
+                                {page}
+                            </button>
+                        )
+                    )}
+                </div>
+                <button
+                    className={cx('btn-nav', 'right-btn')}
+                    onClick={() => {
+                        if (pageNumber < totalPage) {
+                            setPageNumber((prev) => prev + 1);
+                        } else {
+                        }
+                    }}
+                >
+                    <FontAwesomeIcon icon={faAngleRight} />
+                </button>
             </nav>
         </div>
     );

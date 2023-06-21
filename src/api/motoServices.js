@@ -7,7 +7,21 @@ export const getAllXe = async (q) => {
                 q,
             },
         });
-        return res.data;
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const getAllXeAdmin = async ({ q = '', page = '' }) => {
+    try {
+        const res = await request.get('getAllXeAdmin', {
+            params: {
+                q,
+                page,
+            },
+        });
+        return res;
     } catch (e) {
         console.log(e);
     }
