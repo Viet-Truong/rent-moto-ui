@@ -13,11 +13,7 @@
 }
 
 .wrapper-content {
-    margin-top: 50px;
-
-    div {
-        margin-left: 0 !important;
-    }
+    margin-top: 100px;
 }
 
 .input_field {
@@ -50,16 +46,27 @@
     background-color: var(--primary) !important;
 }
 
-
-@media only screen and (min-width: 480px) and (max-width: 1280px) {
-    .input {
-        width: 20rem !important;
+@media only screen and (min-width: 320px) and (max-width: 480px){
+    .wrapper {
+        margin-top: 0 !important;
     }
 }
 
+.card {
+    box-shadow: none !important;
+}
 
-@media only screen and (min-width: 320px) and (max-width: 480px) {
-    .col {
-        width: 100% !important;
-    }
+.card__body {
+    position: relative;
+}
+
+.card__body--icon {
+    position: absolute;
+    bottom: 0;
+    left: 80px;
+    right: 0;
+}
+
+.form-control {
+    font-size: 1.4rem;
 }
