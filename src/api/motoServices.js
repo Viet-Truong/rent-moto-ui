@@ -27,3 +27,12 @@ export const getAllXeAdmin = async ({ q = null, page = '', type = '' }) => {
         console.log(e);
     }
 };
+
+export const thongKeXe = async () => {
+    try {
+        const res = await request.get('thongkeXe');
+        return JSON.parse(res);
+    } catch (e) {
+        console.log(e);
+    }
+};

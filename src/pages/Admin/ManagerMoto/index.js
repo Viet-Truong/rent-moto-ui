@@ -68,6 +68,10 @@ function ManagerMoto() {
     };
 
     useEffect(() => {
+        const thongKe = async () => {
+            const result = await motoServices.thongKeXe();
+            setDash(result);
+        };
         const fetch = async () => {
             const result = await motoServices.getAllXeAdmin({
                 q: debouncedValue,
@@ -77,7 +81,8 @@ function ManagerMoto() {
             setMotoData(result.data);
             setTotalPage(result.soTrang);
         };
-
+        
+        thongKe();
         fetch();
     }, [page, debouncedValue, pageNumber, selectedOption]);
 
@@ -110,17 +115,17 @@ function ManagerMoto() {
                 <Policy
                     icon={<FontAwesomeIcon icon={faMotorcycle} />}
                     name={'Tổng số xe'}
-                    value={''}
+                    value={dash?.SumMoto}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faToggleOn} />}
                     name={'Tổng xe hiện đang cho thuê'}
-                    value={''}
+                    value={dash?.SumMotoActive}
                 />
                 <Policy
                     icon={<FontAwesomeIcon icon={faExclamation} />}
                     name={'Tổng xe đang hư'}
-                    value={''}
+                    value={dash?.SumMotoUnActive}
                 />
             </div>
             <div className={cx('action-table')}>
