@@ -13,12 +13,13 @@ export const getAllXe = async (q) => {
     }
 };
 
-export const getAllXeAdmin = async ({ q = '', page = '' }) => {
+export const getAllXeAdmin = async ({ q = null, page = '', type = '' }) => {
     try {
         const res = await request.get('getAllXeAdmin', {
             params: {
                 q,
                 page,
+                type,
             },
         });
         return res;

@@ -72,13 +72,14 @@ function ManagerMoto() {
             const result = await motoServices.getAllXeAdmin({
                 q: debouncedValue,
                 page: pageNumber,
+                type: selectedOption,
             });
             setMotoData(result.data);
             setTotalPage(result.soTrang);
         };
 
         fetch();
-    }, [page, debouncedValue, pageNumber]);
+    }, [page, debouncedValue, pageNumber, selectedOption]);
 
     const handleChange = (event) => {
         const selectedValue = event.target.value;
@@ -172,6 +173,9 @@ function ManagerMoto() {
                             onChange={handleChange}
                         >
                             <option value=''>Mặc định</option>
+                            <option value='Xe ga'>Xe ga</option>
+                            <option value='Xe số'>Xe số</option>
+                            <option value='Xe côn tay'>Xe côn tay</option>
                         </select>
                     </div>
                 </div>
