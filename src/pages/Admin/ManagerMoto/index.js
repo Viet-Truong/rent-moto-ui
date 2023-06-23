@@ -19,7 +19,6 @@ import {
     faCircleXmark,
     faMagnifyingGlass,
     faSpinner,
-    faLockOpen,
     faToggleOn,
     faExclamation,
 } from '@fortawesome/free-solid-svg-icons';
@@ -29,6 +28,7 @@ import useDebounce from '~/hooks/useDebounce';
 import ModalMoto from '~/components/Modal/ModalMoto';
 import { AppContext } from '~/Context/AppContext';
 import * as motoServices from '~/api/motoServices';
+import Toast from '~/components/Toast';
 
 const cx = classNames.bind(styles);
 const PAGE = 1;
@@ -40,8 +40,13 @@ const TYPE_MODAL = {
 function ManagerMoto() {
     const [motoData, setMotoData] = useState();
     const [page, setPage] = useState();
-    const { setIsModalMotoVisible, setTypeModal, setData } =
-        useContext(AppContext);
+    const {
+        isModalMotoVisible,
+        setIsModalMotoVisible,
+        setTypeModal,
+        setData,
+        isToastVisible,
+    } = useContext(AppContext);
 
     const [dash, setDash] = useState();
     const [totalPage, setTotalPage] = useState();
@@ -81,10 +86,10 @@ function ManagerMoto() {
             setMotoData(result.data);
             setTotalPage(result.soTrang);
         };
-        
+
         thongKe();
         fetch();
-    }, [page, debouncedValue, pageNumber, selectedOption]);
+    }, [page, debouncedValue, pageNumber, selectedOption, isModalMotoVisible]);
 
     const handleChange = (event) => {
         const selectedValue = event.target.value;
@@ -316,6 +321,11 @@ function ManagerMoto() {
                     <FontAwesomeIcon icon={faAngleRight} />
                 </button>
             </nav>
+            <Toast
+                type={isToastVisible?.type}
+                message={isToastVisible?.message}
+                title={isToastVisible?.title}
+            />
         </div>
     );
 }
