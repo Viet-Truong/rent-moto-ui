@@ -43,7 +43,7 @@ function ModalMoto() {
     const [status, setStatus] = useState(data?.trangThai ?? '');
     const [hinhAnh, setHinhAnh] = useState(data?.hinhAnh ?? []);
     const [multipleImages, setMultipleImages] = useState([]);
-    const formDataRef = new FormData();
+    const formDataRef = useRef(new FormData());
 
     useEffect(() => {
         setIdMoto(data?.idMoto ?? '');
@@ -89,22 +89,23 @@ function ModalMoto() {
         event.preventDefault();
 
         if (typeModal !== 'ADD') {
-            formDataRef.append('maXe', data?.maXe);
+            formDataRef.current.append('maXe', data?.maXe);
         }
 
-        formDataRef.append('tenXe', nameMoto);
-        formDataRef.append('hangXe', autoMaker);
-        formDataRef.append('bienSoXe', licensePlates);
-        formDataRef.append('loaiXe', type);
-        formDataRef.append('giaThue', price);
-        formDataRef.append('trangThai', status);
-        formDataRef.append('moTa', '');
-        formDataRef.append('slug', '123');
-        formDataRef.append('images', hinhAnh);
+        formDataRef.current.append('tenXe', nameMoto);
+        formDataRef.current.append('hangXe', autoMaker);
+        formDataRef.current.append('bienSoXe', licensePlates);
+        formDataRef.current.append('loaiXe', type);
+        formDataRef.current.append('giaThue', price);
+        formDataRef.current.append('trangThai', status);
+        formDataRef.current.append('moTa', '');
+        formDataRef.current.append('slug', '123');
+        if (typeof hinhAnh !== 'object')
+            formDataRef.current.append('images', hinhAnh);
 
         const fetchData = async () => {
             if (typeModal === 'ADD') {
-                const result = await motoServices.addXe(formDataRef);
+                const result = await motoServices.addXe(formDataRef.current);
                 if (result.status === 'success') {
                     setIsToastVisible({
                         type: 'success',
@@ -123,7 +124,7 @@ function ModalMoto() {
                 }
                 console.log(result);
             } else {
-                const result = await motoServices.updateXe(formDataRef);
+                const result = await motoServices.updateXe(formDataRef.current);
                 console.log(result);
                 if (result.status === 'success') {
                     setIsToastVisible({
@@ -144,7 +145,7 @@ function ModalMoto() {
             }
         };
 
-        console.log(formDataToJSON(formDataRef));
+        console.log(formDataToJSON(formDataRef.current));
 
         fetchData();
     };
