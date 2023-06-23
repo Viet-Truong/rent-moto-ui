@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './ModalMoto.module.scss';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import {
     MDBBtn,
     MDBModal,
@@ -17,26 +17,99 @@ import {
     MDBDropdownItem,
 } from 'mdb-react-ui-kit';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
+
 import { AppContext } from '~/Context/AppContext';
+import Button from '~/components/Button';
+import * as motoServices from '~/api/motoServices';
 
 const cx = classNames.bind(styles);
 
 function ModalMoto() {
     const { isModalMotoVisible, data, typeModal, setIsModalMotoVisible } =
         useContext(AppContext);
+    const [idMoto, setIdMoto] = useState(data?.maXe ?? '');
     const [nameMoto, setNameMoto] = useState(data?.tenXe ?? '');
     const [autoMaker, setAutoMaker] = useState(data?.hangXe ?? '');
     const [price, setPrice] = useState(data?.giaThue ?? '');
     const [type, setType] = useState(data?.loaiXe ?? '');
     const [licensePlates, setLicensePlates] = useState(data?.bienSoXe ?? '');
+    const [status, setStatus] = useState(data?.trangThai ?? '');
+    const [hinhAnh, setHinhAnh] = useState(data?.hinhAnh ?? []);
+    const [multipleImages, setMultipleImages] = useState([]);
+    const formDataRef = useRef(new FormData());
 
     useEffect(() => {
+        setIdMoto(data?.idMoto ?? '');
         setNameMoto(data?.tenXe ?? '');
         setAutoMaker(data?.hangXe ?? '');
         setPrice(data?.giaThue ?? '');
         setType(data?.loaiXe ?? '');
         setLicensePlates(data?.bienSoXe ?? '');
+        setHinhAnh(data?.hinhAnh ?? '');
+        setStatus(data?.trangThai ?? '');
     }, [data]);
+
+    const changeMultipleFiles = (e) => {
+        if (e.target.files) {
+            const file = e.target.files[0];
+            const filesArray = Array.from(e.target.files);
+            const imageArray = filesArray.map((file) =>
+                URL.createObjectURL(file)
+            );
+            // add image to call api
+            setHinhAnh(file);
+
+            // preview image
+            setMultipleImages((prevImages) => prevImages.concat(imageArray));
+        }
+    };
+
+    const removeImage = (index) => {
+        setMultipleImages((prevImages) =>
+            prevImages.filter((_, i) => i !== index)
+        );
+    };
+
+    function formDataToJSON(formData) {
+        const json = {};
+        for (const [key, value] of formData.entries()) {
+            json[key] = value;
+        }
+        return json;
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        formDataRef.current.append('tenXe', nameMoto);
+        formDataRef.current.append('hangXe', autoMaker);
+        formDataRef.current.append('bienSoXe', licensePlates);
+        formDataRef.current.append('loaiXe', type);
+        formDataRef.current.append('giaThue', price);
+        formDataRef.current.append('trangThai', status);
+        formDataRef.current.append('moTa', '');
+        formDataRef.current.append('slug', '123');
+        formDataRef.current.append('images', hinhAnh);
+
+        if (typeModal !== 'ADD') {
+            formDataRef.current.append('maXe', idMoto);
+        }
+        const fetchData = async () => {
+            if (typeModal === 'ADD') {
+                const result = await motoServices.addXe(formDataRef.current);
+                console.log(result);
+            } else {
+                const result = await motoServices.updateXe(formDataRef.current);
+                console.log(result);
+            }
+        };
+
+        console.log(formDataToJSON(formDataRef.current));
+
+        fetchData();
+    };
 
     return (
         <div className={cx('wrapper-modal')}>
@@ -75,8 +148,8 @@ function ModalMoto() {
 
                             <MDBInput
                                 className={cx('input')}
-                                label={'giá xe'}
-                                value={price}
+                                label={'Giá xe'}
+                                value={`${price}`}
                                 onChange={(e) => setPrice(e.target.value)}
                                 type='text'
                             />
@@ -126,20 +199,99 @@ function ModalMoto() {
                                     {type}
                                 </div>
                             </div>
+                            <div className={cx('wrapper-dropdown')}>
+                                <MDBDropdown className={cx('dropdown')}>
+                                    <MDBDropdownToggle>
+                                        Trạng thái
+                                    </MDBDropdownToggle>
+                                    <MDBDropdownMenu>
+                                        <MDBDropdownItem
+                                            link
+                                            onClick={() => {
+                                                setStatus('Hoạt động');
+                                            }}
+                                        >
+                                            Hoạt động
+                                        </MDBDropdownItem>
+                                        <MDBDropdownItem
+                                            link
+                                            onClick={() => {
+                                                setStatus('Ngưng hoạt động');
+                                            }}
+                                        >
+                                            Ngưng hoạt độn
+                                        </MDBDropdownItem>
+                                        <MDBDropdownItem
+                                            link
+                                            onClick={() => {
+                                                setStatus('Đã mất');
+                                            }}
+                                        >
+                                            Đã mất
+                                        </MDBDropdownItem>
+                                    </MDBDropdownMenu>
+                                </MDBDropdown>
+                                <div className={cx('value_dropdown')}>
+                                    {status}
+                                </div>
+                            </div>
                             <div className={cx('wrapper_image')}>
-                                <input type='file' />
+                                <input
+                                    type='file'
+                                    multiple
+                                    onChange={changeMultipleFiles}
+                                />
+                                {multipleImages.map((image, index) => {
+                                    return (
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                marginTop: '10px',
+                                            }}
+                                            key={index}
+                                        >
+                                            <img
+                                                className='image'
+                                                src={image}
+                                                alt=''
+                                                key={image}
+                                                width='200'
+                                                height='200'
+                                            />
+                                            <Button
+                                                style={{ marginLeft: '10px' }}
+                                                onClick={() =>
+                                                    removeImage(index)
+                                                }
+                                            >
+                                                <FontAwesomeIcon
+                                                    icon={faClose}
+                                                />
+                                            </Button>
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </MDBModalBody>
 
                         <MDBModalFooter>
-                            <MDBBtn
-                                className={cx('button_save')}
-                                color='secondary'
-                                onClick={() => setIsModalMotoVisible(false)}
-                            >
-                                Huỷ
-                            </MDBBtn>
-                            <MDBBtn className={cx('button_save')}>Lưu</MDBBtn>
+                            {typeModal === 'ADD' ? (
+                                <Button
+                                    primary
+                                    onClick={handleSubmit}
+                                    style={{ marginTop: '20px' }}
+                                >
+                                    Thêm
+                                </Button>
+                            ) : (
+                                <Button
+                                    primary
+                                    onClick={handleSubmit}
+                                    style={{ marginTop: '20px' }}
+                                >
+                                    Sửa
+                                </Button>
+                            )}
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>

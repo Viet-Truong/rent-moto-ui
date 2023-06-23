@@ -39,17 +39,11 @@ export const updateProfile = async ({
 
 export const updateAvatar = async (formData) => {
     try {
-        const res = await request.post(
-            'updateInfoUser',
-
-            formData,
-
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            }
-        );
+        const res = await request.post('updateInfoUser', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
         return res;
     } catch (e) {
         console.log(e);

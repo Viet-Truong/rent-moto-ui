@@ -36,3 +36,29 @@ export const thongKeXe = async () => {
         console.log(e);
     }
 };
+
+export const addXe = async (formData) => {
+    try {
+        const res = await request.post('addXe', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const updateXe = async (formData) => {
+    try {
+        const res = await request.post('updateXe', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};

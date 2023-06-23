@@ -61,6 +61,7 @@ function Avatar() {
         // Call your API to save the selected image
         // ...
         formDataRef.current.append('maTaiKhoan', auth.maTaiKhoan);
+        console.log(formDataToJSON(formDataRef.current));
         try {
             const result = await userServices.updateAvatar(formDataRef.current);
             // Cập nhật dữ liệu mới vào localStorage

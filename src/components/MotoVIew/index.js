@@ -107,7 +107,6 @@ function MotoView({ item }) {
                                     onChange={handleRangePickerChange}
                                     disabledDate={disabledDate}
                                     format='DD MMM yyyy'
-                                    // onChange={setFilter}
                                     style={{ height: '3.5rem', width: '37rem' }}
                                     placeholder={[
                                         'Ngày bắt đầu',
@@ -123,9 +122,9 @@ function MotoView({ item }) {
                             onClick={() =>
                                 addCartItem({
                                     id: `${product.slug}-${uuid()}`,
-                                    image: product.image[0],
-                                    name: product.name,
-                                    price: product.price,
+                                    image: product.hinhAnh[0],
+                                    name: product.tenXe,
+                                    price: product.giaThue,
                                     slug: product.slug,
                                     startDate: startDate,
                                     endDate: endDate,

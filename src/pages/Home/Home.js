@@ -17,7 +17,8 @@ function Home() {
     useEffect(() => {
         const fetch = async () => {
             const result = await motoServices.getAllXe();
-            setDataMoto(result);
+            console.log(result);
+            setDataMoto(result.data);
         };
 
         fetch();
