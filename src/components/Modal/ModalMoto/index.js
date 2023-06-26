@@ -41,8 +41,10 @@ function ModalMoto() {
     const [type, setType] = useState(data?.loaiXe ?? '');
     const [licensePlates, setLicensePlates] = useState(data?.bienSoXe ?? '');
     const [status, setStatus] = useState(data?.trangThai ?? '');
+    const [description, setDescription] = useState(data?.moTa ?? '');
+    const [slug, setSlug] = useState(data?.slug ?? '');
     const [hinhAnh, setHinhAnh] = useState(data?.hinhAnh ?? []);
-    const [multipleImages, setMultipleImages] = useState([]);
+    const [multipleImages, setMultipleImages] = useState(data?.hinhAnh ?? []);
     const formDataRef = useRef(new FormData());
 
     useEffect(() => {
@@ -54,11 +56,14 @@ function ModalMoto() {
         setLicensePlates(data?.bienSoXe ?? '');
         setHinhAnh(data?.hinhAnh ?? '');
         setStatus(data?.trangThai ?? '');
+        setDescription(data?.moTa ?? '');
+        setSlug(data?.slug ?? '');
+        setMultipleImages(data?.hinhAnh ?? []);
     }, [data]);
 
     const changeMultipleFiles = (e) => {
         if (e.target.files) {
-            const file = e.target.files[0];
+            const file = e.target.files;
             const filesArray = Array.from(e.target.files);
             const imageArray = filesArray.map((file) =>
                 URL.createObjectURL(file)
@@ -98,10 +103,13 @@ function ModalMoto() {
         formDataRef.current.append('loaiXe', type);
         formDataRef.current.append('giaThue', price);
         formDataRef.current.append('trangThai', status);
-        formDataRef.current.append('moTa', '');
-        formDataRef.current.append('slug', '123');
-        if (typeof hinhAnh !== 'object')
-            formDataRef.current.append('images', hinhAnh);
+        formDataRef.current.append('moTa', description);
+        formDataRef.current.append('slug', slug);
+        console.log(hinhAnh);
+        for (let i = 0; i < hinhAnh.length; i++) {
+            formDataRef.current.append('images', hinhAnh[i]);
+            console.log(i);
+        }
 
         const fetchData = async () => {
             if (typeModal === 'ADD') {
@@ -202,6 +210,22 @@ function ModalMoto() {
                                 }
                                 type='text'
                             />
+
+                            <MDBInput
+                                className={cx('input')}
+                                label={'Mô tả'}
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                type='text'
+                            />
+
+                            <MDBInput
+                                className={cx('input')}
+                                label={'Slug'}
+                                value={slug}
+                                onChange={(e) => setSlug(e.target.value)}
+                                type='text'
+                            />
                             <div className={cx('wrapper-dropdown')}>
                                 <MDBDropdown className={cx('dropdown')}>
                                     <MDBDropdownToggle>
@@ -280,36 +304,83 @@ function ModalMoto() {
                                     multiple
                                     onChange={changeMultipleFiles}
                                 />
-                                {multipleImages.map((image, index) => {
-                                    return (
-                                        <div
-                                            style={{
-                                                display: 'flex',
-                                                marginTop: '10px',
-                                            }}
-                                            key={index}
-                                        >
-                                            <img
-                                                className='image'
-                                                src={image}
-                                                alt=''
-                                                key={image}
-                                                width='200'
-                                                height='200'
-                                            />
-                                            <Button
-                                                style={{ marginLeft: '10px' }}
-                                                onClick={() =>
-                                                    removeImage(index)
-                                                }
-                                            >
-                                                <FontAwesomeIcon
-                                                    icon={faClose}
-                                                />
-                                            </Button>
-                                        </div>
-                                    );
-                                })}
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        marginTop: '10px',
+                                        alignItems: 'center',
+                                    }}
+                                >
+                                    {multipleImages?.map((image, index) => {
+                                        return (
+                                            <>
+                                                {image.includes('localhost') ? (
+                                                    <div
+                                                        className={cx(
+                                                            'item-image'
+                                                        )}
+                                                    >
+                                                        <img
+                                                            className={cx(
+                                                                'image'
+                                                            )}
+                                                            src={image}
+                                                            alt=''
+                                                            key={image}
+                                                            width='200'
+                                                            height='200'
+                                                        />
+                                                        <Button
+                                                            className={cx(
+                                                                'delete-image'
+                                                            )}
+                                                            onClick={() =>
+                                                                removeImage(
+                                                                    index
+                                                                )
+                                                            }
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faClose}
+                                                            />
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <div
+                                                        className={cx(
+                                                            'item-image'
+                                                        )}
+                                                    >
+                                                        <img
+                                                            className={cx(
+                                                                'image'
+                                                            )}
+                                                            src={`http://localhost:5000/${image}`}
+                                                            alt=''
+                                                            key={image}
+                                                            width='200'
+                                                            height='200'
+                                                        />
+                                                        <Button
+                                                            className={cx(
+                                                                'delete-image'
+                                                            )}
+                                                            onClick={() =>
+                                                                removeImage(
+                                                                    index
+                                                                )
+                                                            }
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faClose}
+                                                            />
+                                                        </Button>
+                                                    </div>
+                                                )}
+                                            </>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </MDBModalBody>
 

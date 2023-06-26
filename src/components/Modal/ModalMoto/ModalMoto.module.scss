@@ -26,6 +26,7 @@
 
 .wrapper_image {
     margin-top: 2vh;
+    overflow-x: scroll;
 }
 
 .button_save {
@@ -35,4 +36,22 @@
     font-size: 1rem !important;
     background-color: var(--primary) !important;
     color: var(--white-color) !important;
+}
+
+
+.item-image {
+    position: relative;
+    margin-right: 10px;
+}
+
+.image {
+    width: 150px;
+    height: 85px;
+}
+
+.delete-image {
+    position: absolute;
+    left: 50%;
+    top: -10px;
+    background: transparent;
 }
