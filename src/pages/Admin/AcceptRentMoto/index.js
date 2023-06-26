@@ -27,6 +27,7 @@ import useDebounce from '~/hooks/useDebounce';
 import { AppContext } from '~/Context/AppContext';
 import ModalHandleRentMoto from '~/components/Modal/ModalHandleRentMoto';
 import Policy from '~/components/Policy';
+import Toast from '~/components/Toast';
 import * as adminServices from '~/api/adminServices';
 
 const cx = classNames.bind(styles);
@@ -34,18 +35,20 @@ const PAGE = 1;
 
 function AcceptMoto() {
     const {
-        isModalAcceptVisible,
-        setIsModalAcceptVisible,
+        isModalRentVisible,
+        setIsModalRentVisible,
         setTypeModal,
         setData,
         dataRentMoto,
         setDataRentMoto,
+        isToastVisible,
     } = useContext(AppContext);
     const [totalPage, setTotalPage] = useState();
     const [pageNumber, setPageNumber] = useState(PAGE);
     const [dash, setDash] = useState();
     const [selectedOption, setSelectedOption] = useState('DF');
 
+    // Search
     const inputRef = useRef();
     const [searchValue, setSearchValue] = useState('');
     const [loading, setLoading] = useState(false);
@@ -65,7 +68,7 @@ function AcceptMoto() {
 
     useEffect(() => {
         const thongKe = async () => {
-            const result = await adminServices.thongKe();
+            const result = await adminServices.thongKeRent();
             setDash(result);
         };
         thongKe();
@@ -102,7 +105,7 @@ function AcceptMoto() {
             };
             fetch();
         }
-    }, [pageNumber, isModalAcceptVisible, debouncedValue]);
+    }, [pageNumber, isModalRentVisible, debouncedValue]);
 
     const fetchData = async (debouncedValue = '') => {
         const result = await adminServices.getAllOrder({
@@ -252,7 +255,7 @@ function AcceptMoto() {
                                 style={{ cursor: 'pointer' }}
                                 key={index}
                                 onClick={() => {
-                                    setIsModalAcceptVisible(true);
+                                    setIsModalRentVisible(true);
                                     setTypeModal('ACCEPT');
                                     setData(item);
                                 }}
@@ -319,7 +322,7 @@ function AcceptMoto() {
                                             icon={faPen}
                                             className={cx('actions-btn')}
                                             onClick={() => {
-                                                setIsModalAcceptVisible(true);
+                                                setIsModalRentVisible(true);
                                                 setTypeModal('ACCEPT');
                                                 setData(item);
                                             }}
@@ -368,6 +371,11 @@ function AcceptMoto() {
                     <FontAwesomeIcon icon={faAngleRight} />
                 </button>
             </nav>
+            <Toast
+                type={isToastVisible?.type}
+                message={isToastVisible?.message}
+                title={isToastVisible?.title}
+            />
         </div>
     );
 }

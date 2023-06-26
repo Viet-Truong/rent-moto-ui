@@ -14,9 +14,18 @@ export const getAllOrder = async ({ page, q = '' }) => {
     }
 };
 
-export const thongKe = async () => {
+export const thongKeRent = async () => {
     try {
-        const res = await request.get('thongke');
+        const res = await request.get('thongkeRent');
+        return JSON.parse(res);
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const thongKeReturn = async () => {
+    try {
+        const res = await request.get('thongkeReturn');
         return JSON.parse(res);
     } catch (e) {
         console.log(e);
@@ -58,9 +67,33 @@ export const getAllOrderUnAccepted = async ({ page, q = '' }) => {
     }
 };
 
+export const getAllOrderDone = async ({ page, q = '' }) => {
+    try {
+        const res = await request.get('getOrderDone', {
+            params: { page, q },
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export const getOrderByID = async (maTaiKhoan) => {
     try {
         const res = await request.get(`getOrderByIdUser/${maTaiKhoan}`);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const payOrder = async (maTaiKhoan, maThue, maXe) => {
+    try {
+        const res = await request.post('payOrder', {
+            maThue,
+            maNVNhanXe: maTaiKhoan,
+            xe: maXe,
+        });
         return res;
     } catch (e) {
         console.log(e);

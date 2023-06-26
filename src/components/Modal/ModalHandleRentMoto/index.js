@@ -24,11 +24,12 @@ const cx = classNames.bind(styles);
 function ModalHandleRentMoto() {
     const { auth } = useSelector((state) => state.auth);
     const {
-        isModalAcceptVisible,
+        isModalRentVisible,
         data,
         typeModal,
-        setIsModalAcceptVisible,
+        setIsModalRentVisible,
         setIsModalAddErrorVisible,
+        setIsToastVisible,
     } = useContext(AppContext);
     const [checkAll, setCheckAll] = useState(false);
     const [dataModal, setDataModal] = useState(data ?? []);
@@ -39,43 +40,93 @@ function ModalHandleRentMoto() {
             maThue: dataModal.maThue,
         });
         if (result.status === 'success') {
-            setIsModalAcceptVisible(false);
+            setIsToastVisible({
+                type: 'success',
+                message: result.mess,
+                title: 'Thành công',
+                open: true,
+            });
+            setIsModalRentVisible(false);
+        } else {
+            setIsToastVisible({
+                type: 'error',
+                message: result.mess,
+                title: 'Thất bại',
+                open: true,
+            });
+            setIsModalRentVisible(false);
         }
     };
 
-    // const handleCheckAll = () => {
-    //     const updatedCheckboxes = dataModal.map((checkbox) => ({
-    //         ...checkbox,
-    //         checked: !checkAll,
-    //     }));
-    //     setCheckAll(!checkAll);
-    //     setDataModal(updatedCheckboxes);
-    // };
+    const handleCheckAll = () => {
+        const updatedCheckboxes = dataModal?.chiTiet.map((checkbox) => ({
+            ...checkbox,
+            checked: !checkAll,
+        }));
+        setCheckAll(!checkAll);
+        setDataModal((prevDataModal) => ({
+            ...prevDataModal,
+            chiTiet: updatedCheckboxes,
+        }));
+    };
 
-    // const handleCheckboxChange = (checkboxId) => {
-    //     const updatedCheckboxes = dataModal.map((checkbox) =>
-    //         checkbox.id === checkboxId
-    //             ? { ...checkbox, checked: !checkbox.checked }
-    //             : checkbox
-    //     );
-    //     setDataModal(updatedCheckboxes);
-    //     setCheckAll(updatedCheckboxes.every((checkbox) => checkbox.checked));
-    // };
+    const handleCheckboxChange = (checkboxId) => {
+        const updatedCheckboxes = dataModal?.chiTiet.map((checkbox) =>
+            checkbox.maXe === checkboxId
+                ? { ...checkbox, checked: !checkbox.checked }
+                : checkbox
+        );
+        setDataModal((prevDataModal) => ({
+            ...prevDataModal,
+            chiTiet: updatedCheckboxes,
+        }));
 
-    // const totalAmount = dataModal?.reduce((total, item) => {
-    //     if (item.checked) {
-    //         return total + item.price;
-    //     }
-    //     return total;
-    // }, 0);
+        const isAllChecked = updatedCheckboxes.every(
+            (checkbox) => checkbox.checked
+        );
+        setCheckAll(isAllChecked);
+    };
+
+    const totalAmount = dataModal?.chiTiet?.reduce((total, item) => {
+        if (item.checked) {
+            return total + item.giaThue;
+        }
+        return total;
+    }, 0);
 
     useEffect(() => {
         setDataModal(data ?? []);
     }, [data]);
 
+    const handleAccept = async () => {
+        const selectedXe = dataModal?.chiTiet.filter((xe) => xe.checked);
+        const result = await adminServices.payOrder(
+            auth.maTaiKhoan,
+            dataModal.maThue,
+            selectedXe
+        );
+        if (result.status === 'success') {
+            setIsToastVisible({
+                type: 'success',
+                message: result.mess,
+                title: 'Thành công',
+                open: true,
+            });
+            setIsModalRentVisible(false);
+        } else {
+            setIsToastVisible({
+                type: 'error',
+                message: result.mess,
+                title: 'Thất bại',
+                open: true,
+            });
+            setIsModalRentVisible(false);
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
-            <MDBModal show={isModalAcceptVisible} tabIndex='-1'>
+            <MDBModal show={isModalRentVisible} tabIndex='-1'>
                 <MDBModalDialog className={cx('modal_dialog')}>
                     <MDBModalContent>
                         <MDBModalHeader>
@@ -87,7 +138,7 @@ function ModalHandleRentMoto() {
                             <MDBBtn
                                 className='btn-close'
                                 color='none'
-                                onClick={() => setIsModalAcceptVisible(false)}
+                                onClick={() => setIsModalRentVisible(false)}
                             ></MDBBtn>
                         </MDBModalHeader>
 
@@ -103,7 +154,7 @@ function ModalHandleRentMoto() {
                                                         cursor: 'pointer',
                                                     }}
                                                     checked={checkAll}
-                                                    // onChange={handleCheckAll}
+                                                    onChange={handleCheckAll}
                                                 />
                                             </th>
                                         ) : (
@@ -114,6 +165,14 @@ function ModalHandleRentMoto() {
                                         <th scope='col'>Hãng xe</th>
                                         <th scope='col'>Loại xe</th>
                                         <th scope='col'>Biển số xe</th>
+                                        {typeModal !== 'ACCEPT' ? (
+                                            <th scope='col'>
+                                                Mã nhân viên nhận xe
+                                            </th>
+                                        ) : (
+                                            ''
+                                        )}
+                                        {/* <th scope='col'>Lỗi</th> */}
                                         <th scope='col'>Giá thuê</th>
                                         {typeModal !== 'ACCEPT' ? (
                                             <th scope='col'>Actions</th>
@@ -128,21 +187,26 @@ function ModalHandleRentMoto() {
                                             <tr key={item?.id}>
                                                 {typeModal !== 'ACCEPT' ? (
                                                     <td>
-                                                        <input
-                                                            type='checkbox'
-                                                            className='fw-bold mb-1'
-                                                            style={{
-                                                                cursor: 'pointer',
-                                                            }}
-                                                            checked={
-                                                                item.checked
-                                                            }
-                                                            // onChange={() =>
-                                                            //     handleCheckboxChange(
-                                                            //         item.maXe
-                                                            //     )
-                                                            // }
-                                                        />
+                                                        {item?.ngayTra !=
+                                                        null ? (
+                                                            ''
+                                                        ) : (
+                                                            <input
+                                                                type='checkbox'
+                                                                className='fw-bold mb-1'
+                                                                style={{
+                                                                    cursor: 'pointer',
+                                                                }}
+                                                                checked={
+                                                                    item.checked
+                                                                }
+                                                                onChange={() =>
+                                                                    handleCheckboxChange(
+                                                                        item.maXe
+                                                                    )
+                                                                }
+                                                            />
+                                                        )}
                                                     </td>
                                                 ) : (
                                                     ''
@@ -174,6 +238,16 @@ function ModalHandleRentMoto() {
                                                         {item?.bienSoXe}
                                                     </p>
                                                 </td>
+                                                {typeModal !== 'ACCEPT' ? (
+                                                    <td>
+                                                        <p className='fw-normal mb-1'>
+                                                            {item?.maNVNhanXe}
+                                                        </p>
+                                                    </td>
+                                                ) : (
+                                                    ''
+                                                )}
+
                                                 <td>
                                                     <p className='fw-normal mb-1'>
                                                         {item?.giaThue}.000
@@ -262,8 +336,13 @@ function ModalHandleRentMoto() {
                                             <td></td>
                                             <td></td>
                                             <td></td>
+                                            {typeModal !== 'ACCEPT' ? (
+                                                <td></td>
+                                            ) : (
+                                                ''
+                                            )}
                                             <td></td>
-                                            {/* <td>{totalAmount}.000</td> */}
+                                            <td>{totalAmount}.000</td>
                                             <td>
                                                 <Button
                                                     color='link'
@@ -274,6 +353,7 @@ function ModalHandleRentMoto() {
                                                         'mb-1',
                                                         'btn'
                                                     )}
+                                                    onClick={handleAccept}
                                                 >
                                                     XÁC NHẬN
                                                 </Button>

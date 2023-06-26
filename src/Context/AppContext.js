@@ -6,8 +6,7 @@ export const AppContextProvider = ({ children }) => {
     const [isModalAddErrorVisible, setIsModalAddErrorVisible] = useState(false);
     const [isModalAccountVisible, setIsModalAccountVisible] = useState(false);
     const [isModalMotoVisible, setIsModalMotoVisible] = useState(false);
-    const [isModalAcceptVisible, setIsModalAcceptVisible] = useState(false);
-    const [isModalReturnVisible, setIsModalReturnVisible] = useState(false);
+    const [isModalRentVisible, setIsModalRentVisible] = useState(false);
     const [isToastVisible, setIsToastVisible] = useState({
         open: false,
     });
@@ -23,10 +22,8 @@ export const AppContextProvider = ({ children }) => {
                 setIsModalAccountVisible,
                 isModalMotoVisible,
                 setIsModalMotoVisible,
-                isModalAcceptVisible,
-                setIsModalAcceptVisible,
-                isModalReturnVisible,
-                setIsModalReturnVisible,
+                isModalRentVisible,
+                setIsModalRentVisible,
                 data,
                 setData,
                 dataRentMoto,
