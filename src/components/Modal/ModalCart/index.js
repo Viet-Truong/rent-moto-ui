@@ -11,18 +11,25 @@ import styles from './ModalCart.module.scss';
 import React, { useContext, useState } from 'react';
 import { DatePicker } from 'antd';
 import moment from 'moment/moment';
+import { useSelector } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 import { CartContext } from '~/Context/CartContext';
+import * as userServices from '~/api/userServices';
+import Button from '~/components/Button';
+import { AppContext } from '~/Context/AppContext';
 
 const { RangePicker } = DatePicker;
 const cx = classNames.bind(styles);
 function ModalCart() {
-    const { isOpen, setIsOpen, cartItems, removeCartItem } =
+    const { auth } = useSelector((state) => state.auth);
+    const { isOpen, setIsOpen, cartItems, removeCartItem, setCartItems } =
         useContext(CartContext);
+    const { setIsToastVisible } = useContext(AppContext);
     const [dateRanges, setDateRanges] = useState({});
+    const [check, setCheck] = useState(false);
     const toogleClose = isOpen ? '' : 'close';
 
     const handleDateChange = (cartItemId, dateRange) => {
@@ -40,6 +47,67 @@ function ModalCart() {
     const handleRemoveCartItem = (cartItemId, itemId) => {
         console.log(cartItemId, itemId);
         removeCartItem(cartItemId, itemId);
+    };
+
+    const handleCheckboxChange = (checkboxId) => {
+        const updatedCheckboxes = cartItems?.map((checkbox) =>
+            checkbox.id === checkboxId
+                ? { ...checkbox, checked: !checkbox.checked }
+                : checkbox
+        );
+        setCartItems(updatedCheckboxes);
+        setCheck(!check);
+    };
+
+    const totalAmount = cartItems?.map((item) => {
+        if (item.checked) {
+            const total = item.data_moto.reduce((total, item) => {
+                return total + item.price;
+            }, 0);
+            return total;
+        }
+    }, 0);
+
+    const handleRentMoto = async () => {
+        const rentMoto = cartItems?.filter((item) => item.checked);
+        if (rentMoto.length > 0 || cartItems?.length > 0) {
+            const ngayBD = rentMoto?.map((item) => item.date.startDate).join();
+            const ngayKT = rentMoto?.map((item) => item.date.endDate).join();
+            const listMoto = rentMoto?.map((item) =>
+                item.data_moto.map((i) => i.id)
+            );
+            const result = await userServices.rentMoto({
+                maTaiKhoan: auth.maTaiKhoan,
+                ngayBD,
+                ngayKT,
+                listMoto: listMoto[0],
+            });
+            if (result.status === 'success') {
+                setIsToastVisible({
+                    type: 'success',
+                    message: result.mess,
+                    title: 'Thành công',
+                    open: true,
+                });
+                setIsOpen(false);
+            } else {
+                setIsToastVisible({
+                    type: 'error',
+                    message: result.mess,
+                    title: 'Thất bại',
+                    open: true,
+                });
+                setIsOpen(false);
+            }
+        } else {
+            setIsToastVisible({
+                type: 'error',
+                message: 'Bạn chưa thêm xe nào vào giỏ hàng',
+                title: 'Thất bại',
+                open: true,
+            });
+            setIsOpen(false);
+        }
     };
 
     return (
@@ -95,6 +163,10 @@ function ModalCart() {
                                     <input
                                         type={'checkbox'}
                                         className={cx('form-control-checkbox')}
+                                        check={check}
+                                        onChange={() =>
+                                            handleCheckboxChange(cartItem.id)
+                                        }
                                     />
                                 </div>
                                 {cartItem.data_moto.map((item, index) => (
@@ -209,26 +281,19 @@ function ModalCart() {
                             <hr />
 
                             <div className='d-flex justify-content-between'>
-                                <p className='mb-2'>Tiền</p>
-                                <p className='mb-2'>479.000 VNĐ</p>
-                            </div>
-
-                            <div className='d-flex justify-content-between'>
-                                <p className='mb-2'>VAT</p>
-                                <p className='mb-2'>47.900 VNĐ</p>
-                            </div>
-
-                            <div className='d-flex justify-content-between'>
                                 <p className='mb-2'>Tổng tiền</p>
-                                <p className='mb-2'>526.900 VNĐ</p>
+                                <p className='mb-2'>
+                                    {`${totalAmount}000` || 0}
+                                </p>
                             </div>
 
-                            <MDBBtn color='info' block size='lg'>
-                                <div className='d-flex justify-content-between'>
-                                    <span>526.900 VNĐ</span>
-                                    <span>Đăng kí thuê xe</span>
+                            <Button primary onClick={handleRentMoto}>
+                                <div>
+                                    <span style={{ textAlign: 'center' }}>
+                                        Đăng kí thuê xe
+                                    </span>
                                 </div>
-                            </MDBBtn>
+                            </Button>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCard>

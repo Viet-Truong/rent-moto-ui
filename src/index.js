@@ -1,26 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import "mdb-react-ui-kit/dist/css/mdb.min.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import reportWebVitals from "./reportWebVitals";
-import GlobalStyles from "./components/GlobalStyles";
-import { CartContextProvider } from "./Context/CartContext";
-import { AppContextProvider } from "./Context/AppContext";
-import { Provider } from "react-redux";
-import store from "./redux/store";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './index.css';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import reportWebVitals from './reportWebVitals';
+import GlobalStyles from './components/GlobalStyles';
+import { CartContextProvider } from './Context/CartContext';
+import { AppContextProvider } from './Context/AppContext';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <AppContextProvider>
-        <CartContextProvider>
-            <GlobalStyles>
-                <Provider store={store}>
+        <Provider store={store}>
+            <CartContextProvider>
+                <GlobalStyles>
                     <App />
-                </Provider>
-            </GlobalStyles>
-        </CartContextProvider>
+                </GlobalStyles>
+            </CartContextProvider>
+        </Provider>
     </AppContextProvider>
 );
 

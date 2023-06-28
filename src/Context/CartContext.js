@@ -1,6 +1,6 @@
-import { useState, createContext } from "react";
-import ModalCart from "~/components/Modal/ModalCart";
-import { v4 as uuid } from "uuid";
+import { useState, createContext } from 'react';
+import ModalCart from '~/components/Modal/ModalCart';
+import { v4 as uuid } from 'uuid';
 
 export const CartContext = createContext({});
 
@@ -30,7 +30,7 @@ export const CartContextProvider = ({ children }) => {
                     ],
                 },
             ]);
-            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
         }
         // Nếu giỏ hàng đã có sản phẩm, tìm object có cùng ngày và thêm sản phẩm vào mảng data_moto
         else {
@@ -117,6 +117,7 @@ export const CartContextProvider = ({ children }) => {
                 cartItems,
                 addCartItem,
                 removeCartItem,
+                setCartItems,
             }}
         >
             <ModalCart />

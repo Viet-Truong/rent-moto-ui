@@ -121,3 +121,17 @@ export const updateAccount = async ({ maTaiKhoan, taiKhoan }) => {
         console.log(e);
     }
 };
+
+export const rentMoto = async ({ maTaiKhoan, ngayBD, ngayKT, listMoto }) => {
+    try {
+        const res = await request.post('addOrder', {
+            maKH: maTaiKhoan,
+            ngayBD,
+            ngayKT,
+            listMoto,
+        });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+};

@@ -8,11 +8,12 @@ import { policy } from '~/data/data';
 import Moto from '~/components/Moto';
 import * as motoServices from '~/api/motoServices';
 import { AppContext } from '~/Context/AppContext';
+import Toast from '~/components/Toast';
 
 const cx = classNames.bind(styles);
 function Home() {
     // const [moto, setMoto] = useState();
-    const { dataMoto, setDataMoto } = useContext(AppContext);
+    const { dataMoto, setDataMoto, isToastVisible } = useContext(AppContext);
 
     useEffect(() => {
         const fetch = async () => {
@@ -64,6 +65,11 @@ function Home() {
                     })}
                 </div>
             </div>
+            <Toast
+                type={isToastVisible?.type}
+                message={isToastVisible?.message}
+                title={isToastVisible?.title}
+            />
         </div>
     );
 }
