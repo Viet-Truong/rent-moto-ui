@@ -59,13 +59,14 @@ function ModalCart() {
         setCheck(!check);
     };
 
-    const totalAmount = cartItems?.map((item) => {
+    const totalAmount = cartItems?.reduce((total, item) => {
         if (item.checked) {
-            const total = item.data_moto.reduce((total, item) => {
+            const totalItem = item.data_moto.reduce((total, item) => {
                 return total + item.price;
             }, 0);
-            return total;
+            return total + totalItem;
         }
+        return total;
     }, 0);
 
     const handleRentMoto = async () => {
@@ -282,9 +283,7 @@ function ModalCart() {
 
                             <div className='d-flex justify-content-between'>
                                 <p className='mb-2'>Tổng tiền</p>
-                                <p className='mb-2'>
-                                    {`${totalAmount}000` || 0}
-                                </p>
+                                <p className='mb-2'>{`${totalAmount}.000`}</p>
                             </div>
 
                             <Button primary onClick={handleRentMoto}>
