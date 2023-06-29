@@ -16,10 +16,10 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
-import { CartContext } from '~/context/CartContext';
+import { CartContext } from '~/Context/CartContext';
 import * as userServices from '~/api/userServices';
 import Button from '~/components/Button';
-import { AppContext } from '~/context/AppContext';
+import { AppContext } from '~/Context/AppContext';
 
 const { RangePicker } = DatePicker;
 const cx = classNames.bind(styles);

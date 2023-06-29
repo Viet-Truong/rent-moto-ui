@@ -29,7 +29,7 @@ import {
 
 import useDebounce from '~/hooks/useDebounce';
 import Policy from '~/components/Policy';
-import { AppContext } from '~/context/AppContext';
+import { AppContext } from '~/Context/AppContext';
 import * as userServices from '~/api/userServices';
 import Image from '~/components/Image';
 import Toast from '~/components/Toast';

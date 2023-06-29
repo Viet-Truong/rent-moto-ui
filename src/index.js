@@ -6,8 +6,8 @@ import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import reportWebVitals from './reportWebVitals';
 import GlobalStyles from './components/GlobalStyles';
-import { CartContextProvider } from '~/context/CartContext';
-import { AppContextProvider } from '~/context/AppContext';
+import { CartContextProvider } from '~/Context/CartContext';
+import { AppContextProvider } from '~/Context/AppContext';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 

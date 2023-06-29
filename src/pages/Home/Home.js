@@ -7,7 +7,7 @@ import { slider_data } from '~/data/slide';
 import { policy } from '~/data/data';
 import Moto from '~/components/Moto';
 import * as motoServices from '~/api/motoServices';
-import { AppContext } from '~/context/AppContext';
+import { AppContext } from '~/Context/AppContext';
 import Toast from '~/components/Toast';
 
 const cx = classNames.bind(styles);

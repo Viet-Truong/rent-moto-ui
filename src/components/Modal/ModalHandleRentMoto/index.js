@@ -15,7 +15,7 @@ import {
 import { useState, useEffect, useContext } from 'react';
 import { useSelector } from 'react-redux';
 
-import { AppContext } from '~/context/AppContext';
+import { AppContext } from '~/Context/AppContext';
 import Button from '~/components/Button';
 import ModalAddError from '../ModalAddError';
 import * as adminServices from '~/api/adminServices';

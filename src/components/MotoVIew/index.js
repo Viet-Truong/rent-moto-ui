@@ -6,9 +6,9 @@ import moment from 'moment/moment';
 
 import Button from '../Button';
 import { useContext } from 'react';
-import { CartContext } from '~/context/CartContext';
+import { CartContext } from '~/Context/CartContext';
 import Toast from '../Toast';
-import { AppContext } from '~/context/AppContext';
+import { AppContext } from '~/Context/AppContext';
 import * as motoServices from '~/api/motoServices';
 
 const { RangePicker } = DatePicker;
