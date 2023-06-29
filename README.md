@@ -63,14 +63,14 @@ Open [http://localhost:6868/admin](http://localhost:6868/admin) to view ADMIN pa
 
 <details>
     <summary><strong>Admin account:</strong></summary>
-    <p>viettruong</p>
-    <p>vt123</p>
+    <p>Account: viettruong</p>
+    <p>Password: vt123</p>
 </details>
 
 <details>
     <summary><strong>Employee account:</strong></summary>
-    <p>vt_nv</p>
-    <p>vt123</p>
+    <p>Account: vt_nv</p>
+    <p>Password: vt123</p>
 </details>
 
 The page will reload when you make changes.\
