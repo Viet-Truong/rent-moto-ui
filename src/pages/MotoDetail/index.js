@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 
 import MotoView from '~/components/MotoVIew';
-import { AppContext } from '~/context/AppContext';
+import * as motoServices from '~/api/motoServices';
 
 const cx = classNames.bind(styles);
 function MotoDetail() {
@@ -13,18 +13,13 @@ function MotoDetail() {
         location.pathname.lastIndexOf('/') + 1
     );
     const [data, setData] = useState();
-    const { dataMoto } = useContext(AppContext);
-    console.log(slug);
-    // get slug and transfer slug to component MotoView
-    const findMotoBySlug = (slug_item) => {
-        const foundMoto = dataMoto?.find((item) => item.slug === slug_item);
-        return foundMoto;
-    };
-
-    const motoFounded = findMotoBySlug(slug);
 
     useEffect(() => {
-        setData(motoFounded);
+        const fetchDate = async () => {
+            const result = await motoServices.getDateById(slug);
+            setData(result);
+        };
+        fetchDate();
     }, [slug]);
 
     return (

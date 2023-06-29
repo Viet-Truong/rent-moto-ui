@@ -28,14 +28,8 @@ function MotoView({ item }) {
         if (item?.hinhAnh?.length > 0) {
             setPreviewImage(item.hinhAnh[0]);
         }
-        if (item) {
-            const fetchDate = async () => {
-                const result = await motoServices.getDateById(item.maXe);
-                setDateMoto(result.lich);
-            };
-            fetchDate();
-        }
-    }, [item?.maXe]);
+        setDateMoto(item?.lich);
+    }, [item]);
 
     const isDateDisabled = (current) => {
         const today = moment().startOf('day');
