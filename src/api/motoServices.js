@@ -63,9 +63,9 @@ export const updateXe = async (formData) => {
     }
 };
 
-export const getDateById = async (id = '') => {
+export const getMotoBySlug = async (slug = '') => {
     try {
-        const res = await request.get(`getXe/${id}`);
+        const res = await request.get(`getXe/${slug}`);
         return res.data;
     } catch (e) {
         console.log(e);

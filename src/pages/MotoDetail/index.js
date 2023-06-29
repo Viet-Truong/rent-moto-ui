@@ -16,7 +16,7 @@ function MotoDetail() {
 
     useEffect(() => {
         const fetchDate = async () => {
-            const result = await motoServices.getDateById(slug);
+            const result = await motoServices.getMotoBySlug(slug);
             setData(result);
         };
         fetchDate();
