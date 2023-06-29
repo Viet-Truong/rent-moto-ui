@@ -62,23 +62,16 @@ Open [http://localhost:6868/admin](http://localhost:6868/admin) to view ADMIN pa
 ### Account
 
 <details>
-    <summary>
-        <strong>Admin account:
-        <p>viettruong</p>
-        <p>vt123</p>
-        </strong>
-        
-    </summary>
+    <summary><strong>Admin account:</strong></summary>
+    <p>viettruong</p>
+    <p>vt123</p>
 </details>
 
 <details>
-    <summary>
-        <strong>Employee account:
-        <p>vt_nv</p>
-        <p>vt123</p>
-        </strong>
-        
-    </summary>
+    <summary><strong>Employee account:</strong></summary>
+    <p>vt_nv</p>
+    <p>vt123</p>
 </details>
+
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
