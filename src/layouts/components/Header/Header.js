@@ -11,7 +11,7 @@ import Image from '~/components/Image';
 import Menu from '~/components/Popper/Menu';
 import { userMenu } from '~/data/userMenu';
 import Search from '../Search';
-import { CartContext } from '~/Context/CartContext';
+import { CartContext } from '~/context/CartContext';
 import { authLogout } from '~/redux/authAction';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -19,7 +19,7 @@ import { faCamera, faPen, faUser } from '@fortawesome/free-solid-svg-icons';
 import Image from '~/components/Image';
 import * as userServices from '~/api/userServices';
 import Toast from '~/components/Toast';
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);

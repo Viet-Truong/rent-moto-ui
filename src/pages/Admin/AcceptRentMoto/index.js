@@ -24,7 +24,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import useDebounce from '~/hooks/useDebounce';
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 import ModalHandleRentMoto from '~/components/Modal/ModalHandleRentMoto';
 import Policy from '~/components/Policy';
 import Toast from '~/components/Toast';

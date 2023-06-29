@@ -26,7 +26,7 @@ import {
 import Policy from '~/components/Policy';
 import useDebounce from '~/hooks/useDebounce';
 import ModalMoto from '~/components/Modal/ModalMoto';
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 import * as motoServices from '~/api/motoServices';
 import Toast from '~/components/Toast';
 

@@ -17,7 +17,7 @@ import {
     MDBDropdownItem,
 } from 'mdb-react-ui-kit';
 
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 import * as authServices from '~/api/authServices';
 
 const cx = classNames.bind(styles);

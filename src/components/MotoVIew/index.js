@@ -3,13 +3,13 @@ import styles from './MotoView.module.scss';
 import { useState, useEffect } from 'react';
 import { DatePicker, Row, Col } from 'antd';
 import moment from 'moment/moment';
-import { v4 as uuid } from 'uuid';
 
 import Button from '../Button';
 import { useContext } from 'react';
-import { CartContext } from '~/Context/CartContext';
+import { CartContext } from '~/context/CartContext';
 import Toast from '../Toast';
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
+import * as motoServices from '~/api/motoServices';
 
 const { RangePicker } = DatePicker;
 
@@ -19,6 +19,7 @@ function MotoView({ item }) {
     const [startDate, setStartDate] = useState(moment());
     const [endDate, setEndDate] = useState(moment());
     const [previewImage, setPreviewImage] = useState('');
+    const [dateMoto, setDateMoto] = useState();
     const { addCartItem } = useContext(CartContext);
     const { isToastVisible, setIsToastVisible } = useContext(AppContext);
 
@@ -27,12 +28,38 @@ function MotoView({ item }) {
         if (item?.hinhAnh?.length > 0) {
             setPreviewImage(item.hinhAnh[0]);
         }
-    }, [item]);
+        if (item) {
+            const fetchDate = async () => {
+                const result = await motoServices.getDateById(item.maXe);
+                setDateMoto(result.lich);
+            };
+            fetchDate();
+        }
+    }, [item?.maXe]);
 
-    const disabledDate = (current) => {
-        // Chỉ cho phép chọn các ngày bắt đầu từ ngày hiện tại trở đi
-        return current && current < moment().startOf('day');
+    const isDateDisabled = (current) => {
+        const today = moment().startOf('day');
+        const date = current.startOf('day');
+
+        if (date < today) {
+            return true;
+        }
+
+        for (let i = 0; i < dateMoto.length; i++) {
+            const ngayBD = moment(dateMoto[i].ngayBD, 'DD-MM-YYYY');
+            const ngayKT = moment(dateMoto[i].ngayKT, 'DD-MM-YYYY');
+
+            if (date >= ngayBD && date <= ngayKT) {
+                return true;
+            }
+        }
+
+        return false;
     };
+
+    // const handleRangeChange = (dates) => {
+    //     setSelectedRange(dates);
+    // };
 
     const handleRangePickerChange = (dates) => {
         const startDate = dates[0].format('DD-MM-YYYY');
@@ -109,7 +136,7 @@ function MotoView({ item }) {
                                             'range-picker'
                                         )}
                                         onChange={handleRangePickerChange}
-                                        disabledDate={disabledDate}
+                                        disabledDate={isDateDisabled}
                                         format='DD MMM yyyy'
                                         style={{
                                             height: '3.5rem',

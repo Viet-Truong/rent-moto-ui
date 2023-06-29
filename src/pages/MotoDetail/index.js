@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 
 import MotoView from '~/components/MotoVIew';
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 
 const cx = classNames.bind(styles);
 function MotoDetail() {

@@ -20,7 +20,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 import Button from '~/components/Button';
 import * as motoServices from '~/api/motoServices';
 

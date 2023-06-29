@@ -62,3 +62,12 @@ export const updateXe = async (formData) => {
         console.log(e);
     }
 };
+
+export const getDateById = async (id = '') => {
+    try {
+        const res = await request.get(`getXe/${id}`);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+};

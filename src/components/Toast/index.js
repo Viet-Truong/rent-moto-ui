@@ -10,7 +10,7 @@ import {
     faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 
 const cx = classNames.bind(styles);
 const icons = {

@@ -17,7 +17,7 @@ import {
     MDBDropdownItem,
 } from 'mdb-react-ui-kit';
 
-import { AppContext } from '~/Context/AppContext';
+import { AppContext } from '~/context/AppContext';
 
 const cx = classNames.bind(styles);
 function ModalAddError() {
